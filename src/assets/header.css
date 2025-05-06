@@ -41,9 +41,9 @@ header {
 }
 
 .lang-circle {
-    position: fixed;
-    top: -45px;
-    right: -55px;
+    position: absolute;
+    top: -50px;
+    right: -80px;
     width: 200px;
     height: 200px;
     border-radius: 50%;
