@@ -11,27 +11,37 @@
   align-items: flex-end;
   gap: 2rem;
   flex-wrap: wrap;
+  margin-left: -1rem;
 }
 
 .title {
-  font-size: 14rem;
+  font-size: 12.5rem;
   font-weight: 700;
   margin: 0;
+  margin-right: 4.5rem;
   line-height: 11.5rem;
+}
+
+.text-container {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
 }
 
 .subtitle {
   font-size: 11rem;
   font-weight: 700;
   margin: 0.8rem 0;
+  text-align: right;
 }
 
 .description {
   font-size: 1.2rem;
   color: #ccc;
-  max-width: 600px;
+  max-width: 450px;
   font-style: italic;
   line-height: 1.6;
+  margin: 0;
 }
 
 .hero-text em {
@@ -42,7 +52,7 @@
   position: relative;
   display: inline-flex;
   align-items: center;
-  height: 3.5rem;
+  height: 7rem;
 }
 
 .project-button {
@@ -50,22 +60,23 @@
   border-radius: 999px;
   padding: 0.7rem 2.5rem 0.7rem 2rem;
   font-style: italic;
-  font-size: 1rem;
+  font-size: 1.5rem;
   font-weight: 500;
   color: #121212;
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 200px;
+  width: 300px;
+  height: 3rem;
 }
 
 .arrow-circle {
   position: absolute;
-  right: -3rem; /* dépassement */
+  right: -5rem;
   background-color: #fff;
   color: #000;
-  width: 2.2rem;
-  height: 2.2rem;
+  width: 4rem;
+  height: 4rem;
   border-radius: 50%;
   text-decoration: none;
   font-size: 1.2rem;
@@ -106,4 +117,16 @@
 .socials a:hover {
   background-color: #222;
   color: white;
+}
+
+.social-icon {
+  width: 20px;
+  height: 20px;
+  object-fit: contain;
+  background-color: white;
+}
+
+.telegram {
+  margin-left: 5rem;
+  margin-right: 5rem;
 }
