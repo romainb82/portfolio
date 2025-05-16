@@ -18,7 +18,7 @@
   font-size: 12.5rem;
   font-weight: 700;
   margin: 0;
-  margin-right: 4.5rem;
+  margin-right: 10rem;
   line-height: 11.5rem;
 }
 
@@ -38,10 +38,11 @@
 .description {
   font-size: 1.2rem;
   color: #ccc;
-  max-width: 450px;
-  font-style: italic;
+  max-width: 480px;
+  font-size: 1.4rem;
   line-height: 1.6;
   margin: 0;
+  margin-right: 11.5rem;
 }
 
 .hero-text em {

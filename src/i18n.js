@@ -8,14 +8,14 @@ const state = reactive({
       projects: 'Projets',
       contact: 'Contacts',
       heroTitle: 'Full-stack',
-      heroDescription: 'Mon objectif est d’écrire du code <em>maintenable</em>, <em>propre</em> et <em>compréhensible</em>.',
+      heroDescription: 'Mon objectif est d’écrire du code <em>maintenable</em>, <em>propre</em> et <em>compréhensible</em> pour que le développement soit agréable.',
     },
     EN: {
       about: 'About',
       projects: 'Projects',
       contact: 'Contact',
       heroTitle: 'Full-stack',
-      heroDescription: 'My goal is to write <em>maintainable</em>, <em>clean</em>, and <em>understandable</em> code.',
+      heroDescription: 'My goal is to write <em>maintainable</em>, <em>clean</em>, and <em>understandable</em> code to process development waas enjoyable.',
     },
   },
 })

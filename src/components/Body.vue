@@ -45,5 +45,6 @@ const { t } = useI18n()
                 Instagram
             </a>
         </div>
+        <!-- Mettre carousel ici -->
     </section>
 </template>
