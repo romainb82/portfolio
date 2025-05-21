@@ -15,7 +15,7 @@ const state = reactive({
       projects: 'Projects',
       contact: 'Contact',
       heroTitle: 'Full-stack',
-      heroDescription: 'My goal is to write <em>maintainable</em>, <em>clean</em>, and <em>understandable</em> code to process development waas enjoyable.',
+      heroDescription: 'My goal is to write <em>maintainable</em>, <em>clean</em>, and <em>understandable</em> code to process development was enjoyable.',
     },
   },
 })
@@ -23,7 +23,9 @@ const state = reactive({
 export const useI18n = () => {
   const t = computed(() => state.translations[state.lang])
   const setLang = (newLang) => {
-    state.lang = newLang
+    if (state.lang !== newLang) {
+      state.lang = newLang
+    }
   }
-  return { lang: state.lang, t, setLang }
+  return { lang: computed(() => state.lang), t, setLang }
 }

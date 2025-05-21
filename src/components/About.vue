@@ -46,4 +46,4 @@ const { t } = useI18n()
             </div>
         </div>
     </section>
-</template>
+    </template>
