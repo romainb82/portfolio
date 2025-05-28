@@ -1,5 +1,5 @@
 <script setup>
-import "@/assets/body.css"
+import "@/assets/css/body.css"
 
 import { useI18n } from '@/i18n'
 

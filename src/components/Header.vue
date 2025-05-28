@@ -1,5 +1,5 @@
 <script setup>
-import "@/assets/header.css"
+import "@/assets/css/header.css"
 import { useI18n } from '@/i18n'
 
 const { lang, t, setLang } = useI18n()
