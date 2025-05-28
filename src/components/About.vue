@@ -8,42 +8,48 @@ const { t } = useI18n()
 
 <template>
     <section class="about" id="about">
-        <div class="about-grid">
+      <div class="about-container">
+        <!-- Left Column (Text and Skills) -->
+        <div class="left-column">
             <div class="about-text">
-                <h2>... /About me ...</h2>
-                <p>Hello! I'm Romain, I'm a <em>full-stack developer</em>.<br />
-                    More than <strong>3 years</strong> experience.
-                </p>
-                <p>Some of <em>my favorite technologies</em>,<br />
-                    topics, or tools that I worked with:
-                </p>
+                <h2 v-html="t.aboutMe"></h2>
+                <p v-html="t.hello"></p>
             </div>
 
+            <!-- Skill Tags -->
             <div class="about-tags">
-                <div class="tag-block">
-                    <h3>Front-end</h3>
-                    <p>TypeScript / Vue / React / Angular / Vite</p>
+                <div class="tag-block light">
+                    <h3 v-html="t.frontEnd"></h3>
+                    <p>JavaScript / TypeScript / Vue / React / Angular</p>
                 </div>
 
                 <div class="tag-block">
-                    <h3>Styles</h3>
-                    <p>CSS / SCSS / Tailwind </p>
+                    <h3 v-html="t.styles"></h3>
+                    <p>CSS / SCSS</p>
                 </div>
 
                 <div class="tag-block">
-                    <h3>Back-end</h3>
+                    <h3 v-html="t.backEnd"></h3>
                     <p>Node / Express / Symfony / Java / MySQL / PostgreSQL / MongoDB / Vertica</p>
                 </div>
 
                 <div class="tag-block">
                     <h3>DevOps</h3>
-                    <p>Docker / Nginx / GitHub Actions / CI/CD / Bash</p>
+                    <p>Docker / Nginx / GitHub Actions / CI/CD / Bash / Vite</p>
                 </div>
             </div>
 
-            <div class="about-photo">
-                <img src="@/assets/pp.jpg" alt="Photo of Romain"/>
+            <div class="about-text">
+                <p v-html="t.favoriteTech"></p>
             </div>
+          </div>
+
+        <!-- Right Column (Photo) -->
+        <!-- Photo -->
+        <div class="about-photo">
+          <img src="@/assets/pp.jpg" alt="Photo de Romain" />
         </div>
+      </div>
     </section>
-    </template>
+  </template>
+  

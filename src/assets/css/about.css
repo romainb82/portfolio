@@ -1,72 +1,94 @@
 .about {
-    text-align: left;
-    padding: 6rem 2rem 4rem;
+    padding: 6rem 2rem;
     color: white;
-}
-
-.about-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-    gap: 3rem;
-    align-items: start;
-    margin-top: 2rem;
-}
-
-.about-text {
-    grid-column: span 1;
-}
-
-.about-text h2 {
-    font-size: 1.5rem;
-    font-weight: 500;
-    color: #aaa;
+    display: flex;
+  }
+  
+  .about-container {
+    display: flex;
+    flex-direction: row;
+    gap: 4rem;
+    max-width: 1200px;
+    width: 100%;
+    align-items: flex-start;
+    flex-wrap: wrap;
+  }
+  
+  .about-content {
+    flex: 1;
+    min-width: 320px;
+  }
+  
+  .about-text h2 {
+    font-size: 2rem;
+    font-weight: 600;
     margin-bottom: 1rem;
-}
-
-.about-text p {
+    color: white;
+  }
+  
+  .about-text p {
     font-size: 1.1rem;
-    line-height: 1.6;
     color: #ccc;
-    margin: 0.5rem 0;
-}
-
-.about-tags {
+    margin-bottom: 0.75rem;
+    line-height: 1.6;
+    font-weight: 300;
+  }
+  
+  .about-tags {
     display: flex;
     flex-direction: column;
     gap: 1.5rem;
-    grid-column: span 1;
-}
-
-.tag-block {
+    margin-top: 2rem;
+  }
+  
+  .tag-block {
     background-color: #111;
-    padding: 1.5rem;
-    border-radius: 1rem;
     border: 1px solid #333;
-}
-
-.tag-block h3 {
+    padding: 1.5rem;
+    border-radius: 1.5rem;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    transition: transform 0.2s ease;
+  }
+  
+  .tag-block:hover {
+    transform: translateY(-4px);
+  }
+  
+  .tag-block.light {
+    background-color: #f4f4f4;
+    color: #000;
+  }
+  
+  .tag-block.light h3,
+  .tag-block.light p {
+    color: #000;
+  }
+  
+  .tag-block h3 {
     font-size: 1.2rem;
     font-weight: 600;
-    color: white;
     margin-bottom: 0.5rem;
-}
-
-.tag-block p {
+    color: white;
+  }
+  
+  .tag-block p {
     font-size: 0.95rem;
     color: #bbb;
-    line-height: 1.5;
     margin: 0;
-}
-
-.about-photo {
+  }
+  
+  .about-photo {
+    flex-shrink: 0;
     display: flex;
     justify-content: center;
     align-items: center;
-    grid-column: span 1;
-}
-
-.about-photo img {
-    max-width: 100%;
-    height: auto;
-    border-radius: 1rem;
-}
+  }
+  
+  .about-photo img {
+    width: 300px;
+    height: 300px;
+    object-fit: cover;
+    border-radius: 1.5rem;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.4);
+  }
+  

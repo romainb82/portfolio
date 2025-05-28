@@ -1,5 +1,5 @@
 <script setup>
-import "@/assets/css/body.css"
+import "@/assets/css/presentation.css"
 
 import { useI18n } from '@/i18n'
 
@@ -20,7 +20,7 @@ const { t } = useI18n()
             </div>
             <div class="text-container">
                 <p class="description" v-html="t.heroDescription"></p>
-                <h2 class="subtitle">Developer</h2>
+                <h2 class="subtitle" v-html="t.heroSubTitle"></h2>
             </div>
         </div>
         <div class="socials">
