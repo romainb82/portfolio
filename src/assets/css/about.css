@@ -1,5 +1,5 @@
 .about {
-    padding: 6rem 2rem;
+    padding: 1rem 2rem;
     color: white;
     display: flex;
   }
@@ -8,7 +8,6 @@
     display: flex;
     flex-direction: row;
     gap: 4rem;
-    max-width: 1200px;
     width: 100%;
     align-items: flex-start;
     flex-wrap: wrap;
@@ -18,20 +17,47 @@
     flex: 1;
     min-width: 320px;
   }
+
+  .about-text{
+    display: flex;
+    gap: 2rem;
+    justify-content: space-between;
+    align-items: center;
+    width: 70%;
+  }
   
   .about-text h2 {
-    font-size: 2rem;
+    text-align: left;
+    font-size: 1rem;
     font-weight: 600;
-    margin-bottom: 1rem;
+    width: 100%;
     color: white;
   }
   
   .about-text p {
-    font-size: 1.1rem;
+    font-size: 1.4rem;
     color: #ccc;
-    margin-bottom: 0.75rem;
     line-height: 1.6;
-    font-weight: 300;
+    text-align: left;;
+    text-wrap: wrap;
+  }
+
+  .lang-container-about {
+    position: relative;
+    width: 100px;
+    height: 100px;
+    z-index: 1;
+  }
+
+  .lang-circle-about {
+    position: absolute;
+    top: -79px;
+    right: -535px;
+    width: 890px;
+    height: 890px;
+    border-radius: 50%;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    z-index: 0;
   }
   
   .about-tags {
@@ -54,14 +80,30 @@
     transform: translateY(-4px);
   }
   
-  .tag-block.light {
-    background-color: #f4f4f4;
-    color: #000;
+  .tag-block.front {
+    background-color: #f9f9f9;
+    color: #111;
+    font-family: 'Inter', sans-serif;
+    font-weight: 400;
+    padding: 1.5rem;
+    border-radius: 1.5rem;
+    border: none;
+    box-shadow: none;
   }
   
-  .tag-block.light h3,
-  .tag-block.light p {
-    color: #000;
+  .tag-block.front h3 {
+    color: #111;
+    font-size: 1.1rem;
+    font-weight: 500;
+    margin-bottom: 1rem;
+  }
+  
+  .tag-block.front p {
+    color: #111;
+    font-size: 0.95rem;
+    line-height: 1.6;
+    margin: 0;
+    font-weight: 400;
   }
   
   .tag-block h3 {
@@ -81,12 +123,15 @@
     flex-shrink: 0;
     display: flex;
     justify-content: center;
+    margin-left: auto;
     align-items: center;
+    margin-right: 11rem;
+    z-index: 2;
   }
   
   .about-photo img {
-    width: 300px;
-    height: 300px;
+    width: 465px;
+    height: 580px;
     object-fit: cover;
     border-radius: 1.5rem;
     box-shadow: 0 6px 20px rgba(0, 0, 0, 0.4);
