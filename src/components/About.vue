@@ -31,15 +31,14 @@
                   </path>
                 </svg>
               </div>
-              <div class="circle">
+              <a href="https://github.com/romainb82" class="circle">                
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
                   <path
                     d="M5.63589 19.7784L4.22169 18.3644L15.657 6.92908L10.0712 6.92908V4.92908L19.0712 4.92908L19.0712 13.9291H17.0712L17.0712 8.34326L5.63589 19.7784Z">
                   </path>
                 </svg>
-              </div>
+              </a>
             </div>
-
           </div>
 
           <div class="tag-block back">
@@ -50,7 +49,7 @@
 
           <div class="containerBlock">
             <div class="containerText">
-              <p>some of my favorite technologies topics, or tools that i worked with</p>
+              <p v-html="t.favoriteTech"></p>
             </div>
 
             <div class="demi-block">
@@ -59,10 +58,6 @@
             </div>
           </div>
         </div>
-
-        <!-- <div class="about-text tech">
-                <p v-html="t.favoriteTech"></p>
-            </div> -->
       </div>
 
       <div class="about-photo">
@@ -78,6 +73,6 @@ import { useI18n } from '@/i18n'
 const { t } = useI18n()
 </script>
 
-<style scoped lang='scss'>
-@import url('@/assets/css/about.scss')
+<style scoped lang="scss">
+@use '@/assets/css/about.scss' as *;
 </style>

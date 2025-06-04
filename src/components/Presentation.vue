@@ -47,6 +47,6 @@ import { useI18n } from '@/i18n'
 const { t } = useI18n()
 </script>
 
-<style scoped lang='scss'>
-@import url('@/assets/css/presentation.css')
+<style scoped lang="scss">
+@use '@/assets/css/presentation.scss' as *;
 </style>

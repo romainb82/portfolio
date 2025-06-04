@@ -1,0 +1,44 @@
+$color_1: rgba(255, 255, 255, 0.87);
+$color_2: #213547;
+$color_3: #747bff;
+$font-family_1: "Open Sans";
+$background-color_1: #242424;
+$background-color_2: #121212;
+$background-color_3: #ffffff;
+$background-color_4: #f9f9f9;
+
+:root {
+	line-height: 1.5;
+	font-weight: 400;
+	color-scheme: light dark;
+	color: $color_1;
+	font-synthesis: inherit;
+	text-rendering: optimizeLegibility;
+	font-family: $font-family_1;
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+}
+body {
+	background-color: $background-color_2;
+	min-height: 100vh;
+	margin: 0;
+	overflow-x: hidden;
+	scroll-behavior: smooth;
+}
+#app {
+	text-align: center;
+}
+@media (prefers-color-scheme: light) {
+	.root {
+		color: $color_2;
+		background-color: $background-color_3;
+	}
+	a {
+		&:hover {
+			color: $color_3;
+		}
+	}
+	button {
+		background-color: $background-color_4;
+	}
+}

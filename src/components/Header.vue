@@ -41,6 +41,6 @@ const toggleLang = (selectedLang) => {
 }
 </script>
 
-<style scoped lang='scss'>
-@import url('@/assets/css/header.css')
+<style scoped lang="scss">
+@use '@/assets/css/header.scss' as *;
 </style>
