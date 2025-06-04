@@ -1,11 +1,3 @@
-<script setup>
-import "@/assets/css/about.css"
-
-import { useI18n } from '@/i18n'
-
-const { t } = useI18n()
-</script>
-
 <template>
     <section class="about" id="about">
       <div class="about-container">
@@ -39,9 +31,9 @@ const { t } = useI18n()
                 </div>
             </div>
 
-            <div class="about-text tech">
+            <!-- <div class="about-text tech">
                 <p v-html="t.favoriteTech"></p>
-            </div>
+            </div> -->
           </div>
 
         <div class="about-photo">
@@ -51,3 +43,12 @@ const { t } = useI18n()
     </section>
   </template>
   
+  <script setup>
+  import { useI18n } from '@/i18n'
+
+  const { t } = useI18n()
+  </script>
+
+  <style scoped lang='scss'>
+  @import url('@/assets/css/about.css')
+  </style>

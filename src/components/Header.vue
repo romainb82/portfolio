@@ -1,14 +1,3 @@
-<script setup>
-import "@/assets/css/header.css"
-import { useI18n } from '@/i18n'
-
-const { lang, t, setLang } = useI18n()
-
-const toggleLang = (selectedLang) => {
-  setLang(selectedLang) // Change la langue directement
-}
-</script>
-
 <template>
   <header>
     <nav class="header-nav">
@@ -41,3 +30,17 @@ const toggleLang = (selectedLang) => {
     </nav>
   </header>
 </template>
+
+<script setup>
+import { useI18n } from '@/i18n'
+
+const { lang, t, setLang } = useI18n()
+
+const toggleLang = (selectedLang) => {
+  setLang(selectedLang) // Change la langue directement
+}
+</script>
+
+<style scoped lang='scss'>
+@import url('@/assets/css/header.css')
+</style>

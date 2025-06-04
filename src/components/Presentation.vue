@@ -1,11 +1,3 @@
-<script setup>
-import "@/assets/css/presentation.css"
-
-import { useI18n } from '@/i18n'
-
-const { t } = useI18n()
-</script>
-
 <template>
     <section class="hero">
         <div class="hero-text">
@@ -48,3 +40,13 @@ const { t } = useI18n()
         <!-- Mettre carousel ici -->
     </section>
 </template>
+
+<script setup>
+import { useI18n } from '@/i18n'
+
+const { t } = useI18n()
+</script>
+
+<style scoped lang='scss'>
+@import url('@/assets/css/presentation.css')
+</style>
