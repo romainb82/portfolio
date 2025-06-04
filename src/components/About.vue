@@ -52,6 +52,7 @@
             <div class="containerText">
               <p>some of my favorite technologies topics, or tools that i worked with</p>
             </div>
+
             <div class="demi-block">
               <h3>DevOps</h3>
               <p>Docker / Nginx / GitHub Actions / CI/CD / Bash / Vite</p>
