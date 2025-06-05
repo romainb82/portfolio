@@ -4,6 +4,8 @@ const state = reactive({
   lang: 'FR',
   translations: {
     FR: {
+      annee: "ans",
+      mois: "mois",
       about: 'À propos',
       projects: 'Projets',
       contact: 'Contacts',
@@ -16,8 +18,12 @@ const state = reactive({
       frontEnd: 'Front-end',
       styles: 'Styles',
       backEnd: 'Back-end',
+      work: 'Expérience',
+      totalExp: 'Expérience totale'
     },
     EN: {
+      annee: "years",
+      mois: "months",
       about: 'About',
       projects: 'Projects',
       contact: 'Contact',
@@ -30,6 +36,8 @@ const state = reactive({
       frontEnd: 'Front-end',
       styles: 'Styles',
       backEnd: 'Back-end',
+      work: 'Work',
+      totalExp: 'Total experience'
     },
   },
 })

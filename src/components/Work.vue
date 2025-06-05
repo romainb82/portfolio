@@ -1,6 +1,6 @@
 <template>
   <section class="work">
-    <h2 class="section-title">Work</h2>
+    <h2 class="section-title" v-html="t.work"></h2>
 
     <table class="experience-table">
       <tbody>
@@ -37,7 +37,7 @@
             </a>
             </div>
         <div class="yearExp">
-            Work experience<br /><em>3 years 2 months</em>
+            {{ t.totalExp }}<br /><em>3 {{ t.annee }} 2 {{ t.mois }}</em>
         </div>
     </div>
 
@@ -47,7 +47,9 @@
 
 <script setup>
 import { ref } from 'vue'
+import { useI18n } from '@/i18n'
 
+const { t } = useI18n()
 const hoveredRow = ref(null)
 
 const jobs = [
