@@ -7,14 +7,13 @@
                 :technologies="['TypeScript', 'ReactNative', 'Redux Toolkit', 'i18n', 'iOS']"
                 description="Kana Master is an <b>iOS application designed</b> for learning Katakana and Hiragana. It includes various tests and practical exercises that help in learning and memorizing Japanese characters. The app also offers audio training for correct pronunciation and demonstrates how to properly draw each character."
                 mainImage="https://static.vecteezy.com/ti/vecteur-libre/p2/1434757-admin-panel-neumorphic-dashboard-ui-kit-vectoriel.jpg"
-                link=""/>
+                link="" />
 
             <ProjectShowcase title="Kana Master" :reverse="true"
                 :technologies="['TypeScript', 'ReactNative', 'Redux Toolkit', 'i18n', 'iOS']"
                 description="Kana Master is an <b>iOS application designed</b> for learning Katakana and Hiragana. It includes various tests and practical exercises that help in learning and memorizing Japanese characters. The app also offers audio training for correct pronunciation and demonstrates how to properly draw each character."
                 mainImage="https://static.vecteezy.com/ti/vecteur-libre/p2/1434757-admin-panel-neumorphic-dashboard-ui-kit-vectoriel.jpg"
-                  link=""
-               />
+                link="" />
         </div>
 
     </section>
@@ -44,6 +43,19 @@ import ProjectShowcase from '@/components/Molecules/ProjectShowcase/ProjectShowc
     gap: 50px;
     padding: 0px 52px;
     padding-bottom: 150px !important;
+    overflow-x: clip;
+
+    @media screen and (max-width: 768px) {
+        padding: 0px 20px;
+    }
+
+     @media screen and (max-width: 426px) {
+        align-items: flex-start;
+    }
+
+    @media screen and (max-width: 375px) {
+        padding: 0px 10px;
+    }
 
     .title {
         @apply font-openSans text-white;

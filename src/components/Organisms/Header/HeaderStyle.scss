@@ -5,13 +5,29 @@ header {
   align-items: center;
   justify-content: space-between;
   padding: 16px 52px;
+  overflow-x: clip;
+
+  @media screen and (max-width: 768px) {
+    padding: 16px 20px;
+  }
+
+  @media screen and (max-width: 375px) {
+    padding: 16px 10px;
+  }
 
   .logo {
+    @media screen and (max-width: 768px) {
+      font-size: 24px;
+    }
   }
 
   .menu {
     width: max-content;
     height: max-content;
+
+    @media screen and (max-width: 768px) {
+      display: none !important;
+    }
 
     ul {
       display: flex;
@@ -39,6 +55,10 @@ header {
     gap: 8px;
     position: relative;
 
+    @media screen and (max-width: 768px) {
+      display: none !important;
+    }
+
     &::before {
       border: 1px solid;
       @apply border-grey-50/30;
@@ -54,6 +74,32 @@ header {
     p {
       &.is-selected {
         text-decoration: underline;
+      }
+    }
+  }
+
+  .menu-burger {
+    display: none;
+
+    @media screen and (max-width: 768px) {
+      display: flex;
+      position: relative;
+
+      svg {
+        width: 45px;
+        height: 45px;
+      }
+
+      &::before {
+        border: 1px solid;
+        @apply border-grey-50/30;
+        content: '';
+        width: 200px;
+        height: 200px;
+        border-radius: 99999px;
+        position: absolute;
+        top: -80px;
+        right: -80px;
       }
     }
   }

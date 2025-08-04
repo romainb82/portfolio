@@ -1,5 +1,45 @@
 <template>
     <footer>
+        <div class="flex flex-row items-center justify-between w-full container-information">
+            <div class="flex flex-col items-start justify-start gap-[60px] container-name">
+                <span class="title">Romain</span>
+                <div class="flex flex-row items-center gap-[80px] container-bottom">
+                    <span class="description">Full-stack <br /> developer</span>
+                    <span class="title">Bessede</span>
+                </div>
+            </div>
+            <div class="flex flex-col items-start justify-start gap-[20px] container-contact">
+                <span>… /Contacts …</span>
+                <div class="flex flex-row items-center gap-[80px]">
+                    <nav class="menu">
+                        <ul>
+                            <li>
+                                <RouterLink to="">
+                                    About
+                                </RouterLink>
+                            </li>
+                            <li>
+                                <RouterLink to="">
+                                    Projects
+                                </RouterLink>
+                            </li>
+                            <li>
+                                <RouterLink to="">
+                                    Articles
+                                </RouterLink>
+                            </li>
+                            <li>
+                                <RouterLink to="">
+                                    Contacts
+                                </RouterLink>
+                            </li>
+                        </ul>
+                    </nav>
+                </div>
+                 <SkillCard class="max-w-[300px]" label="Site" :techno="['Handcrafted by ME', 'Designed by Taisia', 'Powered by Vue.js']"/>
+            </div>
+
+        </div>
         <div class="flex flex-row items-center justify-between w-full container-social">
             <ButtonSocial v-for="social in socialNetwork" :label="social.label" :link="social.link" :key="social.id">
                 <template #icon>
@@ -14,7 +54,7 @@
 
 //Import components
 import ButtonSocial from '@/components/Atoms/ButtonSocial/ButtonSocial.vue';
-
+import SkillCard from '@/components/Atoms/Card/SkillCard.vue';
 //Import assets
 
 //Import stores

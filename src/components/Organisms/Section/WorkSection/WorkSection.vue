@@ -44,6 +44,14 @@ import ExperienceRow from '@/components/Atoms/ExperienceRow/ExperienceRow.vue';
     padding: 0px 52px;
     padding-bottom: 150px !important;
 
+    @media screen and (max-width: 768px) {
+        padding: 0px 20px;
+    }
+
+    @media screen and (max-width: 375px) {
+        padding: 0px 10px;
+    }
+
     .container-row {
 
         .title {
@@ -53,6 +61,12 @@ import ExperienceRow from '@/components/Atoms/ExperienceRow/ExperienceRow.vue';
             line-height: 90px;
             width: max-content;
             text-wrap: nowrap;
+
+            @media screen and (max-width: 850px) {
+                font-size: 14vw;
+                line-height: 10vw;
+            }
+
         }
 
         .sub-text {

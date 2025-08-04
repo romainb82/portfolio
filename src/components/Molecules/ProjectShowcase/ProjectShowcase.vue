@@ -66,7 +66,6 @@ const redirectTo = (link: string) => {
 <style scoped lang="scss">
 .project-showcase {
     width: 100%;
-
 }
 
 .showcase-container {
@@ -77,8 +76,24 @@ const redirectTo = (link: string) => {
     width: 100%;
     position: relative;
 
+    @media screen and (max-width:1200px) {
+        gap: 60px;
+    }
+
+
+    @media screen and (max-width:970px) {
+        flex-direction: column;
+    }
+
+
+
+
     &.is-reversed {
         flex-direction: row-reverse;
+
+        @media screen and (max-width:970px) {
+            flex-direction: column;
+        }
 
         &::before {
             content: '';
@@ -91,6 +106,12 @@ const redirectTo = (link: string) => {
             top: -100px;
             z-index: -1;
             border-radius: 99999px;
+
+            @media screen and (max-width:1220px) {
+                width: 600px;
+                height: 600Px;
+            }
+
         }
     }
 
@@ -107,6 +128,13 @@ const redirectTo = (link: string) => {
         top: -100px;
         z-index: -1;
         border-radius: 99999px;
+
+        @media screen and (max-width:1220px) {
+            width: 600px;
+            height: 600Px;
+        }
+
+        
     }
 
 }
@@ -116,6 +144,33 @@ const redirectTo = (link: string) => {
     grid-template-columns: repeat(5, 1fr);
     gap: 1rem;
     width: 50%;
+
+    @media screen and (max-width:1200px) {
+        display: block;
+        height: 100%;
+
+
+        .item {
+            display: none;
+
+            &:first-child {
+                display: block;
+            }
+        }
+    }
+
+    @media screen and (max-width:970px) {
+        width: 100%;
+
+        .item {
+            width: 100%;
+
+            img {
+                width: 100%;
+                height: 100%;
+            }
+        }
+    }
 }
 
 .item {

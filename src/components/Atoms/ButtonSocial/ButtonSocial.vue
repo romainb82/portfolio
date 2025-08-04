@@ -27,7 +27,7 @@ const redirectTo = () => {
 <style scoped lang='scss'>
 .button-social {
     border: 1px solid;
-    @apply border-grey-50;
+    @apply bg-black border-grey-50;
     border-radius: 99999px;
     width: max-content;
     height: 50px;

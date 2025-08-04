@@ -34,17 +34,35 @@
             <p>EN</p>
         </div>
 
-    </header>
+        <div class="menu-burger" @click="toggleMenu">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                class="lucide lucide-menu-icon lucide-menu">
+                <path d="M4 12h16" />
+                <path d="M4 18h16" />
+                <path d="M4 6h16" />
+            </svg>
+        </div>
 
+    </header>
+    <MenuBurger :is-open="isMenuOpen" @close="isMenuOpen = false" />
 </template>
 <script setup lang='ts'>
 //Import packages
 
 //Import components
+import MenuBurger from '@/components/Molecules/MenuBurger/MenuBurger.vue';
+import { ref } from 'vue';
 
 //Import assets
 
 //Import stores
+
+const isMenuOpen = ref(false);
+
+const toggleMenu = () => {
+    isMenuOpen.value = !isMenuOpen.value;
+};
 
 </script>
 <style scoped lang='scss'>

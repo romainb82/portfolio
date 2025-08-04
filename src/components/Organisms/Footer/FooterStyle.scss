@@ -2,13 +2,205 @@ footer {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  justify-content: flex-start;
-  gap: 30px;
+  justify-content: flex-end;
+  gap: 50px;
+  height: 700px;
   padding: 16px 52px;
+  overflow: hidden;
+
+  @media screen and (max-width: 970px) {
+    height: 750px;
+  }
+
+  @media screen and (max-width: 426px) {
+    height: max-content;
+  }
+
+  .container-information {
+    @media screen and (max-width: 970px) {
+      flex-direction: column;
+      gap: 50px;
+    }
+  }
+
+  .container-name {
+    position: relative;
+
+    @media screen and (max-width: 1024px) {
+      gap: 0px;
+    }
+
+    @media screen and (max-width: 970px) {
+      width: 100%;
+    }
+
+    .container-bottom {
+      @media screen and (max-width: 1024px) {
+        gap: 20px;
+      }
+
+      @media screen and (max-width: 426px) {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+    }
+
+    &:before {
+      content: '';
+      width: 1100px;
+      height: 1100px;
+      border: 1px solid;
+      @apply border-grey-50/30;
+      position: absolute;
+      left: -300px;
+      top: -250px;
+      z-index: -1;
+      border-radius: 99999px;
+
+      @media screen and (max-width: 1220px) {
+        width: 800px;
+        height: 800px;
+      }
+
+      @media screen and (max-width: 1024px) {
+        width: 700px;
+        height: 700px;
+        left: -200px;
+        top: -150px;
+      }
+
+      @media screen and (max-width: 970px) {
+        width: 900px;
+        height: 900px;
+        left: -200px;
+        top: -100px;
+      }
+
+      @media screen and (max-width: 850px) {
+        width: 700px;
+        height: 700px;
+        left: -350px;
+        top: 0px;
+      }
+
+      @media screen and (max-width: 425px) {
+        width: 1000px;
+        height: 1000px;
+        left: -350px;
+        top: 200px;
+      }
+
+    
+    }
+
+    .title {
+      @apply font-firaCode text-white;
+      font-weight: 500;
+      font-size: 132px;
+      line-height: 90px;
+      width: max-content;
+      text-wrap: nowrap;
+
+      @media screen and (max-width: 1200px) {
+        font-size: 112px;
+        line-height: 90px;
+      }
+
+      @media screen and (max-width: 1024px) {
+        font-size: 90px;
+        line-height: 90px;
+      }
+
+      @media screen and (max-width: 768px) {
+        font-size: 14vw;
+        line-height: 14vw;
+      }
+
+      &:last-child {
+        @media screen and (max-width: 420px) {
+          order: 1;
+        }
+      }
+    }
+
+    .description {
+      @apply font-openSans text-grey-50;
+      max-width: 440px;
+      flex: 1;
+      font-weight: 300;
+      letter-spacing: 0.05px;
+      font-size: 22px;
+
+      @media screen and (max-width: 425px) {
+        order: 2;
+      }
+    }
+  }
+
+  .container-contact {
+    span {
+      @apply font-openSans text-white;
+      font-size: 24px;
+      font-weight: 500;
+      text-wrap: nowrap;
+    }
+    .menu {
+      @apply font-openSans text-white;
+      width: max-content;
+      height: max-content;
+
+      @media screen and (max-width: 425px) {
+        width: 100% !important;
+      }
+
+      ul {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 48px;
+        width: max-content;
+        list-style: none;
+
+        @media screen and (max-width: 425px) {
+          width: 100% !important;
+          gap: 10px;
+          justify-content: flex-start;
+        }
+
+        li {
+          a {
+            font-weight: 300;
+            font-size: 14px;
+          }
+        }
+      }
+    }
+
+    @media screen and (max-width: 970px) {
+      width: 100%;
+      &:deep(.skill-card) {
+        width: 100%;
+        max-width: 100%;
+      }
+    }
+  }
 
   .container-social {
     width: 85%;
     margin: 0 auto;
+    padding-bottom: 30px;
+
+    @media screen and (max-width: 970px) {
+      width: 100%;
+    }
+
+    @media screen and (max-width: 850px) {
+      flex-wrap: wrap;
+      justify-content: flex-start;
+      gap: 30px;
+    }
 
     .icon {
       @apply text-white;

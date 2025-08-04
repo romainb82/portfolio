@@ -1,6 +1,6 @@
 <template>
     <section id="about" class="container-about">
-        <div class="flex flex-row items-start justify-between container-row w-[76%]">
+        <div class="flex flex-row items-start justify-between container-row container-information w-[76%]">
             <span class="sub-text">… /About me …</span>
             <p class="description">
                 Hello! I'm Romain, I'm a <b> full-stack developer. <br> </b> More than <b> 3 years </b> experience.
@@ -19,7 +19,7 @@
 
                 <div class="flex flex-row items-center justify-start gap-[30px] container-row w-full">
                     <SkillCard class="max-w-[80%]" label="Style" :techno="['CSS', 'SCSS']" />
-                    <div class="circle-github">
+                    <div class="circle-github m-hidden">
                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 1024" width="24" height="24"
                             fill="currentColor">
                             <path
@@ -36,14 +36,27 @@
                         :techno="['Node', 'Express', 'Symfony', 'Java', 'MySQL', 'PostgreSQL', 'MongoDB', 'Vertica']" />
                 </div>
 
-                <div class=" flex flex-row items-center justify-start gap-[20px] container-row w-full">
+                <div
+                    class=" flex flex-row items-center justify-start gap-[20px] container-row container-description w-full">
                     <p class="description-light">
                         Some of my <b> favorite technologies, </b><br>
                         <b> topics, or tools </b> that I worked with:
                     </p>
 
+
                     <SkillCard label="DevOps"
                         :techno="['Nginx', 'Docker', 'GitHub Actions', 'CI/CD', 'Bash', 'Vite']" />
+                </div>
+
+                <div class="circle-github m-visible">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 1024" width="24" height="24"
+                        fill="currentColor">
+                        <path
+                            d="M512 76C276.5 76 80 272.5 80 508c0 190.5 123.2 351.8 294.2 408.7 21.5 4 29.3-9.3 29.3-20.7 0-10.2-.4-44.2-.6-80.2-119.7 26-145-50-145-50-19.6-49.7-47.9-62.9-47.9-62.9-39.2-26.8 3-26.3 3-26.3 43.4 3 66.2 44.6 66.2 44.6 38.5 65.9 101.1 46.9 125.7 35.9 3.9-27.9 15-46.9 27.3-57.7-95.6-10.9-196.2-47.8-196.2-212.5 0-47 16.8-85.4 44.4-115.5-4.5-10.9-19.2-54.8 4.3-114.2 0 0 36-11.5 117.9 44 34.2-9.5 70.9-14.2 107.4-14.4 36.4.2 73.2 4.9 107.4 14.4 81.8-55.6 117.7-44 117.7-44 23.6 59.4 8.9 103.3 4.3 114.2 27.6 30.1 44.3 68.5 44.3 115.5 0 165.2-100.8 201.4-196.7 212.1 15.4 13.2 29.1 39.2 29.1 79 0 57-.5 103-0.5 117 0 11.5 7.6 25 29.5 20.7C820.9 859.8 944 698.5 944 508 944 272.5 747.5 76 512 76z" />
+                    </svg>
+                    <div class="circle-arrow" @click="redirectTo('https://github.com/romainb82')">
+                        <MoveUpRight></MoveUpRight>
+                    </div>
                 </div>
             </div>
 
@@ -58,22 +71,63 @@
 </template>
 <script setup lang='ts'>
 //Import packages
+import gsap from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
 //Import components
 import SkillCard from '@/components/Atoms/Card/SkillCard.vue';
 
 //Import assets
 import { MoveUpRight } from 'lucide-vue-next';
+import { onMounted } from 'vue';
 
 //Import stores
 
+
+gsap.registerPlugin(ScrollTrigger);
 
 const redirectTo = (link: string) => {
     window.open(link, '_blank');
 }
 
+onMounted(() => {
+    const tl = gsap.timeline({
+        scrollTrigger: {
+            trigger: "#about",
+            start: "top bottom-=100px",
+            toggleActions: "play none none none",
+            markers: true
+        }
+    });
+
+    tl.from("#about .container-information > .sub-text, #about .container-information > .description", {
+        opacity: 0,
+        y: 40,
+        duration: 0.8,
+        stagger: 0.2,
+        ease: 'power3.out'
+    });
+
+    tl.from(".container-card > .container-row", {
+        opacity: 0,
+        x: -50,
+        duration: 0.6,
+        stagger: 0.15,
+        ease: 'power2.out'
+    }, "-=0.5");
+
+    tl.from(".container-img", {
+        opacity: 0,
+        x: 50,
+        duration: 1.2,
+        ease: 'power3.out'
+    }, "<");
+});
+
 </script>
 <style scoped lang='scss'>
+
+
 .container-about {
     display: flex;
     flex-direction: column;
@@ -83,26 +137,99 @@ const redirectTo = (link: string) => {
     width: 100%;
     height: max-content;
     padding: 0px 52px;
+    overflow-x: clip;
     padding-bottom: 150px !important;
+
+    @media screen and (max-width: 768px) {
+        padding: 0px 20px;
+    }
+
+    @media screen and (max-width: 375px) {
+        padding: 0px 10px;
+    }
+
+    @media screen and (max-width: 500px) {
+
+        &:deep(.skill-card:nth-child(1)) {
+            max-width: 100%;
+        }
+    }
+
+
+
+
+
+    .m-hidden {
+        display: flex;
+
+        @media screen and (max-width: 500px) {
+            display: none;
+        }
+    }
+
+    .m-visible {
+        display: none;
+
+        @media screen and (max-width:500px) {
+            display: flex;
+        }
+    }
 
     .container-card {
         width: 50%;
+
+        @media screen and (max-width: 850px) {
+            width: 100%;
+        }
+
+
     }
-    .container-img{
+
+    .container-img {
         position: relative;
 
-         &::before {
-                border: 1px solid;
-                border-color: rgb(166 166 166 / 0.3);
-                content: "";
-                width: 700px;
-                height: 700px;
-                border-radius: 99999px;
-                position: absolute;
-                z-index: 1;
-                top: -250px;
-                right: -200px;
+        @media screen and (max-width: 850px) {
+            display: none;
+        }
+
+        &::before {
+            border: 1px solid;
+            border-color: rgb(166 166 166 / 0.3);
+            content: "";
+            width: 700px;
+            height: 700px;
+            border-radius: 99999px;
+            position: absolute;
+            z-index: 1;
+            top: -250px;
+            right: -200px;
+
+            @media screen and (max-width:1220px) {
+                width: 500px;
+                height: 500px;
+                top: -120px;
+                right: -120px;
             }
+        }
+    }
+
+    .container-description {
+        @media screen and (max-width: 1100px) {
+            flex-direction: column-reverse;
+            align-items: flex-start;
+            width: 100%;
+
+            &:deep(.skill-card) {
+                width: 100%;
+            }
+        }
+    }
+
+    .container-information {
+        @media screen and (max-width: 768px) {
+            flex-direction: column;
+        }
+
     }
 
     .container-row {
@@ -122,11 +249,16 @@ const redirectTo = (link: string) => {
             font-size: 18px;
             text-wrap: nowrap;
 
+
             b {
                 @apply font-firaCode text-white;
                 font-style: italic;
                 letter-spacing: -0.05rem;
                 font-weight: 300;
+            }
+
+            @media screen and (max-width: 426px) {
+                text-wrap: wrap;
             }
         }
 
@@ -154,7 +286,7 @@ const redirectTo = (link: string) => {
             position: relative;
             z-index: 2;
 
-           
+
 
         }
 
@@ -165,7 +297,6 @@ const redirectTo = (link: string) => {
             border-radius: 99999px;
             width: 50px;
             height: 50px;
-            display: flex;
             align-items: center;
             justify-content: center;
             position: relative;
