@@ -1,13 +1,13 @@
 <template>
-    <section class="project-showcase">
+    <section class="project-showcase" ref="showcaseRef">
         <div class="showcase-container" :class="{ 'is-reversed': props.reverse }">
 
-            <div class="text-content">
+            <div class="text-content" ref="textContent">
                 <h2>{{ props.title }}</h2>
                 <div class="tech-tags">
                     <span v-for="tech in props.technologies" :key="tech" class="tag">{{ tech }}</span>
                 </div>
-                <p class="description" v-html="props.description"></p>
+                <p class="description" ref="descriptionRef" v-html="props.description"></p>
                 <div class="project-link-wrapper">
                     <div class="circle-github">
                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 1024" width="24" height="24"
@@ -22,7 +22,7 @@
                 </div>
             </div>
 
-            <div class="image-grid-final">
+            <div class="image-grid-final" ref="imageGrid">
                 <div class="item top-left-large">
                     <img :src="props.mainImage" alt="Image 1">
                 </div>
@@ -45,7 +45,9 @@
 </template>
 
 <script setup lang="ts">
-import { type PropType } from 'vue';
+import { onMounted, onUnmounted, ref, type PropType } from 'vue';
+import gsap from 'gsap'
+import ScrollTrigger from 'gsap/ScrollTrigger'
 
 import { MoveUpRight } from 'lucide-vue-next';
 
@@ -61,6 +63,69 @@ const props = defineProps({
 const redirectTo = (link: string) => {
     window.open(link, '_blank');
 }
+
+
+gsap.registerPlugin(ScrollTrigger)
+
+const showcaseRef = ref<HTMLElement | null>(null);
+const textContent = ref<HTMLElement | null>(null)
+const imageGrid = ref<HTMLElement | null>(null)
+const descriptionRef = ref<HTMLElement | null>(null)
+
+onMounted(() => {
+    if (!showcaseRef.value || !textContent.value || !imageGrid.value || !descriptionRef.value) return
+
+    const ctx = gsap.context(() => {
+        // Animation du contenu sauf description
+        const elements = Array.from(textContent.value!.children).filter(
+            el => !el.classList.contains('description')
+        )
+
+        gsap.from(elements, {
+            opacity: 0,
+            y: 40,
+            duration: 1,
+            stagger: 0.2,
+            ease: 'power2.out',
+            scrollTrigger: {
+                trigger: showcaseRef.value,
+                start: 'top 80%',
+                toggleActions: 'play none none reverse',
+            },
+        })
+
+        gsap.fromTo(descriptionRef.value,
+            { opacity: 0, y: 0 },
+            {
+                opacity: 1,
+                y: 20,
+                delay: 0.6,
+                duration: 1,
+                ease: 'power2.out',
+                scrollTrigger: {
+                    trigger: showcaseRef.value,
+                    start: 'top 85%',
+                }
+            }
+        )
+
+        // Animation des images
+        gsap.from(imageGrid.value!.querySelectorAll('.item'), {
+            opacity: 0,
+            scale: 0.9,
+            duration: 1,
+            stagger: 0.2,
+            ease: 'power2.out',
+            scrollTrigger: {
+                trigger: showcaseRef.value,
+                start: 'top 80%',
+                toggleActions: 'play none none reverse',
+            },
+        })
+    }, showcaseRef)
+
+    onUnmounted(() => ctx.revert())
+})
 </script>
 
 <style scoped lang="scss">
@@ -134,7 +199,7 @@ const redirectTo = (link: string) => {
             height: 600Px;
         }
 
-        
+
     }
 
 }
@@ -244,6 +309,7 @@ const redirectTo = (link: string) => {
         font-size: 16px;
         max-width: 450px;
         font-weight: 300;
+        opacity: 0;
 
         :deep(b) {
             @apply text-white;

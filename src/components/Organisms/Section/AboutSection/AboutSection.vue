@@ -1,5 +1,5 @@
 <template>
-    <section id="about" class="container-about">
+    <section id="about" class="container-about" ref="sectionAbout">
         <div class="flex flex-row items-start justify-between container-row container-information w-[76%]">
             <span class="sub-text">… /About me …</span>
             <p class="description">
@@ -11,13 +11,13 @@
         <div class="flex flex-row items-center justify-between container-row w-full h-full">
             <div class="flex flex-col items-start justify-start gap-[20px] container-card">
 
-                <div class="flex flex-row items-start justify-between container-row w-full">
+                <div class="flex flex-row items-start justify-between container-row w-full" ref="cards">
                     <SkillCard label="Front-end" :techno="['JavaScript', 'TypeScript', 'Vue', 'React', 'Angular']"
                         variant="light" />
                 </div>
 
 
-                <div class="flex flex-row items-center justify-start gap-[30px] container-row w-full">
+                <div class="flex flex-row items-center justify-start gap-[30px] container-row w-full" ref="cards">
                     <SkillCard class="max-w-[80%]" label="Style" :techno="['CSS', 'SCSS']" />
                     <div class="circle-github m-hidden">
                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 1024" width="24" height="24"
@@ -31,13 +31,13 @@
                     </div>
                 </div>
 
-                <div class=" flex flex-row items-start justify-between container-row w-full">
+                <div class=" flex flex-row items-start justify-between container-row w-full" ref="cards">
                     <SkillCard label="Back-end"
                         :techno="['Node', 'Express', 'Symfony', 'Java', 'MySQL', 'PostgreSQL', 'MongoDB', 'Vertica']" />
                 </div>
 
-                <div
-                    class=" flex flex-row items-center justify-start gap-[20px] container-row container-description w-full">
+                <div class=" flex flex-row items-center justify-start gap-[20px] container-row container-description w-full"
+                    ref="cards">
                     <p class="description-light">
                         Some of my <b> favorite technologies, </b><br>
                         <b> topics, or tools </b> that I worked with:
@@ -61,7 +61,7 @@
             </div>
 
 
-            <div class="flex flex-col items-end justify-start container-img w-full h-full relative">
+            <div class="flex flex-col items-end justify-start container-img w-full h-full relative" ref="image">
                 <img class="picture-me" src="/pp.jpg" alt="Photo de Romain Bessede">
             </div>
 
@@ -79,9 +79,13 @@ import SkillCard from '@/components/Atoms/Card/SkillCard.vue';
 
 //Import assets
 import { MoveUpRight } from 'lucide-vue-next';
-import { onMounted } from 'vue';
+import { onMounted, ref } from 'vue';
 
 //Import stores
+
+const sectionAbout = ref(null)
+const cards = ref([])
+const image = ref(null)
 
 
 gsap.registerPlugin(ScrollTrigger);
@@ -91,43 +95,45 @@ const redirectTo = (link: string) => {
 }
 
 onMounted(() => {
-    const tl = gsap.timeline({
+    gsap.from(sectionAbout.value, {
+        opacity: 0,
+        y: 50,
+        duration: 1,
+        ease: 'power2.out',
         scrollTrigger: {
-            trigger: "#about",
-            start: "top bottom-=100px",
-            toggleActions: "play none none none",
-            markers: true
-        }
-    });
+            trigger: sectionAbout.value,
+            start: 'top 80%',
+        },
+    })
 
-    tl.from("#about .container-information > .sub-text, #about .container-information > .description", {
+    // Animation des SkillCards
+    gsap.from(cards.value, {
         opacity: 0,
         y: 40,
-        duration: 0.8,
         stagger: 0.2,
-        ease: 'power3.out'
-    });
+        duration: 0.8,
+        ease: 'power2.out',
+        scrollTrigger: {
+            trigger: cards.value,
+            start: 'top 100%',
+        },
+    })
 
-    tl.from(".container-card > .container-row", {
+    // Animation de la photo
+    gsap.from(image.value, {
         opacity: 0,
-        x: -50,
-        duration: 0.6,
-        stagger: 0.15,
-        ease: 'power2.out'
-    }, "-=0.5");
-
-    tl.from(".container-img", {
-        opacity: 0,
-        x: 50,
-        duration: 1.2,
-        ease: 'power3.out'
-    }, "<");
+        x: 100,
+        duration: 1,
+        ease: 'power2.out',
+        scrollTrigger: {
+            trigger: image.value,
+            start: 'top 80%',
+        },
+    })
 });
 
 </script>
 <style scoped lang='scss'>
-
-
 .container-about {
     display: flex;
     flex-direction: column;

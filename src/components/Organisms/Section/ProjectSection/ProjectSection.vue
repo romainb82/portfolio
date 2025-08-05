@@ -1,36 +1,75 @@
 <template>
-    <section id="project" class="container-project">
-        <span class="title">… /Projects …</span>
-        <div class="flex flex-col items-start gap-[100px] w-full">
-
-            <ProjectShowcase title="Kana Master"
-                :technologies="['TypeScript', 'ReactNative', 'Redux Toolkit', 'i18n', 'iOS']"
-                description="Kana Master is an <b>iOS application designed</b> for learning Katakana and Hiragana. It includes various tests and practical exercises that help in learning and memorizing Japanese characters. The app also offers audio training for correct pronunciation and demonstrates how to properly draw each character."
-                mainImage="https://static.vecteezy.com/ti/vecteur-libre/p2/1434757-admin-panel-neumorphic-dashboard-ui-kit-vectoriel.jpg"
-                link="" />
-
-            <ProjectShowcase title="Kana Master" :reverse="true"
-                :technologies="['TypeScript', 'ReactNative', 'Redux Toolkit', 'i18n', 'iOS']"
-                description="Kana Master is an <b>iOS application designed</b> for learning Katakana and Hiragana. It includes various tests and practical exercises that help in learning and memorizing Japanese characters. The app also offers audio training for correct pronunciation and demonstrates how to properly draw each character."
-                mainImage="https://static.vecteezy.com/ti/vecteur-libre/p2/1434757-admin-panel-neumorphic-dashboard-ui-kit-vectoriel.jpg"
-                link="" />
-        </div>
-
-    </section>
-
+  <section id="project" class="container-project" ref="section">
+    <span class="title opacity-0" ref="title">… /Projects …</span>
+    <div class="flex flex-col items-start gap-[100px] w-full">
+      <ProjectShowcase
+        v-for="(project, index) in 2"
+        :key="index"
+        :title="'Kana Master'"
+        :reverse="index === 1"
+        :technologies="['TypeScript', 'ReactNative', 'Redux Toolkit', 'i18n', 'iOS']"
+        description="Kana Master is an <b>iOS application designed</b> for learning Katakana and Hiragana. It includes various tests and practical exercises that help in learning and memorizing Japanese characters. The app also offers audio training for correct pronunciation and demonstrates how to properly draw each character."
+        mainImage="https://static.vecteezy.com/ti/vecteur-libre/p2/1434757-admin-panel-neumorphic-dashboard-ui-kit-vectoriel.jpg"
+        link=""
+        :ref="el => showcasesRefs[index] = el"
+      />
+    </div>
+  </section>
 </template>
-<script setup lang='ts'>
-import ProjectShowcase from '@/components/Molecules/ProjectShowcase/ProjectShowcase.vue';
 
-//Import packages
+<script setup lang="ts">
+import { ref, onMounted } from 'vue'
+import gsap from 'gsap'
+import ScrollTrigger from 'gsap/ScrollTrigger'
+import ProjectShowcase from '@/components/Molecules/ProjectShowcase/ProjectShowcase.vue'
 
-//Import components
+gsap.registerPlugin(ScrollTrigger)
 
-//Import assets
+const section = ref<HTMLElement | null>(null)
+const title = ref<HTMLElement | null>(null)
+const showcasesRefs: any = ref<(HTMLElement | null)[]>([])
 
-//Import stores
+onMounted(() => {
+  if (!section.value || !title.value) return
 
+  // Animation du titre
+  gsap.fromTo(
+    title.value,
+    { opacity: 0, y: 40 },
+    {
+      opacity: 1,
+      y: 0,
+      duration: 1,
+      ease: 'power2.out',
+      scrollTrigger: {
+        trigger: section.value,
+        start: 'top 85%',
+      },
+    }
+  )
+
+  // Animation des ProjectShowcase seulement s'ils existent
+  if (showcasesRefs.value.length) {
+    gsap.fromTo(
+      showcasesRefs.value,
+      { opacity: 0, y: 50 },
+      {
+        opacity: 1,
+        y: 0,
+        duration: 1,
+        stagger: 0.3,
+        ease: 'power2.out',
+        scrollTrigger: {
+          trigger: section.value,
+          start: 'top 85%',
+        },
+      }
+    )
+  }
+})
 </script>
+
+
 <style scoped lang='scss'>
 .container-project {
     width: 100%;
@@ -49,7 +88,7 @@ import ProjectShowcase from '@/components/Molecules/ProjectShowcase/ProjectShowc
         padding: 0px 20px;
     }
 
-     @media screen and (max-width: 426px) {
+    @media screen and (max-width: 426px) {
         align-items: flex-start;
     }
 

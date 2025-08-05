@@ -5,10 +5,15 @@ const router = createRouter({
   routes: [
     {
       path: '/',
+      name: 'LoaderPage',
+      component: () => import('@/components/Templates/Loader/Loader.vue'),
+    },
+    {
+      path: '/home',
       name: 'LayoutPage',
       component: () => import('@/components/Templates/Layout/layout.vue'),
       redirect: to => {
-        return { name: 'AccountPage' };
+        return { name: 'HomePage' };
       },
       children: [
         {
@@ -20,5 +25,17 @@ const router = createRouter({
     }
   ],
 })
+
+router.beforeEach((to, from, next) => {
+  const loaderSeen = sessionStorage.getItem('loaderSeen');
+
+  if (to.name === 'HomePage' && !loaderSeen) {
+    sessionStorage.setItem('loaderSeen', 'true');
+    next({ name: 'LoaderPage' });
+  } else {
+    next();
+  }
+});
+
 
 export default router;
