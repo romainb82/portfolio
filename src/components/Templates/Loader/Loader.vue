@@ -1,86 +1,68 @@
 <template>
-    <div class="loader" ref="loaderRef">
-        <svg class="initials-svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 100" width="200" height="100">
-            <path ref="pathR" d="M10 90 L10 10 L50 10 Q70 10 70 40 Q70 60 50 60 L10 60" fill="none" stroke="white"
-                stroke-width="6" stroke-linejoin="round" stroke-linecap="round" />
-            <path ref="pathRInner" d="M50 60 L70 90" fill="none" stroke="white" stroke-width="6" stroke-linejoin="round"
-                stroke-linecap="round" />
-            <path ref="pathB" d="M90 90 L90 10 L130 10 Q150 10 150 30 Q150 50 130 50 L90 50" fill="none" stroke="white"
-                stroke-width="6" stroke-linejoin="round" stroke-linecap="round" />
-            <path ref="pathBInner" d="M90 50 L130 50 Q150 50 150 70 Q150 90 130 90 L90 90" fill="none" stroke="white"
-                stroke-width="6" stroke-linejoin="round" stroke-linecap="round" />
-        </svg>
+    <div class="loader">
+        <h1 class="name-container">
+            <span v-for="(letter, index) in 'Romain'" :key="index" class="letter-wrapper">
+                <span class="letter">{{ letter }}</span>
+            </span>
+        </h1>
     </div>
 </template>
 
 <script setup lang="ts">
-import { ref, onMounted } from "vue";
+import { onMounted } from "vue";
 import gsap from "gsap";
 import router from "@/router";
 
-const loaderRef = ref<HTMLElement | null>(null);
-const pathR = ref<SVGPathElement | null>(null);
-const pathRInner = ref<SVGPathElement | null>(null);
-const pathB = ref<SVGPathElement | null>(null);
-const pathBInner = ref<SVGPathElement | null>(null);
-
 onMounted(() => {
-    const paths = [pathR.value, pathRInner.value, pathB.value, pathBInner.value];
-
-    paths.forEach((path) => {
-        if (path) {
-            const length = path.getTotalLength();
-            path.style.strokeDasharray = length.toString();
-            path.style.strokeDashoffset = length.toString();
+    gsap.from(".letter", {
+        y: "100%", // Chaque lettre part de 100% en dessous
+        duration: 1.2,
+        stagger: 0.1, // Animation lettre par lettre
+        ease: "power4.out", // Une courbe d'animation très fluide
+        onComplete: () => {
+            gsap.to(".loader", {
+                duration: 0.6,
+                opacity: 0,
+                delay: 0.5,
+                pointerEvents: "none",
+                onComplete: () => {
+                    sessionStorage.setItem('loaderScreen', 'true');
+                    router.push({ name: 'HomePage' });
+                }
+            });
         }
     });
-
-    const tl = gsap.timeline({
-        defaults: { duration: 1, ease: "power1.inOut" },
-        onComplete: () => {
-            if (loaderRef.value) {
-                gsap.to(loaderRef.value, {
-                    duration: 0.8,
-                    opacity: 0,
-                    pointerEvents: "none",
-                    onComplete: () => {
-                        loaderRef.value!.style.display = "none";
-                        sessionStorage.setItem('loaderScreen', 'true');
-                        router.push({ name: 'LayoutPage' });
-                    },
-                });
-            }
-        },
-    });
-
-    tl.to(pathR.value, { strokeDashoffset: 0 })
-        .to(pathRInner.value, { strokeDashoffset: 0 }, ">0.2")
-        .to(pathB.value, { strokeDashoffset: 0 }, ">0.2")
-        .to(pathBInner.value, { strokeDashoffset: 0 }, ">0.2")
-        .to({}, { duration: 0.5 });
 });
 </script>
 
 <style scoped lang="scss">
+
 .loader {
+    @apply bg-black;
     position: fixed;
     inset: 0;
-    background-color: #111;
     display: flex;
     justify-content: center;
     align-items: center;
     z-index: 9999;
-    user-select: none;
-    width: 100%;
-    height: 100vh;
 }
 
-.initials-svg {
-    width: 200px;
-    height: 100px;
-    stroke: white;
-    stroke-width: 6;
-    fill: none;
-    user-select: none;
+.name-container {
+    @apply text-white;
+    font-family: 'Syne', sans-serif;
+    font-size: clamp(3rem, 12vw, 8rem);
+    font-weight: 800;
+    display: flex; 
+}
+
+.letter-wrapper {
+    display: inline-block;
+    overflow: hidden; 
+    padding-bottom: 0.1em; 
+}
+
+.letter {
+    display: inline-block;
+    transform: translateZ(0); 
 }
 </style>
