@@ -45,6 +45,7 @@ onMounted(() => {
                     pointerEvents: "none",
                     onComplete: () => {
                         loaderRef.value!.style.display = "none";
+                        sessionStorage.setItem('loaderScreen', 'true');
                         router.push({ name: 'LayoutPage' });
                     },
                 });

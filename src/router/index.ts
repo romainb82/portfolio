@@ -28,8 +28,7 @@ const router = createRouter({
 
 router.beforeEach((to, from, next) => {
   const loaderScreen = sessionStorage.getItem('loaderScreen');
-
-  if (to.name === 'HomePage' && !loaderScreen) {
+  if (to.name !== 'LoaderPage' && !loaderScreen) {
     sessionStorage.setItem('loaderScreen', 'true');
     next({ name: 'LoaderPage' });
   } else {
