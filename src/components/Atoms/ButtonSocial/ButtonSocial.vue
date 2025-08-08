@@ -1,13 +1,14 @@
 <template>
     <div class="button-social" @click="redirectTo()">
-        <slot name="icon"></slot>
+        <component :is="props.icon" class="icon" />
         <span>{{ props.label }}</span>
     </div>
 </template>
 <script setup lang='ts'>
 const props = defineProps({
     label: { type: String, required: true },
-    link: { type: String, required: true }
+    link: { type: String, required: true },
+    icon: { type: Object, required: true }
 })
 
 
@@ -30,6 +31,27 @@ const redirectTo = () => {
     justify-content: center;
     gap: 10px;
     transition: all 0.3s ease-in-out;
+
+
+    .icon {
+        @apply text-white;
+        width: 24px;
+        height: 24px;
+        display: flex;
+        align-items: center;
+        transition: all 0.3s ease-in-out;
+
+
+        svg {
+            width: 100%;
+            height: 100%;
+            fill: currentColor !important;
+        }
+
+        path {
+            fill: currentColor !important;
+        }
+    }
 
     *:first-child {
         transition: all 0.3s ease-in-out;
