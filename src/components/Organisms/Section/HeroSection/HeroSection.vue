@@ -49,7 +49,7 @@
                 <ButtonSocial v-for="social in socialNetwork.slice(3, 5)" :label="social.label" :link="social.link"
                     :key="social.id">
                     <template #icon>
-                        <span class="icon" v-html="social.icon" />
+                        <is-component class="icon" v-html="social.icon" />
                     </template>
                 </ButtonSocial>
             </div>
@@ -62,7 +62,6 @@
 </template>
 <script setup lang='ts'>
 import gsap from 'gsap';
-import { useI18n } from 'vue-i18n'
 
 import ButtonSocial from '@/components/Atoms/ButtonSocial/ButtonSocial.vue';
 
