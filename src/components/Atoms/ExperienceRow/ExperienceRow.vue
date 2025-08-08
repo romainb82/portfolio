@@ -78,7 +78,7 @@ $transition-speed: 0.3s;
 
 
     @media screen and (max-width: 500px) {
-          grid-template-columns: 0.7fr 1.5fr;
+        grid-template-columns: 0.7fr 1.5fr;
         padding: 10px;
         align-items: flex-start;
     }
@@ -116,12 +116,15 @@ $transition-speed: 0.3s;
 }
 
 .m-hidden {
+    display: flex;
     @media screen and (max-width: 768px) {
-        display: none !important;
+        display: none;
     }
 }
 
 .m-visible {
+    display: none;
+
     @media screen and (max-width: 768px) {
         display: flex;
     }
@@ -169,7 +172,6 @@ $transition-speed: 0.3s;
 }
 
 .job-title {
-    display: flex;
     flex-direction: row;
     align-items: center;
     justify-content: flex-start;

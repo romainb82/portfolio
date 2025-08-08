@@ -5,14 +5,6 @@
     </div>
 </template>
 <script setup lang='ts'>
-//Import packages
-
-//Import components
-
-//Import assets
-
-//Import stores
-
 const props = defineProps({
     label: { type: String, required: true },
     link: { type: String, required: true }

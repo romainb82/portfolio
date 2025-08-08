@@ -76,7 +76,6 @@ onMounted(() => {
     if (!showcaseRef.value || !textContent.value || !imageGrid.value || !descriptionRef.value) return
 
     const ctx = gsap.context(() => {
-        // Animation du contenu sauf description
         const elements = Array.from(textContent.value!.children).filter(
             el => !el.classList.contains('description')
         )
@@ -109,7 +108,6 @@ onMounted(() => {
             }
         )
 
-        // Animation des images
         gsap.from(imageGrid.value!.querySelectorAll('.item'), {
             opacity: 0,
             scale: 0.9,

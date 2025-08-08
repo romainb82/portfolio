@@ -1,0 +1,105 @@
+{
+    "nav": {
+        "about": "About",
+        "projects": "Projects",
+        "contacts": "Contacts"
+    },
+    "lang": {
+        "fr": "FR",
+        "en": "EN"
+    },
+    "hero": {
+        "title": "Full-stack ",
+        "subtitle": "Developer",
+        "btn": "Projects",
+        "description": "My goal is to <b>write maintainable, clean </b> and <b> understandable code </b> to process development was enjoyable."
+    },
+    "carousel": {
+        "slide1": {
+            "title": "The simplest example is Kafka + Golang",
+            "description": "This article presents a simple way to implement a micro-service architecture using Kafka, Golang and Docker."
+        },
+        "slide2": {
+            "title": "Exploring Vue 3 Composition API",
+            "description": "A deep dive into the new features and benefits of the Vue 3 Composition API for building scalable applications."
+        },
+        "slide3": {
+            "title": "Mastering SCSS for Modern Web Design",
+            "description": "Learn advanced SCSS techniques to create responsive, maintainable, and beautiful stylesheets."
+        },
+        "slide4": {
+            "title": "Introduction to Docker Containers",
+            "description": "Understand the fundamentals of containerization with Docker and how it streamlines development."
+        },
+        "slide5": {
+            "title": "Building Real-time Apps with WebSockets",
+            "description": "A practical guide to implementing real-time communication in your web applications using WebSockets."
+        },
+        "btn": "Read more"
+    },
+    "about": {
+        "section": "/About me …",
+        "intro": "Hello! I'm Romain, I'm a <b>full-stack developer.</b><br>More than <b>3 years </b> experience.",
+        "favorite": "Some of my <b>favorite technologies,</b><br><b>topics, or tools </b> that I worked with:",
+        "skills": {
+            "frontend": "Front-end",
+            "style": "Style",
+            "backend": "Back-end",
+            "devops": "DevOps"
+        }
+    },
+    "work": {
+        "title": "Work",
+        "summaryTitle": "Work experience",
+        "summaryDuration": "3 years 2 months",
+        "experiences": [
+            {
+                "duration": "2 years",
+                "title": "Apprentice Software Developer"
+            },
+            {
+                "duration": "1 year",
+                "title": "Apprentice Software Developer"
+            },
+            {
+                "duration": "1 month",
+                "title": "IT Intern"
+            },
+            {
+                "duration": "1 year 1 month",
+                "title": "IT Intern"
+            }
+        ]
+    },
+    "projects": {
+        "section": "… /Projects …",
+        "kanaMaster": {
+            "title": "Kana Master",
+            "description": "Kana Master is an <b>iOS application designed</b> for learning Katakana and Hiragana. It includes various tests and practical exercises that help in learning and memorizing Japanese characters. The app also offers audio training for correct pronunciation and demonstrates how to properly draw each character."
+        },
+        "portfolio": {
+            "title": "Portfolio",
+            "description": "Kana Master is an <b>iOS application designed</b> for learning Katakana and Hiragana. It includes various tests and practical exercises that help in learning and memorizing Japanese characters. The app also offers audio training for correct pronunciation and demonstrates how to properly draw each character."
+        }
+    },
+
+    "footer": {
+        "name": "Romain",
+        "role": "Développeur full-stack",
+        "surname": "Bessede",
+        "contacts_title": "… /Contacts …",
+        "menu": {
+            "about": "À propos",
+            "projects": "Projets",
+            "contacts": "Contacts"
+        },
+        "skill_card": {
+            "label": "Site",
+            "techno": [
+                "Hancrafted by me",
+                "Design by Taisia",
+                "Powered by Vue.js"
+            ]
+        }
+    }
+}

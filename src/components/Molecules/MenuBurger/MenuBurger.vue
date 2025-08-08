@@ -2,9 +2,7 @@
     <Transition name="slide-fade">
         <div v-if="isOpen" class="menu-overlay">
             <div class="menu-header">
-                <div class="logo">
-                    <p>Romain <br> Bessede</p>
-                </div>
+
                 <button @click="$emit('close')" class="close-button">
                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
                         stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -16,16 +14,16 @@
 
             <nav class="menu-content">
                 <ul>
-                    <li><RouterLink to="" @click="$emit('close')">About</RouterLink></li>
-                    <li><RouterLink to="" @click="$emit('close')">Projects</RouterLink></li>
-                    <li><RouterLink to="" @click="$emit('close')">Articles</RouterLink></li>
-                    <li><RouterLink to="" @click="$emit('close')">Contacts</RouterLink></li>
+                    <li><a href="#about" @click="$emit('close')">{{ $t('nav.about') }}</a></li>
+                    <li><a href="#project" @click="$emit('close')">{{ $t('nav.projects') }}</a></li>
+                    <li><a href="#contacts" @click="$emit('close')">{{ $t('nav.contacts') }}</a></li>
+
                 </ul>
             </nav>
 
             <div class="menu-footer">
-                <p class="is-selected">FR</p>
-                <p>EN</p>
+                <p :class="{ 'is-selected': locale === 'fr' }" @click="setLang('fr')">{{ $t('lang.fr') }}</p>
+                <p :class="{ 'is-selected': locale === 'en' }" @click="setLang('en')">{{ $t('lang.en') }}</p>
             </div>
         </div>
     </Transition>
@@ -33,16 +31,15 @@
 
 <script setup lang="ts">
 import { watch } from 'vue';
+import { useI18n } from 'vue-i18n'
 
-// On définit les "props" que le composant peut recevoir
+const { locale } = useI18n()
 const props = defineProps<{
-  isOpen: boolean
+    isOpen: boolean
 }>();
 
-// On définit les événements que le composant peut émettre
 const emit = defineEmits(['close']);
 
-// Bloque le scroll de la page lorsque le menu est ouvert pour une meilleure UX
 watch(() => props.isOpen, (newVal) => {
     if (newVal) {
         document.body.style.overflow = 'hidden';
@@ -50,6 +47,11 @@ watch(() => props.isOpen, (newVal) => {
         document.body.style.overflow = '';
     }
 });
+
+const setLang = (lang: 'fr' | 'en') => {
+    locale.value = lang
+    localStorage.setItem('lang', lang)
+}
 </script>
 
 <style scoped lang="scss">
@@ -59,18 +61,18 @@ watch(() => props.isOpen, (newVal) => {
     left: 0;
     width: 100vw;
     height: 100vh;
-    background-color: #121212; // Un fond sombre
+    background-color: #121212;
     z-index: 1000;
     display: flex;
     flex-direction: column;
-    padding: 16px 24px; // Padding réduit pour mobile
+    padding: 16px 24px; 
     color: white;
     @apply font-openSans;
 }
 
 .menu-header {
     display: flex;
-    justify-content: space-between;
+    justify-content: flex-end;
     align-items: center;
 
     .logo {
@@ -91,7 +93,7 @@ watch(() => props.isOpen, (newVal) => {
 }
 
 .menu-content {
-    flex-grow: 1; // Prend tout l'espace vertical disponible
+    flex-grow: 1; 
     display: flex;
     align-items: center;
     justify-content: center;
@@ -105,7 +107,7 @@ watch(() => props.isOpen, (newVal) => {
             margin: 2rem 0;
 
             a {
-                font-size: 36px; // Liens plus grands et plus cliquables
+                font-size: 36px; 
                 font-weight: 300;
                 color: white;
                 text-decoration: none;

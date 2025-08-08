@@ -10,10 +10,10 @@
                     </div>
 
                     <div class="item-content">
-                        <h2>{{ slide.title }}</h2>
-                        <p>{{ slide.description }}</p>
+                        <h2>{{ $t(slide.title) }}</h2>
+                        <p>{{ $t(slide.description) }}</p>
                         <div class="flex flex-row items-end justify-start gap-[10px] w-[80%]">
-                            <button>Read more</button>
+                            <button>{{ $t('carousel.btn') }}</button>
                             <button>
                                 <MoveRight />
                             </button>
@@ -21,10 +21,10 @@
                     </div>
 
                     <div class="item-content-inactive">
-                        <h2>{{ slide.title }}</h2>
-                        <p>{{ slide.description }}</p>
+                        <h2>{{ $t(slide.title) }}</h2>
+                        <p>{{ $t(slide.description) }}</p>
                         <div class="flex flex-row items-end justify-start gap-[10px] w-[80%]">
-                            <button>Read more</button>
+                            <button>{{ $t('carousel.btn') }}</button>
                             <button>
                                 <MoveRight />
                             </button>
@@ -52,13 +52,14 @@
 import { ref, computed, onMounted, onUnmounted, watch, nextTick } from "vue";
 import { MoveRight } from "lucide-vue-next";
 import gsap from "gsap";
-
+import { useI18n } from 'vue-i18n'
+const { locale } = useI18n()
 const slides = ref([
-    { id: 1, title: "The simplest example is kafka + golang", description: "This article presents a simple way to implement a micro-service architecture using Kafka, Golang and Docker.", image: "https://images.pexels.com/photos/270404/pexels-photo-270404.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2" },
-    { id: 2, title: "Exploring Vue 3 Composition API", description: "A deep dive into the new features and benefits of the Vue 3 Composition API for building scalable applications.", image: "https://images.pexels.com/photos/4164418/pexels-photo-4164418.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2" },
-    { id: 3, title: "Mastering SCSS for Modern Web Design", description: "Learn advanced SCSS techniques to create responsive, maintainable, and beautiful stylesheets.", image: "https://images.pexels.com/photos/546819/pexels-photo-546819.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2" },
-    { id: 4, title: "Introduction to Docker Containers", description: "Understand the fundamentals of containerization with Docker and how it streamlines development.", image: "https://images.pexels.com/photos/577585/pexels-photo-577585.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2" },
-    { id: 5, "title": "Building Real-time Apps with WebSockets", "description": "A practical guide to implementing real-time communication in your web applications using WebSockets.", "image": "https://images.pexels.com/photos/1181263/pexels-photo-1181263.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2" },
+    { id: 1, title: "carousel.slide1.title", description: "carousel.slide1.description", image: "https://images.pexels.com/photos/270404/pexels-photo-270404.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2" },
+    { id: 2, title: "carousel.slide2.title", description: "carousel.slide2.description", image: "https://images.pexels.com/photos/4164418/pexels-photo-4164418.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2" },
+    { id: 3, title: "carousel.slide3.title", description: "carousel.slide3.description", image: "https://images.pexels.com/photos/546819/pexels-photo-546819.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2" },
+    { id: 4, title: "carousel.slide4.title", description: "carousel.slide4.description", image: "https://images.pexels.com/photos/577585/pexels-photo-577585.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2" },
+    { id: 5, title: "carousel.slide5.title", description: "carousel.slide5.description", image: "https://images.pexels.com/photos/1181263/pexels-photo-1181263.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2" },
 ]);
 const activeIndex = ref(1);
 const windowWidth = ref(0);
@@ -225,7 +226,7 @@ watch(activeIndex, (newIndex, oldIndex) => {
 
 <style scoped lang="scss">
 $item-width: 650px;
-$item-height: 300px;
+$item-height: 330px;
 $gap: 20px;
 $inactive-scale: 1;
 $inactive-opacity: 0.6;
@@ -249,8 +250,8 @@ $transition-curve: cubic-bezier(0.65, 0, 0.35, 1);
 .carousel-container {
     width: 100%;
     height: 100%;
-    -webkit-mask-image: linear-gradient(to right, transparent 0%, black 25%, black 75%, transparent 100%);
-    mask-image: linear-gradient(to right, transparent 0%, black 25%, black 75%, transparent 100%);
+    -webkit-mask-image: linear-gradient(to right, transparent 0%, 1121212 25%, black 75%, transparent 100%);
+    mask-image: linear-gradient(to right, transparent 0%, #121212 25%, black 75%, transparent 100%);
 
     @media screen and (max-width: 768px) {
         mask-image: none;

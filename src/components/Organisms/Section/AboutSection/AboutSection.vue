@@ -1,9 +1,8 @@
 <template>
     <section id="about" class="container-about" ref="sectionAbout">
         <div class="flex flex-row items-start justify-between container-row container-information w-[76%]">
-            <span class="sub-text">… /About me …</span>
-            <p class="description">
-                Hello! I'm Romain, I'm a <b> full-stack developer. <br> </b> More than <b> 3 years </b> experience.
+            <span class="sub-text">{{ $t('about.section') }}</span>
+            <p class="description" v-html="$t('about.intro')">
             </p>
         </div>
 
@@ -12,13 +11,13 @@
             <div class="flex flex-col items-start justify-start gap-[20px] container-card">
 
                 <div class="flex flex-row items-start justify-between container-row w-full" ref="cards">
-                    <SkillCard label="Front-end" :techno="['JavaScript', 'TypeScript', 'Vue', 'React', 'Angular']"
+                    <SkillCard :label="$t('about.skills.frontend')" :techno="['JavaScript', 'TypeScript', 'Vue', 'React', 'Angular']"
                         variant="light" />
                 </div>
 
 
                 <div class="flex flex-row items-center justify-start gap-[30px] container-row w-full" ref="cards">
-                    <SkillCard class="max-w-[80%]" label="Style" :techno="['CSS', 'SCSS']" />
+                    <SkillCard class="max-w-[80%]" :label="$t('about.skills.style')" :techno="['CSS', 'SCSS']" />
                     <div class="circle-github m-hidden">
                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 1024" width="24" height="24"
                             fill="currentColor">
@@ -32,19 +31,17 @@
                 </div>
 
                 <div class=" flex flex-row items-start justify-between container-row w-full" ref="cards">
-                    <SkillCard label="Back-end"
+                    <SkillCard :label="$t('about.skills.backend')"
                         :techno="['Node', 'Express', 'Symfony', 'Java', 'MySQL', 'PostgreSQL', 'MongoDB', 'Vertica']" />
                 </div>
 
                 <div class=" flex flex-row items-center justify-start gap-[20px] container-row container-description w-full"
                     ref="cards">
-                    <p class="description-light">
-                        Some of my <b> favorite technologies, </b><br>
-                        <b> topics, or tools </b> that I worked with:
+                    <p class="description-light"  v-html="$t('about.favorite')">
                     </p>
 
 
-                    <SkillCard label="DevOps"
+                    <SkillCard :label="$t('about.skills.devops')"
                         :techno="['Nginx', 'Docker', 'GitHub Actions', 'CI/CD', 'Bash', 'Vite']" />
                 </div>
 
@@ -62,7 +59,7 @@
 
 
             <div class="flex flex-col items-end justify-start container-img w-full h-full relative" ref="image">
-                <img class="picture-me" src="/pp.jpg" alt="Photo de Romain Bessede">
+                <img class="picture-me" src="/pp.jpg" :alt="$t('about.section')">
             </div>
 
         </div>
@@ -70,18 +67,14 @@
 
 </template>
 <script setup lang='ts'>
-//Import packages
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import { useI18n } from 'vue-i18n'
 
-//Import components
 import SkillCard from '@/components/Atoms/Card/SkillCard.vue';
 
-//Import assets
 import { MoveUpRight } from 'lucide-vue-next';
 import { onMounted, ref } from 'vue';
-
-//Import stores
 
 const sectionAbout = ref(null)
 const cards = ref([])
@@ -106,7 +99,6 @@ onMounted(() => {
         },
     })
 
-    // Animation des SkillCards
     gsap.from(cards.value, {
         opacity: 0,
         y: 40,
@@ -119,7 +111,6 @@ onMounted(() => {
         },
     })
 
-    // Animation de la photo
     gsap.from(image.value, {
         opacity: 0,
         x: 100,
@@ -159,6 +150,10 @@ onMounted(() => {
         &:deep(.skill-card:nth-child(1)) {
             max-width: 100%;
         }
+    }
+
+      @media screen and (max-width: 425px) {
+          padding-bottom: 50px !important;
     }
 
 
@@ -256,7 +251,7 @@ onMounted(() => {
             text-wrap: nowrap;
 
 
-            b {
+            :deep(b) {
                 @apply font-firaCode text-white;
                 font-style: italic;
                 letter-spacing: -0.05rem;
@@ -275,11 +270,16 @@ onMounted(() => {
             text-wrap: nowrap;
             width: max-content;
 
-            b {
+            :deep(b) {
                 @apply font-firaCode text-white;
                 font-style: italic;
                 letter-spacing: -0.05rem;
                 font-weight: 300;
+            }
+
+            @media screen and (max-width: 426px) {
+                text-wrap: wrap;
+                width: 100%;
             }
         }
 

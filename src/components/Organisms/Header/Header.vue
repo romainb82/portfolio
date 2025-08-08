@@ -6,15 +6,15 @@
 
         <nav class="menu" ref="menuRef">
             <ul>
-                <li><a href="#about" @click.prevent="scrollToSection('about')">About</a></li>
-                <li><a href="#project" @click.prevent="scrollToSection('project')">Projects</a></li>
-                <li><a href="#contacts" @click.prevent="scrollToSection('contacts')">Contacts</a></li>
+                <li><a href="#about" @click.prevent="scrollToSection('about')">{{ $t('nav.about') }}</a></li>
+                <li><a href="#project" @click.prevent="scrollToSection('project')">{{ $t('nav.projects') }}</a></li>
+                <li><a href="#contacts" @click.prevent="scrollToSection('contacts')">{{ $t('nav.contacts') }}</a></li>
             </ul>
         </nav>
 
         <div class="menu-lang">
-            <p class="is-selected">FR</p>
-            <p>EN</p>
+            <p :class="{ 'is-selected': locale === 'fr' }" @click="setLang('fr')">{{ $t('lang.fr') }}</p>
+            <p :class="{ 'is-selected': locale === 'en' }" @click="setLang('en')">{{ $t('lang.en') }}</p>
         </div>
 
         <div class="menu-burger" :class="{ open: isMenuOpen }" @click="toggleMenu" ref="burgerRef">
@@ -25,29 +25,37 @@
                 <path d="M4 18h16" />
                 <path d="M4 6h16" />
             </svg>
+
         </div>
     </header>
 
     <MenuBurger :is-open="isMenuOpen" @close="isMenuOpen = false" />
 </template>
 
+
 <script setup lang="ts">
 import { ref, onMounted, watch } from "vue";
 import gsap from "gsap";
 import MenuBurger from "@/components/Molecules/MenuBurger/MenuBurger.vue";
+import { useI18n } from 'vue-i18n'
 
 const isMenuOpen = ref(false);
 const headerRef = ref<HTMLElement | null>(null);
 const logoRef = ref<HTMLElement | null>(null);
 const menuRef = ref<HTMLElement | null>(null);
 const burgerRef = ref<HTMLElement | null>(null);
+const { locale } = useI18n()
 
 const toggleMenu = () => {
     isMenuOpen.value = !isMenuOpen.value;
 };
 
+
+
 onMounted(() => {
-    // Animation d'apparition au chargement
+    const savedLang = localStorage.getItem('lang')
+    if (savedLang) locale.value = savedLang as 'fr' | 'en'
+
     gsap.from(headerRef.value, {
         y: -50,
         opacity: 0,
@@ -70,7 +78,6 @@ onMounted(() => {
     });
 });
 
-// Animation rotation burger à l'ouverture/fermeture
 watch(isMenuOpen, (open) => {
     if (burgerRef.value) {
         gsap.to(burgerRef.value, {
@@ -80,6 +87,12 @@ watch(isMenuOpen, (open) => {
         });
     }
 });
+
+const setLang = (lang: 'fr' | 'en') => {
+    locale.value = lang
+    localStorage.setItem('lang', lang)
+}
+
 
 const scrollToSection = (id: string) => {
     const el = document.getElementById(id);

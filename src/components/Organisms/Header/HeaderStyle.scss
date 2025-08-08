@@ -67,11 +67,16 @@ header {
       height: 230px;
       border-radius: 99999px;
       position: absolute;
+      z-index: -1;
       top: -80px;
       right: -100px;
     }
 
     p {
+      &:hover {
+        cursor: pointer;
+      }
+
       &.is-selected {
         text-decoration: underline;
       }
@@ -86,8 +91,8 @@ header {
       position: relative;
 
       svg {
-        width: 45px;
-        height: 45px;
+        width: 32px;
+        height: 32px;
       }
 
       &::before {

@@ -27,10 +27,10 @@ const router = createRouter({
 })
 
 router.beforeEach((to, from, next) => {
-  const loaderSeen = sessionStorage.getItem('loaderSeen');
+  const loaderScreen = sessionStorage.getItem('loaderScreen');
 
-  if (to.name === 'HomePage' && !loaderSeen) {
-    sessionStorage.setItem('loaderSeen', 'true');
+  if (to.name === 'HomePage' && !loaderScreen) {
+    sessionStorage.setItem('loaderScreen', 'true');
     next({ name: 'LoaderPage' });
   } else {
     next();

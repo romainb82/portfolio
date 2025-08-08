@@ -1,0 +1,104 @@
+{
+    "nav": {
+        "about": "À propos",
+        "projects": "Projets",
+        "contacts": "Contact"
+    },
+    "lang": {
+        "fr": "FR",
+        "en": "EN"
+    },
+    "hero": {
+        "title": "Full-stack ",
+        "subtitle": "Développeur",
+        "btn": "Projets",
+        "description": "Mon objectif est <b>d’écrire un code maintenable et propre </b> ainsi <b>qu’un code compréhensible </b> afin que le développement soit agréable."
+    },
+    "carousel": {
+        "slide1": {
+            "title": "L'exemple le plus simple : Kafka + Golang",
+            "description": "Cet article présente une manière simple de mettre en œuvre une architecture microservices avec Kafka, Golang et Docker."
+        },
+        "slide2": {
+            "title": "Explorer la Composition API de Vue 3",
+            "description": "Une plongée approfondie dans les nouvelles fonctionnalités et les avantages de la Composition API de Vue 3 pour construire des applications évolutives."
+        },
+        "slide3": {
+            "title": "Maîtriser SCSS pour un design web moderne",
+            "description": "Apprenez des techniques SCSS avancées pour créer des feuilles de style réactives, maintenables et élégantes."
+        },
+        "slide4": {
+            "title": "Introduction aux conteneurs Docker",
+            "description": "Comprenez les bases de la conteneurisation avec Docker et comment elle facilite le développement."
+        },
+        "slide5": {
+            "title": "Créer des applications temps réel avec WebSockets",
+            "description": "Un guide pratique pour implémenter la communication en temps réel dans vos applications web grâce aux WebSockets."
+        },
+        "btn": "Lire plus"
+    },
+    "about": {
+        "section": "/À propos de moi …",
+        "intro": "Salut ! Je suis Romain, <b>développeur full-stack.</b><br>Plus de <b>3 ans </b> d’expérience.",
+        "favorite": "Quelques-unes de mes <b>technologies préférées,</b><br><b>thèmes ou outils </b> avec lesquels j’ai travaillé",
+        "skills": {
+            "frontend": "Front-end",
+            "style": "Style",
+            "backend": "Back-end",
+            "devops": "DevOps"
+        }
+    },
+    "work": {
+        "title": "Expérience",
+        "summaryTitle": "Expérience professionnelle",
+        "summaryDuration": "3 ans 2 mois",
+        "experiences": [
+            {
+                "duration": "2 ans",
+                "title": "Alternant Développeur logiciel"
+            },
+            {
+                "duration": "1 an",
+                "title": "Alternant Développeur logiciel"
+            },
+            {
+                "duration": "1 mois",
+                "title": "Stagiaire informatique"
+            },
+            {
+                "duration": "1 an 1 mois",
+                "title": "Stagiaire informatique"
+            }
+        ]
+    },
+    "projects": {
+        "section": "… /Projets …",
+        "kanaMaster": {
+            "title": "Kana Master",
+            "description": "Kana Master est une <b>application iOS conçue</b> pour apprendre les Katakana et Hiragana. Elle propose différents tests et exercices pratiques pour faciliter l’apprentissage et la mémorisation des caractères japonais. L’application propose aussi un entraînement audio pour la prononciation correcte ainsi que des démonstrations pour tracer correctement chaque caractère."
+        },
+         "portfolio": {
+            "title": "Portfolio",
+            "description": "Kana Master est une <b>application iOS conçue</b> pour apprendre les Katakana et Hiragana. Elle propose différents tests et exercices pratiques pour faciliter l’apprentissage et la mémorisation des caractères japonais. L’application propose aussi un entraînement audio pour la prononciation correcte ainsi que des démonstrations pour tracer correctement chaque caractère."
+        }
+    },
+    "footer": {
+        "name": "Romain",
+        "role": "Développeur full-stack",
+        "surname": "Bessede",
+        "contacts_title": "… /Contacts …",
+        "menu": {
+            "about": "À propos",
+            "projects": "Projets",
+            "contacts": "Contacts"
+        },
+        "skill_card": {
+            "label": "Site",
+            "techno": [
+                "Fait main par moi",
+                "Designé par Taisia",
+                "Propulsé par Vue.js"
+            ]
+        }
+    }
+}

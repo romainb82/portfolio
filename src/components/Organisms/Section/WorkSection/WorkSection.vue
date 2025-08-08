@@ -1,19 +1,19 @@
 <template>
     <section id="work" class="container-work" ref="sectionWork">
         <div class="flex flex-row items-start justify-end container-row w-full">
-            <span class="title" ref="title">Work</span>
+            <span class="title" ref="title">{{ t('work.title') }}</span>
         </div>
 
         <div class="flex flex-col items-start justify-start container-row w-full">
             <div v-for="(row, index) in experienceRows" :key="index" class="experience-row w-full" ref="rowEls">
-                <ExperienceRow :dateRange="row.dateRange" :duration="row.duration" :company="row.company"
-                    :title="row.title" :technologies="row.technologies" />
+                <ExperienceRow :dateRange="row.dateRange" :duration="t(row.duration)" :company="row.company"
+                    :title="t(row.title)" :technologies="row.technologies" />
             </div>
         </div>
 
         <div class="flex flex-col items-end justify-start container-row w-full" ref="summary">
-            <span class="sub-text">Work experience</span>
-            <span class="sub-text">3 years 2 months</span>
+            <span class="sub-text">{{ t('work.summaryTitle') }}</span>
+            <span class="sub-text">{{ t('work.summaryDuration') }}</span>
         </div>
     </section>
 
@@ -26,43 +26,43 @@ import { ref, onMounted, nextTick } from 'vue'
 import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import ExperienceRow from '@/components/Atoms/ExperienceRow/ExperienceRow.vue'
+import { useI18n } from 'vue-i18n'
+const { t, locale } = useI18n()
 
 gsap.registerPlugin(ScrollTrigger)
 
-// Refs
 const sectionWork = ref(null)
 const title = ref(null)
 const summary = ref<HTMLDivElement | null>(null)
 const rowEls = ref([])
 
-// Data pour les expériences
 const experienceRows = [
     {
         dateRange: '2023 - 2025',
-        duration: '2 years',
+        duration: 'work.experiences[0].duration',
         company: 'Sopra Steria - Albi',
-        title: 'Alternant Développeur logiciel',
+        title: 'work.experiences[0].title',
         technologies: 'Java',
     },
     {
         dateRange: '2022 - 2023',
-        duration: '1 year',
+        duration: 'work.experiences[1].duration',
         company: 'Mecachrome - Montauban',
-        title: 'Alternant Développeur logiciel',
+        title: 'work.experiences[1].title',
         technologies: 'PHP, Symfony, Batch',
     },
     {
         dateRange: '10 Janviers 2022 - 19 Février 2022',
-        duration: '1 Month',
+        duration: 'work.experiences[2].duration',
         company: 'Pro a Pro Distribution - Montauban',
-        title: 'Stagiaire informatique',
+        title: 'work.experiences[2].title',
         technologies: 'PHP',
     },
     {
         dateRange: '31 Juin 2021 - 2 Juillet 2022',
-        duration: '1 year 1 months',
+        duration: 'work.experiences[3].duration',
         company: 'APEM SAS - Caussade',
-        title: 'Stagiaire informatique',
+        title: 'work.experiences[3].title',
         technologies: 'Office 365',
     },
 ]
@@ -84,7 +84,6 @@ onMounted(() => {
             },
         })
 
-        // ExperienceRows
         gsap.from(rowEls.value, {
             y: 50,
             opacity: 0,
@@ -133,6 +132,10 @@ onMounted(() => {
 
     @media screen and (max-width: 375px) {
         padding: 0px 10px;
+    }
+
+      @media screen and (max-width: 425px) {
+          padding-bottom: 50px !important;
     }
 
     .container-row {
