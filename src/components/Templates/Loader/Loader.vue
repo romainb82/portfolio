@@ -15,10 +15,10 @@ import router from "@/router";
 
 onMounted(() => {
     gsap.from(".letter", {
-        y: "100%", // Chaque lettre part de 100% en dessous
+        y: "100%", 
         duration: 1.2,
-        stagger: 0.1, // Animation lettre par lettre
-        ease: "power4.out", // Une courbe d'animation très fluide
+        stagger: 0.1, 
+        ease: "power4.out", 
         onComplete: () => {
             gsap.to(".loader", {
                 duration: 0.6,
