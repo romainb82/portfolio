@@ -49,7 +49,7 @@
                 <ButtonSocial v-for="social in socialNetwork.slice(3, 5)" :label="social.label" :link="social.link"
                     :key="social.id">
                     <template #icon>
-                        <is-component class="icon" v-html="social.icon" />
+                        <span class="icon" v-html="social.icon" />
                     </template>
                 </ButtonSocial>
             </div>
@@ -307,10 +307,14 @@ onMounted(() => {
             fill: white;
 
 
-            svg path {
+            svg {
                 width: 100%;
                 height: 100%;
-                fill: currentColor;
+                fill: currentColor !important;
+            }
+
+            path {
+                fill: currentColor !important;
             }
         }
 
