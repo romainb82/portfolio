@@ -141,7 +141,7 @@ onMounted(() => {
         y: 40,
         opacity: 0,
         stagger: 0.1
-    },"<0.2");
+    }, "<0.2");
 
 
     tl.from('#Carrousel', {
@@ -175,8 +175,8 @@ onMounted(() => {
         padding: 0px 10px;
     }
 
-     @media screen and (max-width: 425px) {
-          padding-bottom: 50px !important;
+    @media screen and (max-width: 425px) {
+        padding-bottom: 50px !important;
     }
 
 
@@ -305,10 +305,13 @@ onMounted(() => {
             display: flex;
             align-items: center;
             transition: all 0.3s ease-in-out;
+            fill: white;
 
-            svg {
+
+            svg path {
                 width: 100%;
                 height: 100%;
+                fill: currentColor;
             }
         }
 
