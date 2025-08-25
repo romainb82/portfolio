@@ -1,4 +1,4 @@
-# Portfolio - Romain [Votre Nom]
+# Portfolio - Romain
 
 Mon portfolio personnel développé avec Vue 3, Vite et TypeScript, mettant en avant mes projets et compétences.
 
