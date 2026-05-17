@@ -24,18 +24,21 @@
 
             <div class="image-grid-final" ref="imageGrid">
                 <div class="item top-left-large">
-                    <img :src="props.mainImage" alt="Image 1">
+                    <picture>
+                        <source media="(max-width: 970px)" :srcset="props.mobileImage || props.mainImage" />
+                        <img :src="props.mainImage" alt="Image 1">
+                    </picture>
                 </div>
 
                 <div class="item bottom-left-1">
-                    <img :src="props.mainImage" alt="Image 3">
+                    <img :src="props.secondImage || props.mainImage" alt="Image 3">
                 </div>
                 <div class="item bottom-left-2">
-                    <img :src="props.mainImage" alt="Image 4">
+                    <img :src="props.thirdImage || props.mainImage" alt="Image 4">
                 </div>
 
                 <div class="item right-tall">
-                    <img :src="props.mainImage" alt="Image 2">
+                    <img :src="props.mobileImage || props.mainImage" alt="Image 2">
                 </div>
             </div>
 
@@ -56,6 +59,9 @@ const props = defineProps({
     technologies: { type: Array as PropType<string[]>, required: true },
     description: { type: String, required: true },
     mainImage: { type: String, required: true },
+    mobileImage: { type: String, default: '' },
+    secondImage: { type: String, default: '' },
+    thirdImage: { type: String, default: '' },
     link: { type: String, required: true },
     reverse: { type: Boolean, default: false },
 });
@@ -204,7 +210,7 @@ onMounted(() => {
 
 .image-grid-final {
     display: grid;
-    grid-template-columns: repeat(5, 1fr);
+    grid-template-columns: repeat(6, 1fr);
     gap: 1rem;
     width: 50%;
 
@@ -218,6 +224,7 @@ onMounted(() => {
 
             &:first-child {
                 display: block;
+                aspect-ratio: auto;
             }
         }
     }
@@ -242,6 +249,12 @@ onMounted(() => {
     border-radius: 12px;
     overflow: hidden;
 
+    picture {
+        display: block;
+        width: 100%;
+        height: 100%;
+    }
+
     img {
         width: 100%;
         height: 100%;
@@ -253,20 +266,23 @@ onMounted(() => {
 .top-left-large {
     grid-column: 1 / 5;
     grid-row: 1;
+    aspect-ratio: 16 / 10;
 }
 
 .bottom-left-1 {
     grid-column: 1 / 3;
     grid-row: 2;
+    aspect-ratio: 4 / 3;
 }
 
 .bottom-left-2 {
     grid-column: 3 / 5;
     grid-row: 2;
+    aspect-ratio: 4 / 3;
 }
 
 .right-tall {
-    grid-column: 5 / 6;
+    grid-column: 5 / 7;
     grid-row: 1 / 3;
 }
 

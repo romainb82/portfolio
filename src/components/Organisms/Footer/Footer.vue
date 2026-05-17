@@ -55,15 +55,13 @@ const footerRef = ref<HTMLElement | null>(null);
 const headerRef = ref<HTMLElement | null>(null);
 
 
-import { Github, Linkedin, Send, Mail , Facebook, Instagram } from 'lucide-vue-next';
+import { Github, Linkedin, Mail, Instagram } from 'lucide-vue-next';
 
 const socialNetwork = [
-    { id: 1, label: 'Github', icon: Github, link: '#' },
-    { id: 2, label: 'Linkedin', icon: Linkedin, link: '#' },
-    { id: 2, label: 'Email', icon: Mail, link: '#' },
-    { id: 2, label: 'Telegram', icon: Send, link: '#' },
-    { id: 4, label: 'Facebook', icon: Facebook, link: '#' },
-    { id: 5, label: 'Instagram', icon: Instagram, link: '#' }
+    { id: 1, label: 'Github', icon: Github, link: 'https://github.com/romainb82' },
+    { id: 2, label: 'Linkedin', icon: Linkedin, link: 'https://www.linkedin.com/in/romain-bessede-688249203/' },
+    { id: 3, label: 'Email', icon: Mail, link: 'mailto:romain@web-premiere.fr' },
+    { id: 4, label: 'Instagram', icon: Instagram, link: 'https://www.instagram.com/roooomain___/' }
 ]
 
 

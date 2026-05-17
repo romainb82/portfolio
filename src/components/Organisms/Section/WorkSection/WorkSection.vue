@@ -38,31 +38,38 @@ const rowEls = ref([])
 
 const experienceRows = [
     {
-        dateRange: '2023 - 2025',
+        dateRange: 'Octobre 2025 - Présent',
         duration: 'work.experiences[0].duration',
-        company: 'Sopra Steria - Albi',
+        company: 'Web Premiere - Castres',
         title: 'work.experiences[0].title',
+        technologies: 'PrestaShop, PHP',
+    },
+    {
+        dateRange: '2023 - 2025',
+        duration: 'work.experiences[1].duration',
+        company: 'Sopra Steria - Albi',
+        title: 'work.experiences[1].title',
         technologies: 'Java',
     },
     {
         dateRange: '2022 - 2023',
-        duration: 'work.experiences[1].duration',
+        duration: 'work.experiences[2].duration',
         company: 'Mecachrome - Montauban',
-        title: 'work.experiences[1].title',
+        title: 'work.experiences[2].title',
         technologies: 'PHP, Symfony, Batch',
     },
     {
         dateRange: '10 Janviers 2022 - 19 Février 2022',
-        duration: 'work.experiences[2].duration',
+        duration: 'work.experiences[3].duration',
         company: 'Pro a Pro Distribution - Montauban',
-        title: 'work.experiences[2].title',
+        title: 'work.experiences[3].title',
         technologies: 'PHP',
     },
     {
         dateRange: '31 Juin 2021 - 2 Juillet 2022',
-        duration: 'work.experiences[3].duration',
+        duration: 'work.experiences[4].duration',
         company: 'APEM SAS - Caussade',
-        title: 'work.experiences[3].title',
+        title: 'work.experiences[4].title',
         technologies: 'Office 365',
     },
 ]

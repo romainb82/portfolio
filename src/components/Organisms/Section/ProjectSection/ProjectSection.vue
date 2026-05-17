@@ -4,7 +4,8 @@
     <div class="flex flex-col items-start gap-[100px] w-full">
       <ProjectShowcase v-for="(project, index) in projects" :key="project.id" :title="$t(project.titleKey)"
         :reverse="index % 2 !== 0" :technologies="project.technologies" :description="$t(project.descriptionKey)"
-        :mainImage="project.mainImage" :link="project.link" :ref="el => showcasesRefs[index] = el" />
+        :mainImage="project.mainImage" :mobileImage="project.mobileImage" :secondImage="project.secondImage"
+        :thirdImage="project.thirdImage" :link="project.link" :ref="el => showcasesRefs[index] = el" />
     </div>
   </section>
 </template>
@@ -22,19 +23,36 @@ gsap.registerPlugin(ScrollTrigger)
 
 const projects = ref([
   {
-    id: 'kana-master',
-    titleKey: 'projects.kanaMaster.title',
-    descriptionKey: 'projects.kanaMaster.description',
-    technologies: ['TypeScript', 'ReactNative', 'Redux Toolkit', 'i18n', 'iOS'],
-    mainImage: 'https://static.vecteezy.com/ti/vecteur-libre/p2/1434757-admin-panel-neumorphic-dashboard-ui-kit-vectoriel.jpg',
-    link: 'https://apps.apple.com/fr/app/kana-master/id6450567086'
+    id: 'goudronnage-occitanie',
+    titleKey: 'projects.goudronnageOccitanie.title',
+    descriptionKey: 'projects.goudronnageOccitanie.description',
+    technologies: ['Vue.js', 'Supabase', 'Render'],
+    mainImage: '/projects/goudronnage-occitanie.jpg',
+    mobileImage: '/projects/goudronnage-occitanie-mobile.jpg',
+    secondImage: '/projects/goudronnage-occitanie-2.jpg',
+    thirdImage: '/projects/goudronnage-occitanie-3.jpg',
+    link: 'https://goudronnage-occitanie.onrender.com'
+  },
+  {
+    id: 'blog-maitresse',
+    titleKey: 'projects.blogMaitresse.title',
+    descriptionKey: 'projects.blogMaitresse.description',
+    technologies: ['Vue.js', 'Supabase', 'Vercel'],
+    mainImage: '/projects/blog-maitresse.jpg',
+    mobileImage: '/projects/blog-maitresse-mobile.jpg',
+    secondImage: '/projects/blog-maitresse-2.jpg',
+    thirdImage: '/projects/blog-maitresse-3.jpg',
+    link: 'https://blog-maitresse.vercel.app'
   },
   {
     id: 'portfolio-v3',
     titleKey: 'projects.portfolio.title',
     descriptionKey: 'projects.portfolio.description',
     technologies: ['Vue 3', 'TypeScript', 'GSAP', 'SCSS', 'Vite'],
-    mainImage: 'https://static.vecteezy.com/ti/vecteur-libre/p2/1434757-admin-panel-neumorphic-dashboard-ui-kit-vectoriel.jpg',
+    mainImage: '/projects/portfolio.jpg',
+    mobileImage: '/projects/portfolio-mobile.jpg',
+    secondImage: '/projects/portfolio-2.jpg',
+    thirdImage: '/projects/portfolio-3.jpg',
     link: 'https://github.com/romainb82/portfolio'
   },
 ])

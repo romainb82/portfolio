@@ -6,15 +6,18 @@
                     :style="{ width: ITEM_WIDTH + 'px', marginRight: index === slides.length - 1 ? 0 : ITEM_GAP + 'px' }">
 
                     <div class="item-image">
-                        <img :src="slide.image" alt="Slide Image" />
+                        <picture>
+                            <source media="(max-width: 768px)" :srcset="slide.imageMobile" />
+                            <img :src="slide.image" alt="Slide Image" />
+                        </picture>
                     </div>
 
                     <div class="item-content">
                         <h2>{{ $t(slide.title) }}</h2>
                         <p>{{ $t(slide.description) }}</p>
                         <div class="flex flex-row items-end justify-start gap-[10px] w-[80%]">
-                            <button>{{ $t('carousel.btn') }}</button>
-                            <button>
+                            <button @click="openLink(slide.link)">{{ $t('carousel.btn') }}</button>
+                            <button @click="openLink(slide.link)">
                                 <MoveRight />
                             </button>
                         </div>
@@ -24,8 +27,8 @@
                         <h2>{{ $t(slide.title) }}</h2>
                         <p>{{ $t(slide.description) }}</p>
                         <div class="flex flex-row items-end justify-start gap-[10px] w-[80%]">
-                            <button>{{ $t('carousel.btn') }}</button>
-                            <button>
+                            <button @click="openLink(slide.link)">{{ $t('carousel.btn') }}</button>
+                            <button @click="openLink(slide.link)">
                                 <MoveRight />
                             </button>
                         </div>
@@ -55,12 +58,35 @@ import gsap from "gsap";
 import { useI18n } from 'vue-i18n'
 const { locale } = useI18n()
 const slides = ref([
-    { id: 1, title: "carousel.slide1.title", description: "carousel.slide1.description", image: "https://images.pexels.com/photos/270404/pexels-photo-270404.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2" },
-    { id: 2, title: "carousel.slide2.title", description: "carousel.slide2.description", image: "https://images.pexels.com/photos/4164418/pexels-photo-4164418.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2" },
-    { id: 3, title: "carousel.slide3.title", description: "carousel.slide3.description", image: "https://images.pexels.com/photos/546819/pexels-photo-546819.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2" },
-    { id: 4, title: "carousel.slide4.title", description: "carousel.slide4.description", image: "https://images.pexels.com/photos/577585/pexels-photo-577585.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2" },
-    { id: 5, title: "carousel.slide5.title", description: "carousel.slide5.description", image: "https://images.pexels.com/photos/1181263/pexels-photo-1181263.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2" },
+    {
+        id: 1,
+        title: "carousel.slide1.title",
+        description: "carousel.slide1.description",
+        image: "/projects/goudronnage-occitanie.jpg",
+        imageMobile: "/projects/goudronnage-occitanie-mobile.jpg",
+        link: "https://goudronnage-occitanie.onrender.com"
+    },
+    {
+        id: 2,
+        title: "carousel.slide2.title",
+        description: "carousel.slide2.description",
+        image: "/projects/blog-maitresse.jpg",
+        imageMobile: "/projects/blog-maitresse-mobile.jpg",
+        link: "https://blog-maitresse.vercel.app"
+    },
+    {
+        id: 3,
+        title: "carousel.slide3.title",
+        description: "carousel.slide3.description",
+        image: "/projects/portfolio.jpg",
+        imageMobile: "/projects/portfolio-mobile.jpg",
+        link: "https://portfolio-romain-bessede.vercel.app"
+    },
 ]);
+
+const openLink = (url: string) => {
+    if (url) window.open(url, '_blank');
+};
 const activeIndex = ref(1);
 const windowWidth = ref(0);
 
@@ -298,6 +324,12 @@ $transition-curve: cubic-bezier(0.65, 0, 0.35, 1);
         z-index: 1;
         opacity: 0;
         transition: opacity $transition-speed $transition-curve;
+
+        picture {
+            display: block;
+            width: 100%;
+            height: 100%;
+        }
 
         img {
             /* GSAP va manipuler la 'scale' de cette image */

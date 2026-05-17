@@ -16,26 +16,18 @@
     },
     "carousel": {
         "slide1": {
-            "title": "L'exemple le plus simple : Kafka + Golang",
-            "description": "Cet article présente une manière simple de mettre en œuvre une architecture microservices avec Kafka, Golang et Docker."
+            "title": "Goudronnage Occitanie",
+            "description": "Site vitrine d'une entreprise de goudronnage en Occitanie, développé en Vue.js avec Supabase et déployé sur Render."
         },
         "slide2": {
-            "title": "Explorer la Composition API de Vue 3",
-            "description": "Une plongée approfondie dans les nouvelles fonctionnalités et les avantages de la Composition API de Vue 3 pour construire des applications évolutives."
+            "title": "Blog Maîtresse",
+            "description": "Blog pédagogique pour le partage de ressources scolaires, construit en Vue.js avec Supabase et déployé sur Vercel."
         },
         "slide3": {
-            "title": "Maîtriser SCSS pour un design web moderne",
-            "description": "Apprenez des techniques SCSS avancées pour créer des feuilles de style réactives, maintenables et élégantes."
+            "title": "Portfolio",
+            "description": "Mon portfolio personnel en Vue 3, TypeScript, animé avec GSAP et stylisé en SCSS."
         },
-        "slide4": {
-            "title": "Introduction aux conteneurs Docker",
-            "description": "Comprenez les bases de la conteneurisation avec Docker et comment elle facilite le développement."
-        },
-        "slide5": {
-            "title": "Créer des applications temps réel avec WebSockets",
-            "description": "Un guide pratique pour implémenter la communication en temps réel dans vos applications web grâce aux WebSockets."
-        },
-        "btn": "Lire plus"
+        "btn": "Voir le projet"
     },
     "about": {
         "section": "/À propos de moi …",
@@ -51,8 +43,12 @@
     "work": {
         "title": "Expérience",
         "summaryTitle": "Expérience professionnelle",
-        "summaryDuration": "3 ans 2 mois",
+        "summaryDuration": "3 ans 9 mois",
         "experiences": [
+            {
+                "duration": "7 mois",
+                "title": "Développeur PrestaShop - Bab'in"
+            },
             {
                 "duration": "2 ans",
                 "title": "Alternant Développeur logiciel"
@@ -73,13 +69,17 @@
     },
     "projects": {
         "section": "… /Projets …",
-        "kanaMaster": {
-            "title": "Kana Master",
-            "description": "Kana Master est une <b>application iOS conçue</b> pour apprendre les Katakana et Hiragana. Elle propose différents tests et exercices pratiques pour faciliter l’apprentissage et la mémorisation des caractères japonais. L’application propose aussi un entraînement audio pour la prononciation correcte ainsi que des démonstrations pour tracer correctement chaque caractère."
+        "goudronnageOccitanie": {
+            "title": "Goudronnage Occitanie",
+            "description": "Site vitrine pour une <b>entreprise de goudronnage</b> située en Occitanie. Développé en <b>Vue.js</b> avec une base de données <b>Supabase</b> pour la gestion des contenus et des demandes de devis. Le site est déployé sur <b>Render</b> et présente les prestations, réalisations et coordonnées de l'entreprise."
         },
-         "portfolio": {
+        "blogMaitresse": {
+            "title": "Blog Maîtresse",
+            "description": "Blog dédié au <b>partage de ressources pédagogiques</b> par une maîtresse d'école. Construit en <b>Vue.js</b> avec <b>Supabase</b> pour la gestion des articles, des médias et de l'authentification. Le site est déployé sur <b>Vercel</b> pour des performances optimales."
+        },
+        "portfolio": {
             "title": "Portfolio",
-            "description": "Kana Master est une <b>application iOS conçue</b> pour apprendre les Katakana et Hiragana. Elle propose différents tests et exercices pratiques pour faciliter l’apprentissage et la mémorisation des caractères japonais. L’application propose aussi un entraînement audio pour la prononciation correcte ainsi que des démonstrations pour tracer correctement chaque caractère."
+            "description": "Portfolio personnel réalisé en <b>Vue 3</b> avec <b>TypeScript</b>, animé avec <b>GSAP</b> et stylisé en <b>SCSS</b>. Une vitrine moderne pour présenter mon parcours, mes compétences et mes projets."
         }
     },
     "footer": {
