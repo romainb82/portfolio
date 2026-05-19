@@ -145,12 +145,12 @@ onMounted(() => {
     width: 100%;
     position: relative;
 
-    @media screen and (max-width:1200px) {
+    @media screen and (max-width: 1200px) {
         gap: 60px;
     }
 
 
-    @media screen and (max-width:970px) {
+    @media screen and (max-width: 970px) {
         flex-direction: column;
     }
 
@@ -160,7 +160,7 @@ onMounted(() => {
     &.is-reversed {
         flex-direction: row-reverse;
 
-        @media screen and (max-width:970px) {
+        @media screen and (max-width: 970px) {
             flex-direction: column;
         }
 
@@ -176,7 +176,7 @@ onMounted(() => {
             z-index: -1;
             border-radius: 99999px;
 
-            @media screen and (max-width:1220px) {
+            @media screen and (max-width: 1200px) {
                 width: 600px;
                 height: 600Px;
             }
@@ -198,7 +198,7 @@ onMounted(() => {
         z-index: -1;
         border-radius: 99999px;
 
-        @media screen and (max-width:1220px) {
+        @media screen and (max-width: 1200px) {
             width: 600px;
             height: 600Px;
         }
@@ -214,7 +214,7 @@ onMounted(() => {
     gap: 1rem;
     width: 50%;
 
-    @media screen and (max-width:1200px) {
+    @media screen and (max-width: 1200px) {
         display: block;
         height: 100%;
 
@@ -229,7 +229,7 @@ onMounted(() => {
         }
     }
 
-    @media screen and (max-width:970px) {
+    @media screen and (max-width: 970px) {
         width: 100%;
 
         .item {
@@ -316,6 +316,12 @@ onMounted(() => {
         letter-spacing: 1px;
         font-size: 14px;
         font-weight: 300;
+        transition: background-color 0.25s ease, color 0.25s ease, transform 0.25s ease;
+
+        &:hover {
+            @apply bg-white text-black;
+            transform: translateY(-2px);
+        }
     }
 
     .description {
@@ -345,6 +351,11 @@ onMounted(() => {
         align-items: center;
         justify-content: center;
         position: relative;
+        transition: border-color 0.25s ease;
+
+        &:hover {
+            @apply border-grey-50/60;
+        }
 
         svg {
             @apply text-white;
@@ -364,15 +375,23 @@ onMounted(() => {
             top: 50%;
             right: -130%;
             transform: translate(-50%, -50%);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
 
             svg {
                 @apply text-black;
                 width: 24px;
                 height: 24px;
+                transition: transform 0.3s ease;
             }
 
             &:hover {
                 cursor: pointer;
+                transform: translate(-50%, -50%) scale(1.08);
+                box-shadow: 0 10px 30px rgba(139, 92, 246, 0.45);
+
+                svg {
+                    transform: rotate(-12deg);
+                }
             }
         }
 

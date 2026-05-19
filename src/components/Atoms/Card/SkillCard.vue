@@ -1,6 +1,6 @@
 <template>
     <div class="skill-card" :class="{
-        'bg-black text-grey-50 border-white/30': props.variant === 'dark',
+        'skill-card--dark text-grey-50 border-white/30': props.variant === 'dark',
         'bg-white text-grey-100 border-gray-50/30': props.variant === 'light'
     }">
         <h3 :class="{
@@ -51,7 +51,19 @@ const props = defineProps({
     align-items: flex-start;
     justify-content: flex-start;
     gap: 5px;
+    transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
 
+    &:hover {
+        transform: translateY(-3px);
+        border-color: rgba(167, 139, 250, 0.5);
+        box-shadow: 0 12px 40px rgba(139, 92, 246, 0.15);
+    }
+}
+
+.skill-card--dark {
+    background: rgba(255, 255, 255, 0.03);
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
 }
 
 h3 {

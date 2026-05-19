@@ -13,6 +13,11 @@ export default {
           50: '#A6A6A6',
           100: '#3D3D3D',
         },
+        accent: {
+          DEFAULT: '#8B5CF6',
+          light: '#A78BFA',
+          glow: 'rgba(139, 92, 246, 0.35)',
+        },
       },
       fontFamily: {
         openSans: ['Open Sans', 'sans-serif'],

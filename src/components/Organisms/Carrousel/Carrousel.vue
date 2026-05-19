@@ -420,6 +420,16 @@ $transition-curve: cubic-bezier(0.65, 0, 0.35, 1);
         width: 100%;
         border: none;
         cursor: pointer;
+        transition: transform 0.25s ease, box-shadow 0.25s ease;
+
+        &:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 12px 30px rgba(139, 92, 246, 0.4);
+        }
+
+        &:active {
+            transform: translateY(0);
+        }
 
         @media screen and (max-width: 970px) {
             height: max-content;
@@ -442,6 +452,11 @@ $transition-curve: cubic-bezier(0.65, 0, 0.35, 1);
             svg {
                 width: 22px;
                 height: 22px;
+                transition: transform 0.25s ease;
+            }
+
+            &:hover svg {
+                transform: translateX(3px);
             }
         }
     }
@@ -518,11 +533,20 @@ $transition-curve: cubic-bezier(0.65, 0, 0.35, 1);
     display: flex;
     align-items: center;
     justify-content: center;
-    transition: opacity 0.3s ease;
+    transition: opacity 0.3s ease, border-color 0.3s ease, background-color 0.3s ease, transform 0.3s ease;
 
     span {
         @apply text-white/70;
         font-size: 1.5rem;
+        transition: color 0.3s ease;
+    }
+
+    &:hover {
+        @apply border-grey-50/70 bg-white/5;
+
+        span {
+            @apply text-white;
+        }
     }
 
     @media screen and (max-width: 768px) {
@@ -570,10 +594,17 @@ $transition-curve: cubic-bezier(0.65, 0, 0.35, 1);
         border-radius: 50%;
         background: rgba(255, 255, 255, 0.4);
         cursor: pointer;
-        transition: background 0.3s ease;
+        transition: background 0.3s ease, transform 0.3s ease;
+
+        &:hover {
+            background: rgba(255, 255, 255, 0.8);
+            transform: scale(1.2);
+        }
 
         &.active {
-            background: white;
+            background: #A78BFA;
+            transform: scale(1.2);
+            box-shadow: 0 0 12px rgba(139, 92, 246, 0.6);
         }
     }
 }

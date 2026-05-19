@@ -171,7 +171,7 @@ onMounted(() => {
     .m-visible {
         display: none;
 
-        @media screen and (max-width:500px) {
+        @media screen and (max-width: 500px) {
             display: flex;
         }
     }
@@ -205,7 +205,7 @@ onMounted(() => {
             top: -250px;
             right: -200px;
 
-            @media screen and (max-width:1220px) {
+            @media screen and (max-width: 1200px) {
                 width: 500px;
                 height: 500px;
                 top: -120px;
@@ -258,7 +258,7 @@ onMounted(() => {
                 font-weight: 300;
             }
 
-            @media screen and (max-width: 426px) {
+            @media screen and (max-width: 425px) {
                 text-wrap: wrap;
             }
         }
@@ -277,7 +277,7 @@ onMounted(() => {
                 font-weight: 300;
             }
 
-            @media screen and (max-width: 426px) {
+            @media screen and (max-width: 425px) {
                 text-wrap: wrap;
                 width: 100%;
             }
@@ -306,6 +306,11 @@ onMounted(() => {
             align-items: center;
             justify-content: center;
             position: relative;
+            transition: border-color 0.25s ease;
+
+            &:hover {
+                @apply border-grey-50/60;
+            }
 
             .icon-cutout {
                 width: 24px;
@@ -331,9 +336,20 @@ onMounted(() => {
                 top: 50%;
                 right: -130%;
                 transform: translate(-50%, -50%);
+                transition: transform 0.3s ease, box-shadow 0.3s ease;
+
+                svg {
+                    transition: transform 0.3s ease;
+                }
 
                 &:hover {
                     cursor: pointer;
+                    transform: translate(-50%, -50%) scale(1.08);
+                    box-shadow: 0 10px 30px rgba(139, 92, 246, 0.45);
+
+                    svg {
+                        transform: rotate(-12deg);
+                    }
                 }
             }
 

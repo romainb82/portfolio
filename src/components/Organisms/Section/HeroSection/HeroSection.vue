@@ -135,7 +135,7 @@ onMounted(() => {
     .m-hidden {
         display: flex;
 
-        @media screen and (max-width:1220px) {
+        @media screen and (max-width: 1200px) {
             display: none;
         }
     }
@@ -143,13 +143,13 @@ onMounted(() => {
     .m-visible {
         display: none;
 
-        @media screen and (max-width:1220px) {
+        @media screen and (max-width: 1200px) {
             display: flex;
         }
     }
 
     .container-title {
-        @media screen and (max-width:1220px) {
+        @media screen and (max-width: 1200px) {
             flex-direction: column;
             gap: 50px;
             align-items: flex-start;
@@ -157,7 +157,7 @@ onMounted(() => {
     }
 
     .container-description {
-        @media screen and (max-width:1220px) {
+        @media screen and (max-width: 1200px) {
             flex-direction: column-reverse;
             gap: 50px;
             align-items: flex-start;
@@ -168,18 +168,10 @@ onMounted(() => {
     .title {
         @apply font-firaCode text-white;
         font-weight: 700;
-        font-size: 132px;
-        line-height: 90px;
+        font-size: clamp(54px, 14vw, 132px);
+        line-height: 0.7;
         width: max-content;
         text-wrap: nowrap;
-
-        @media screen and (max-width: 850px) {
-            font-size: 14vw;
-            line-height: 10vw;
-        }
-
-
-
     }
 
     .description {
@@ -207,8 +199,18 @@ onMounted(() => {
         font-weight: 400;
         font-size: 18px;
         text-align: center;
+        transition: transform 0.25s ease, box-shadow 0.25s ease, background-color 0.25s ease;
+        box-shadow: 0 0 0 rgba(139, 92, 246, 0);
 
+        &:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 12px 35px rgba(139, 92, 246, 0.4);
+            cursor: pointer;
+        }
 
+        &:active {
+            transform: translateY(0);
+        }
 
         &:first-of-type {
             width: 300px;
@@ -226,6 +228,11 @@ onMounted(() => {
             svg {
                 width: 22px;
                 height: 22px;
+                transition: transform 0.25s ease;
+            }
+
+            &:hover svg {
+                transform: translateX(3px);
             }
 
             @media screen and (max-width: 375px) {
@@ -243,7 +250,7 @@ onMounted(() => {
             flex-wrap: wrap;
         }
 
-        @media screen and (max-width:1220px) {
+        @media screen and (max-width: 1200px) {
             width: 100%;
             justify-content: flex-start;
             gap: 20px;

@@ -150,17 +150,11 @@ onMounted(() => {
         .title {
             @apply font-firaCode text-white;
             font-weight: 700;
-            font-size: 132px;
-            line-height: 90px;
+            font-size: clamp(54px, 14vw, 132px);
+            line-height: 0.7;
             width: max-content;
             text-wrap: nowrap;
             opacity: 0;
-
-            @media screen and (max-width: 850px) {
-                font-size: 14vw;
-                line-height: 10vw;
-            }
-
         }
 
         .sub-text {

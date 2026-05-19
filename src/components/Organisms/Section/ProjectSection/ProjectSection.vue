@@ -119,7 +119,7 @@ onMounted(() => {
     padding: 0px 20px;
   }
 
-  @media screen and (max-width: 426px) {
+  @media screen and (max-width: 425px) {
     align-items: flex-start;
   }
 
