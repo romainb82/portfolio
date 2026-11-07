@@ -38,7 +38,7 @@ onMounted(() => {
 <style scoped lang="scss">
 
 .loader {
-    @apply bg-black;
+    background: var(--paper);
     position: fixed;
     inset: 0;
     display: flex;
@@ -48,11 +48,13 @@ onMounted(() => {
 }
 
 .name-container {
-    @apply text-white;
-    font-family: 'Syne', sans-serif;
+    color: var(--ink);
+    font-family: 'Instrument Serif', serif;
+    font-style: italic;
     font-size: clamp(3rem, 12vw, 8rem);
-    font-weight: 800;
-    display: flex; 
+    font-weight: 400;
+    letter-spacing: -0.04em;
+    display: flex;
 }
 
 .letter-wrapper {

@@ -12,7 +12,24 @@
         "title": "Full-stack ",
         "subtitle": "Developer",
         "btn": "Projects",
-        "description": "My goal is to <b>write maintainable, clean </b> and <b> understandable code </b> to process development was enjoyable."
+        "description": "My goal is to <b>write maintainable, clean code</b> as well as <b>understandable code</b>, so that development stays enjoyable.",
+        "issue": "— Issue 03 / 2026",
+        "kicker": "Portfolio",
+        "location": "Castres, FR",
+        "available": "Available for hire",
+        "line1a": "Full",
+        "line1b": "stack",
+        "line2": "Developer",
+        "signature": "// by Romain Bessede",
+        "quoteSign": "— Romain",
+        "explore": "/ Explore",
+        "ctaTitle": "Discover my recent projects",
+        "stats": {
+            "years": "Years of experience",
+            "tech": "Technologies mastered",
+            "projects": "Featured projects"
+        },
+        "socials": "/ Socials"
     },
     "carousel": {
         "slide1": {
@@ -38,7 +55,12 @@
             "style": "Style",
             "backend": "Back-end",
             "devops": "DevOps"
-        }
+        },
+        "chapter": "/ Chapter 01 — About",
+        "titleA": "Hi,",
+        "titleB": "I'm Romain.",
+        "figLabel": "Fig. 01 —",
+        "caption": "Romain Bessede, in the middle of a coding session"
     },
     "work": {
         "title": "Work",
@@ -65,6 +87,17 @@
                 "duration": "1 year 1 month",
                 "title": "IT Intern"
             }
+        ],
+        "chapter": "/ Chapter 02 — Career",
+        "titleA": "My",
+        "titleB": "experience.",
+        "total": "Total",
+        "dates": [
+            "October 2025 - Present",
+            "2023 - 2025",
+            "2022 - 2023",
+            "January 10, 2022 - February 19, 2022",
+            "June 31, 2021 - July 2, 2022"
         ]
     },
     "projects": {
@@ -80,26 +113,55 @@
         "portfolio": {
             "title": "Portfolio",
             "description": "Personal portfolio built with <b>Vue 3</b> and <b>TypeScript</b>, animated with <b>GSAP</b> and styled in <b>SCSS</b>. A modern showcase for my journey, skills and projects."
-        }
+        },
+        "visit": "View project",
+        "chapter": "/ Chapter 03 — Work",
+        "titleA": "A selection of",
+        "titleB": "recent projects.",
+        "intro": "A showcase of my web development work, from <strong>Vue.js front-end</strong> to <strong>PHP/Node back-end</strong>."
     },
-
     "footer": {
         "name": "Romain",
-        "role": "Développeur full-stack",
+        "role": "Full-stack developer",
         "surname": "Bessede",
         "contacts_title": "… /Contacts …",
         "menu": {
-            "about": "À propos",
-            "projects": "Projets",
-            "contacts": "Contacts"
+            "about": "About",
+            "projects": "Projects",
+            "contacts": "Contact"
         },
         "skill_card": {
-            "label": "Site",
+            "label": "Website",
             "techno": [
-                "Hancrafted by me",
-                "Design by Taisia",
+                "Handcrafted by me",
+                "Designed by Taisia",
                 "Powered by Vue.js"
             ]
-        }
+        },
+        "label": "/ Contact",
+        "talk": "Let's talk.",
+        "rights": "© 2026 Romain Bessede — All rights reserved",
+        "made": "Made in Castres, handcrafted · Vue 3 + GSAP"
+    },
+    "ui": {
+        "skip": "Skip to content",
+        "backToTop": "Back to top",
+        "openMenu": "Open menu",
+        "closeMenu": "Close menu",
+        "lang": "Language",
+        "mainNav": "Main navigation",
+        "title": "Romain Bessede — Full-stack developer"
+    },
+    "lightbox": {
+        "open": "Enlarge: {label}",
+        "close": "Close",
+        "prev": "Previous image",
+        "next": "Next image",
+        "goTo": "View image {n}"
+    },
+    "carouselNav": {
+        "prev": "Previous project",
+        "next": "Next project",
+        "goTo": "Go to project {n}"
     }
 }

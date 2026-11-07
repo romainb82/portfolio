@@ -1,9 +1,11 @@
 <template>
     <Transition name="slide-fade">
-        <div v-if="isOpen" class="menu-overlay">
+        <div v-if="isOpen" id="mobile-menu" class="menu-overlay" role="dialog" aria-modal="true"
+            :aria-label="$t('ui.mainNav')">
             <div class="menu-header">
 
-                <button @click="$emit('close')" class="close-button">
+                <button ref="closeRef" type="button" @click="$emit('close')" class="close-button"
+                    :aria-label="$t('ui.closeMenu')">
                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
                         stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                         <path d="M18 6 6 18" />
@@ -12,26 +14,28 @@
                 </button>
             </div>
 
-            <nav class="menu-content">
+            <nav class="menu-content" :aria-label="$t('ui.mainNav')">
                 <ul>
-                    <li><a href="#about" @click="$emit('close')">{{ $t('nav.about') }}</a></li>
-                    <li><a href="#project" @click="$emit('close')">{{ $t('nav.projects') }}</a></li>
-                    <li><a href="#contacts" @click="$emit('close')">{{ $t('nav.contacts') }}</a></li>
-
+                    <li><a href="#about" @click.prevent="go('about')">{{ $t('nav.about') }}</a></li>
+                    <li><a href="#project" @click.prevent="go('project')">{{ $t('nav.projects') }}</a></li>
+                    <li><a href="#contacts" @click.prevent="go('contacts')">{{ $t('nav.contacts') }}</a></li>
                 </ul>
             </nav>
 
-            <div class="menu-footer">
-                <p :class="{ 'is-selected': locale === 'fr' }" @click="setLang('fr')">{{ $t('lang.fr') }}</p>
-                <p :class="{ 'is-selected': locale === 'en' }" @click="setLang('en')">{{ $t('lang.en') }}</p>
+            <div class="menu-footer" role="group" :aria-label="$t('ui.lang')">
+                <button type="button" :class="{ 'is-selected': locale === 'fr' }" :aria-pressed="locale === 'fr'"
+                    lang="fr" @click="setLang('fr')">{{ $t('lang.fr') }}</button>
+                <button type="button" :class="{ 'is-selected': locale === 'en' }" :aria-pressed="locale === 'en'"
+                    lang="en" @click="setLang('en')">{{ $t('lang.en') }}</button>
             </div>
         </div>
     </Transition>
 </template>
 
 <script setup lang="ts">
-import { watch } from 'vue';
+import { nextTick, onUnmounted, ref, watch } from 'vue';
 import { useI18n } from 'vue-i18n'
+import { scrollToSection } from '@/composables/useScrollTo'
 
 const { locale } = useI18n()
 const props = defineProps<{
@@ -39,14 +43,33 @@ const props = defineProps<{
 }>();
 
 const emit = defineEmits(['close']);
+const closeRef = ref<HTMLButtonElement | null>(null)
+
+const onKeydown = (e: KeyboardEvent) => {
+    if (e.key === 'Escape') emit('close')
+}
+
+/* Ferme le menu puis défile vers la section (après la transition de fermeture) */
+const go = (id: string) => {
+    emit('close')
+    setTimeout(() => scrollToSection(id), 50)
+}
 
 watch(() => props.isOpen, (newVal) => {
     if (newVal) {
         document.body.style.overflow = 'hidden';
+        document.addEventListener('keydown', onKeydown)
+        nextTick(() => closeRef.value?.focus())
     } else {
         document.body.style.overflow = '';
+        document.removeEventListener('keydown', onKeydown)
     }
 });
+
+onUnmounted(() => {
+    document.body.style.overflow = ''
+    document.removeEventListener('keydown', onKeydown)
+})
 
 const setLang = (lang: 'fr' | 'en') => {
     locale.value = lang
@@ -61,13 +84,13 @@ const setLang = (lang: 'fr' | 'en') => {
     left: 0;
     width: 100vw;
     height: 100vh;
-    background-color: #121212;
+    background-color: var(--paper);
     z-index: 1000;
     display: flex;
     flex-direction: column;
-    padding: 16px 24px; 
-    color: white;
-    @apply font-openSans;
+    padding: 16px 24px;
+    color: var(--ink);
+    font-family: 'Open Sans', sans-serif;
 }
 
 .menu-header {
@@ -75,42 +98,77 @@ const setLang = (lang: 'fr' | 'en') => {
     justify-content: flex-end;
     align-items: center;
 
-    .logo {
-        font-size: 24px;
-    }
-
     .close-button {
-        background: none;
-        border: none;
-        color: white;
+        background: var(--cream);
+        border: 1px solid var(--border);
+        border-radius: 50%;
+        width: 48px;
+        height: 48px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: var(--ink);
         cursor: pointer;
+        transition: border-color 0.25s ease, background 0.25s ease;
 
         svg {
-            width: 45px;
-            height: 45px;
+            width: 22px;
+            height: 22px;
+        }
+
+        &:hover {
+            background: var(--ink);
+            border-color: var(--ink);
+            color: var(--cream);
         }
     }
 }
 
 .menu-content {
-    flex-grow: 1; 
+    flex-grow: 1;
     display: flex;
     align-items: center;
-    justify-content: center;
+    justify-content: flex-start;
 
     ul {
         list-style: none;
-        padding: 0;
-        text-align: center;
+        padding: 0 12px;
+        text-align: left;
 
         li {
-            margin: 2rem 0;
+            margin: 1.4rem 0;
 
             a {
-                font-size: 36px; 
-                font-weight: 300;
-                color: white;
+                font-family: 'Instrument Serif', serif;
+                font-style: italic;
+                font-size: clamp(48px, 12vw, 88px);
+                font-weight: 400;
+                color: var(--ink);
                 text-decoration: none;
+                line-height: 1;
+                letter-spacing: -0.03em;
+                position: relative;
+                display: inline-block;
+                transition: color 0.25s ease, padding-left 0.25s ease;
+
+                &::before {
+                    content: '→';
+                    position: absolute;
+                    left: -1.2em;
+                    opacity: 0;
+                    color: var(--terracotta);
+                    transition: opacity 0.25s ease, transform 0.25s ease;
+                    transform: translateX(-10px);
+                }
+
+                &:hover {
+                    color: var(--terracotta);
+
+                    &::before {
+                        opacity: 1;
+                        transform: translateX(0);
+                    }
+                }
             }
         }
     }
@@ -118,13 +176,32 @@ const setLang = (lang: 'fr' | 'en') => {
 
 .menu-footer {
     display: flex;
-    justify-content: center;
-    gap: 2rem;
-    padding-bottom: 2rem;
-    font-size: 18px;
+    justify-content: flex-start;
+    gap: 8px;
+    padding: 20px 12px;
+    border-top: 1px solid var(--border);
+    align-items: center;
+
+    button {
+        font-family: 'Fira Code', monospace;
+        font-size: 12px;
+        padding: 6px 12px;
+        border: none;
+        background: transparent;
+        border-radius: 999px;
+        color: var(--graphite);
+        cursor: pointer;
+        transition: background 0.25s ease, color 0.25s ease;
+
+        &:hover {
+            color: var(--ink);
+        }
+    }
 
     .is-selected {
-        text-decoration: underline;
+        background: var(--ink);
+        color: var(--cream);
+        text-decoration: none;
     }
 }
 

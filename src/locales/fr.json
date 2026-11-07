@@ -12,7 +12,24 @@
         "title": "Full-stack ",
         "subtitle": "Développeur",
         "btn": "Projets",
-        "description": "Mon objectif est <b>d’écrire un code maintenable et propre </b> ainsi <b>qu’un code compréhensible </b> afin que le développement soit agréable."
+        "description": "Mon objectif est <b>d’écrire un code maintenable et propre </b> ainsi <b>qu’un code compréhensible </b> afin que le développement soit agréable.",
+        "issue": "— Issue 03 / 2026",
+        "kicker": "Portfolio",
+        "location": "Castres, FR",
+        "available": "Disponible pour une mission",
+        "line1a": "Full",
+        "line1b": "stack",
+        "line2": "Développeur",
+        "signature": "// par Romain Bessede",
+        "quoteSign": "— Romain",
+        "explore": "/ Explorer",
+        "ctaTitle": "Découvrez mes projets récents",
+        "stats": {
+            "years": "Années d'expérience",
+            "tech": "Technologies maîtrisées",
+            "projects": "Projets en vitrine"
+        },
+        "socials": "/ Réseaux"
     },
     "carousel": {
         "slide1": {
@@ -38,7 +55,12 @@
             "style": "Style",
             "backend": "Back-end",
             "devops": "DevOps"
-        }
+        },
+        "chapter": "/ Chapter 01 — À propos",
+        "titleA": "Salut,",
+        "titleB": "je suis Romain.",
+        "figLabel": "Fig. 01 —",
+        "caption": "Romain Bessede, en pleine session de code"
     },
     "work": {
         "title": "Expérience",
@@ -65,6 +87,17 @@
                 "duration": "1 an 1 mois",
                 "title": "Stagiaire informatique"
             }
+        ],
+        "chapter": "/ Chapter 02 — Parcours",
+        "titleA": "Mon",
+        "titleB": "expérience.",
+        "total": "Total",
+        "dates": [
+            "Octobre 2025 - Présent",
+            "2023 - 2025",
+            "2022 - 2023",
+            "10 janvier 2022 - 19 février 2022",
+            "31 juin 2021 - 2 juillet 2022"
         ]
     },
     "projects": {
@@ -80,7 +113,12 @@
         "portfolio": {
             "title": "Portfolio",
             "description": "Portfolio personnel réalisé en <b>Vue 3</b> avec <b>TypeScript</b>, animé avec <b>GSAP</b> et stylisé en <b>SCSS</b>. Une vitrine moderne pour présenter mon parcours, mes compétences et mes projets."
-        }
+        },
+        "visit": "Voir le projet",
+        "chapter": "/ Chapter 03 — Réalisations",
+        "titleA": "Sélection de",
+        "titleB": "projets récents.",
+        "intro": "Une vitrine de mes réalisations en développement web, du <strong>front-end Vue.js</strong> au <strong>back-end PHP/Node</strong>."
     },
     "footer": {
         "name": "Romain",
@@ -99,6 +137,31 @@
                 "Designé par Taisia",
                 "Propulsé par Vue.js"
             ]
-        }
+        },
+        "label": "/ Contact",
+        "talk": "Discutons.",
+        "rights": "© 2026 Romain Bessede — Tous droits réservés",
+        "made": "Made in Castres, fait main · Vue 3 + GSAP"
+    },
+    "ui": {
+        "skip": "Aller au contenu",
+        "backToTop": "Retour en haut",
+        "openMenu": "Ouvrir le menu",
+        "closeMenu": "Fermer le menu",
+        "lang": "Langue",
+        "mainNav": "Navigation principale",
+        "title": "Romain Bessede — Développeur full-stack"
+    },
+    "lightbox": {
+        "open": "Agrandir : {label}",
+        "close": "Fermer",
+        "prev": "Image précédente",
+        "next": "Image suivante",
+        "goTo": "Voir l'image {n}"
+    },
+    "carouselNav": {
+        "prev": "Projet précédent",
+        "next": "Projet suivant",
+        "goTo": "Aller au projet {n}"
     }
 }

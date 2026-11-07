@@ -2,8 +2,24 @@
 @tailwind components;
 @tailwind utilities;
 
+/* ──────────────────────────────────────────────
+   EDITORIAL CODE — Design tokens
+   ────────────────────────────────────────────── */
+:root {
+  --paper: #F2EFE6;
+  --cream: #FAF8F2;
+  --ink: #1A1A1A;
+  --graphite: #5C5852;
+  --border: #D4CFC1;
+  --border-strong: #2A2A2A;
+  --terracotta: #C8553D;
+  --terracotta-light: #E07A5F;
+  --navy: #1A365D;
+  --forest: #0F766E;
+  --amber: #D97706;
+}
 
-/* Reset CSS global */
+/* Reset */
 * {
   margin: 0;
   padding: 0;
@@ -15,70 +31,41 @@ html {
 }
 
 body {
-  @apply bg-black;
-  overflow-x: hidden;
+  background: var(--paper);
+  color: var(--ink);
+  /* clip (et non hidden) : coupe tout débordement horizontal sans créer de
+     conteneur de scroll, ce qui garde le header sticky fonctionnel */
+  overflow-x: clip;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-rendering: optimizeLegibility;
+  font-family: 'Open Sans', sans-serif;
   position: relative;
   min-height: 100vh;
 }
 
-/* Background orbs (floutées, fixées) — donne du relief sans surcharger */
-body::before,
+/* Paper grain — texture subtile pour donner l'effet papier */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  opacity: 0.035;
+  mix-blend-mode: multiply;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3' /%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+/* Discrete decorative line gradient en haut */
 body::after {
   content: '';
   position: fixed;
-  border-radius: 9999px;
-  pointer-events: none;
-  z-index: 0;
-  filter: blur(120px);
-  opacity: 0.35;
-  will-change: transform;
-}
-
-body::before {
-  width: 600px;
-  height: 600px;
-  background: radial-gradient(circle, rgba(139, 92, 246, 0.55) 0%, transparent 70%);
-  top: -200px;
-  left: -150px;
-  animation: float-orb-1 18s ease-in-out infinite;
-}
-
-body::after {
-  width: 700px;
-  height: 700px;
-  background: radial-gradient(circle, rgba(56, 189, 248, 0.35) 0%, transparent 70%);
-  bottom: -250px;
-  right: -200px;
-  animation: float-orb-2 22s ease-in-out infinite;
-}
-
-@keyframes float-orb-1 {
-  0%, 100% {
-    transform: translate(0, 0);
-  }
-  50% {
-    transform: translate(60px, 40px);
-  }
-}
-
-@keyframes float-orb-2 {
-  0%, 100% {
-    transform: translate(0, 0);
-  }
-  50% {
-    transform: translate(-50px, -30px);
-  }
-}
-
-/* Grain texture overlay (SVG inline) — très subtile, casse l'uniformité du noir */
-body {
-  &::before,
-  &::after {
-    /* gardé ci-dessus */
-  }
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  z-index: 100;
+  background: linear-gradient(90deg, var(--terracotta) 0%, var(--amber) 33%, var(--forest) 66%, var(--navy) 100%);
 }
 
 #app {
@@ -86,20 +73,57 @@ body {
   z-index: 1;
 }
 
-#app::before {
-  content: '';
+/* Les ancres (#about, #project, #contacts) s'arrêtent sous le header sticky, pas derrière */
+section[id],
+#contacts {
+  scroll-margin-top: 112px;
+
+  @media screen and (max-width: 768px) {
+    scroll-margin-top: 90px;
+  }
+}
+
+/* Lien d'évitement clavier : visible uniquement au focus */
+.skip-link {
   position: fixed;
-  inset: 0;
+  top: 12px;
+  left: 12px;
+  z-index: 300;
+  padding: 10px 16px;
+  background: var(--ink);
+  color: var(--cream);
+  font-family: 'Fira Code', monospace;
+  font-size: 12px;
+  border-radius: 999px;
+  transform: translateY(-200%);
+  opacity: 0;
+  transition: transform 0.2s ease, opacity 0.2s ease;
+
+  &:focus-visible {
+    transform: translateY(0);
+    opacity: 1;
+    outline: 2px solid var(--terracotta);
+    outline-offset: 3px;
+  }
+}
+
+/* Barre de progression de lecture (sous la ligne dégradée) */
+.scroll-progress {
+  position: fixed;
+  top: 4px;
+  left: 0;
+  height: 2px;
+  width: 100%;
+  z-index: 101;
+  background: var(--ink);
+  transform-origin: left center;
+  transform: scaleX(var(--scroll-progress, 0));
   pointer-events: none;
-  z-index: 0;
-  opacity: 0.04;
-  mix-blend-mode: overlay;
-  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' /%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
 }
 
 ::selection {
-  background-color: #8B5CF6;
-  color: #F5F5F5;
+  background-color: var(--terracotta);
+  color: var(--cream);
 }
 
 /* Buttons reset */
@@ -116,34 +140,110 @@ a {
   text-decoration: none;
 }
 
-/* Focus-visible global accessible — only on keyboard navigation */
 :focus {
   outline: none;
 }
 
 :focus-visible {
-  outline: 2px solid #A78BFA;
+  outline: 2px solid var(--terracotta);
   outline-offset: 3px;
-  border-radius: 4px;
+  border-radius: 2px;
 }
 
-/* Scrollbar plus discrète avec une touche d'accent */
+/* ──────────────────────────────────────────────
+   EDITORIAL CARD — base réutilisable
+   ────────────────────────────────────────────── */
+.editorial-card {
+  position: relative;
+  background: var(--cream);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 28px;
+  transition: border-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+  box-shadow: 0 1px 0 var(--border);
+
+  &:hover {
+    border-color: var(--ink);
+    box-shadow: 4px 4px 0 var(--ink);
+    transform: translate(-2px, -2px);
+  }
+}
+
+.editorial-card--soft {
+  &:hover {
+    border-color: var(--terracotta);
+    box-shadow: 4px 4px 0 var(--terracotta);
+  }
+}
+
+.editorial-card--flat {
+  &:hover {
+    transform: none;
+    box-shadow: 0 1px 0 var(--border);
+    border-color: var(--ink);
+  }
+}
+
+/* Typography utilities */
+.serif {
+  font-family: 'Instrument Serif', 'Times New Roman', serif;
+  font-weight: 400;
+  letter-spacing: -0.01em;
+}
+
+.mono {
+  font-family: 'Fira Code', monospace;
+  font-feature-settings: "ss02" on, "calt" on;
+}
+
+/* Code-style decorative marker (utilisé devant les titres de section) */
+.code-marker {
+  font-family: 'Fira Code', monospace;
+  color: var(--terracotta);
+  font-size: 0.9em;
+  margin-right: 0.3em;
+  font-weight: 400;
+}
+
+/* Section label en haut (numéro / catégorie) */
+.section-label {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  font-family: 'Fira Code', monospace;
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--graphite);
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+
+  &::before {
+    content: '';
+    display: inline-block;
+    width: 24px;
+    height: 1px;
+    background: var(--graphite);
+  }
+}
+
+/* Scrollbar éditorial */
 ::-webkit-scrollbar {
-  width: 10px;
+  width: 12px;
 }
 
 ::-webkit-scrollbar-track {
-  background: #121212;
+  background: var(--paper);
+  border-left: 1px solid var(--border);
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #3D3D3D;
-  border-radius: 10px;
-  border: 2px solid #121212;
+  background: var(--ink);
+  border: 3px solid var(--paper);
+  border-radius: 0;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: #8B5CF6;
+  background: var(--terracotta);
 }
 
 @media (prefers-reduced-motion: reduce) {
