@@ -13,7 +13,12 @@ import { onMounted } from "vue";
 import gsap from "gsap";
 import router from "@/router";
 
-onMounted(() => {
+onMounted(async () => {
+    /* On attend la police (Instrument Serif) avant d'animer : sinon les lettres
+       sont mesurées avec la police de secours puis sautent / se chevauchent. */
+    try { await document.fonts.ready } catch { /* navigateur sans Font Loading API */ }
+
+    gsap.set(".letter", { visibility: "visible" });
     gsap.from(".letter", {
         y: "100%", 
         duration: 1.2,
@@ -53,18 +58,24 @@ onMounted(() => {
     font-style: italic;
     font-size: clamp(3rem, 12vw, 8rem);
     font-weight: 400;
-    letter-spacing: -0.04em;
+    letter-spacing: -0.02em;
+    line-height: 1;
     display: flex;
+    /* Le masque est sur le mot entier : les débords de l'italique ne sont
+       plus coupés lettre par lettre (ce qui donnait un effet de chevauchement). */
+    overflow: hidden;
+    padding: 0.05em 0.15em 0.12em;
 }
 
 .letter-wrapper {
     display: inline-block;
-    overflow: hidden; 
-    padding-bottom: 0.1em; 
 }
 
 .letter {
     display: inline-block;
+    /* invisible tant que la police n'est pas prête, GSAP l'affiche au démarrage */
+    visibility: hidden;
     transform: translateZ(0); 
+    will-change: transform;
 }
 </style>
