@@ -1,270 +1,491 @@
 <template>
-    <section id="hero" class="hero-section">
-
-        <div class="flex flex-row items-end justify-between w-full container-title">
-
-            <h1 class="title">{{ $t('hero.title') }}</h1>
-
-            <div class="flex flex-row items-end justify-start gap-[10px] m-hidden">
-                <a class="button" href="#project" id="btn-project">{{ $t('hero.btn') }}</a>
-                <button class="button" id="btn-project">
-                    <MoveRight></MoveRight>
-                </button>
+    <section id="hero" class="hero">
+        <!-- Editorial header -->
+        <div class="hero-top">
+            <div class="hero-meta">
+                <span class="meta-item">{{ $t('hero.issue') }}</span>
+                <span class="meta-item">{{ $t('hero.kicker') }}</span>
             </div>
-
+            <div class="hero-meta hero-meta--right">
+                <span class="meta-item">{{ $t('hero.location') }}</span>
+                <span class="meta-item dot-live"><span class="live-dot"></span> {{ $t('hero.available') }}</span>
+            </div>
         </div>
 
-        <div class="flex flex-row items-end justify-between w-full container-description">
-            <p class="description" v-html="$t('hero.description')"></p>
-            <div class="flex flex-row items-end justify-start gap-[10px] m-visible">
-                <a href="#project" class="button" id="btn-project">{{ $t('hero.btn') }}</a>
-                <button class="button" id="btn-project">
-                    <MoveRight></MoveRight>
-                </button>
-            </div>
-            <h2 class="title">{{ $t('hero.subtitle') }}</h2>
+        <!-- Massive editorial title -->
+        <h1 class="hero-title">
+            <span class="line line-1">
+                <span class="mono-bracket">{</span>
+                <em class="serif">{{ $t('hero.line1a') }}</em><span class="dash">—</span><em class="serif">{{ $t('hero.line1b') }}</em>
+            </span>
+            <span class="line line-2">
+                {{ $t('hero.line2') }}
+                <span class="cursor">▍</span>
+            </span>
+            <span class="line line-3">
+                <span class="mono-bracket">}</span>
+                <span class="signature">{{ $t('hero.signature') }}</span>
+            </span>
+        </h1>
+
+        <!-- Editorial intro grid -->
+        <div class="hero-grid">
+            <article class="editorial-card hero-quote">
+                <span class="quote-mark">"</span>
+                <p class="quote-text" v-html="$t('hero.description')"></p>
+                <div class="quote-sign">
+                    <span>{{ $t('hero.quoteSign') }}</span>
+                    <span class="quote-year">2026</span>
+                </div>
+            </article>
+
+            <article class="editorial-card hero-cta-card editorial-card--soft">
+                <span class="section-label">{{ $t('hero.explore') }}</span>
+                <h3 class="cta-title serif">{{ $t('hero.ctaTitle') }}</h3>
+                <a class="cta-btn" href="#project" id="btn-project">
+                    <span>{{ $t('hero.btn') }}</span>
+                    <MoveRight class="arrow" />
+                </a>
+            </article>
+
+            <article class="editorial-card hero-stats">
+                <div class="stat">
+                    <span class="stat-value mono">3+</span>
+                    <span class="stat-label">{{ $t('hero.stats.years') }}</span>
+                </div>
+                <div class="divider"></div>
+                <div class="stat">
+                    <span class="stat-value mono">15+</span>
+                    <span class="stat-label">{{ $t('hero.stats.tech') }}</span>
+                </div>
+                <div class="divider"></div>
+                <div class="stat">
+                    <span class="stat-value mono">3</span>
+                    <span class="stat-label">{{ $t('hero.stats.projects') }}</span>
+                </div>
+            </article>
         </div>
 
-        <div class="flex flex-row items-center justify-around container-social">
-
-            <div class="flex flex-row items-center justify-center gap-[20px]">
-                <ButtonSocial v-for="social in socialNetwork.slice(0, 2)" :icon="social.icon" :label="social.label" :link="social.link"
-                    :key="social.id">
+        <!-- Social row -->
+        <div class="hero-socials">
+            <span class="socials-label">{{ $t('hero.socials') }}</span>
+            <div class="social-row">
+                <ButtonSocial v-for="social in socialNetwork" :icon="social.icon" :label="social.label"
+                    :link="social.link" :key="social.id">
                 </ButtonSocial>
             </div>
-
-            <div class="flex flex-row items-center justify-center gap-[20px]">
-                <ButtonSocial v-for="social in socialNetwork.slice(2, 3)" :icon="social.icon" :label="social.label" :link="social.link"
-                    :key="social.id">
-                </ButtonSocial>
-            </div>
-
-            <div class="flex flex-row items-center justify-center gap-[20px]">
-                <ButtonSocial v-for="social in socialNetwork.slice(3, 5)" :icon="social.icon" :label="social.label" :link="social.link"
-                    :key="social.id">
-                </ButtonSocial>
-            </div>
-
         </div>
 
         <Carrousel id="Carrousel"></Carrousel>
-
     </section>
 </template>
+
 <script setup lang='ts'>
 import gsap from 'gsap';
-
 import ButtonSocial from '@/components/Atoms/ButtonSocial/ButtonSocial.vue';
-
 import { MoveRight } from 'lucide-vue-next';
 import Carrousel from '@/components/Organisms/Carrousel/Carrousel.vue';
 import { onMounted } from 'vue';
-const GithubIcon = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M5.88401 18.6533C5.58404 18.4526 5.32587 18.1975 5.0239 17.8369C4.91473 17.7065 4.47283 17.1524 4.55811 17.2583C4.09533 16.6833 3.80296 16.417 3.50156 16.3089C2.9817 16.1225 2.7114 15.5499 2.89784 15.0301C3.08428 14.5102 3.65685 14.2399 4.17672 14.4263C4.92936 14.6963 5.43847 15.1611 6.12425 16.0143C6.03025 15.8974 6.46364 16.441 6.55731 16.5529C6.74784 16.7804 6.88732 16.9182 6.99629 16.9911C7.20118 17.1283 7.58451 17.1874 8.14709 17.1311C8.17065 16.7489 8.24136 16.3783 8.34919 16.0358C5.38097 15.3104 3.70116 13.3952 3.70116 9.63971C3.70116 8.40085 4.0704 7.28393 4.75917 6.3478C4.5415 5.45392 4.57433 4.37284 5.06092 3.15636C5.1725 2.87739 5.40361 2.66338 5.69031 2.57352C5.77242 2.54973 5.81791 2.53915 5.89878 2.52673C6.70167 2.40343 7.83573 2.69705 9.31449 3.62336C10.181 3.41879 11.0885 3.315 12.0012 3.315C12.9129 3.315 13.8196 3.4186 14.6854 3.62277C16.1619 2.69 17.2986 2.39649 18.1072 2.52651C18.1919 2.54013 18.2645 2.55783 18.3249 2.57766C18.6059 2.66991 18.8316 2.88179 18.9414 3.15636C19.4279 4.37256 19.4608 5.45344 19.2433 6.3472C19.9342 7.28337 20.3012 8.39208 20.3012 9.63971C20.3012 13.3968 18.627 15.3048 15.6588 16.032C15.7837 16.447 15.8496 16.9105 15.8496 17.4121C15.8496 18.0765 15.8471 18.711 15.8424 19.4225C15.8412 19.6127 15.8397 19.8159 15.8375 20.1281C16.2129 20.2109 16.5229 20.5077 16.6031 20.9089C16.7114 21.4504 16.3602 21.9773 15.8186 22.0856C14.6794 22.3134 13.8353 21.5538 13.8353 20.5611C13.8353 20.4708 13.836 20.3417 13.8375 20.1145C13.8398 19.8015 13.8412 19.599 13.8425 19.4094C13.8471 18.7019 13.8496 18.0716 13.8496 17.4121C13.8496 16.7148 13.6664 16.2602 13.4237 16.051C12.7627 15.4812 13.0977 14.3973 13.965 14.2999C16.9314 13.9666 18.3012 12.8177 18.3012 9.63971C18.3012 8.68508 17.9893 7.89571 17.3881 7.23559C17.1301 6.95233 17.0567 6.54659 17.199 6.19087C17.3647 5.77663 17.4354 5.23384 17.2941 4.57702L17.2847 4.57968C16.7928 4.71886 16.1744 5.0198 15.4261 5.5285C15.182 5.69438 14.8772 5.74401 14.5932 5.66413C13.7729 5.43343 12.8913 5.315 12.0012 5.315C11.111 5.315 10.2294 5.43343 9.40916 5.66413C9.12662 5.74359 8.82344 5.69492 8.57997 5.53101C7.8274 5.02439 7.2056 4.72379 6.71079 4.58376C6.56735 5.23696 6.63814 5.77782 6.80336 6.19087C6.94565 6.54659 6.87219 6.95233 6.61423 7.23559C6.01715 7.8912 5.70116 8.69376 5.70116 9.63971C5.70116 12.8116 7.07225 13.9683 10.023 14.2999C10.8883 14.3971 11.2246 15.4769 10.5675 16.0482C10.3751 16.2156 10.1384 16.7802 10.1384 17.4121V20.5611C10.1384 21.5474 9.30356 22.2869 8.17878 22.09C7.63476 21.9948 7.27093 21.4766 7.36613 20.9326C7.43827 20.5204 7.75331 20.2116 8.13841 20.1276V19.1381C7.22829 19.1994 6.47656 19.0498 5.88401 18.6533Z"></path></svg>`
-const LinkedinIcon = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M6.94048 4.99993C6.94011 5.81424 6.44608 6.54702 5.69134 6.85273C4.9366 7.15845 4.07187 6.97605 3.5049 6.39155C2.93793 5.80704 2.78195 4.93715 3.1105 4.19207C3.43906 3.44699 4.18654 2.9755 5.00048 2.99993C6.08155 3.03238 6.94097 3.91837 6.94048 4.99993ZM7.00048 8.47993H3.00048V20.9999H7.00048V8.47993ZM13.3205 8.47993H9.34048V20.9999H13.2805V14.4299C13.2805 10.7699 18.0505 10.4299 18.0505 14.4299V20.9999H22.0005V13.0699C22.0005 6.89993 14.9405 7.12993 13.2805 10.1599L13.3205 8.47993Z"></path></svg>`
-const TelegramIcon = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M2.14753 11.8099C7.3949 9.52374 10.894 8.01654 12.6447 7.28833C17.6435 5.20916 18.6822 4.84799 19.3592 4.83606C19.5081 4.83344 19.8411 4.87034 20.0567 5.04534C20.2388 5.1931 20.2889 5.39271 20.3129 5.5328C20.3369 5.6729 20.3667 5.99204 20.343 6.2414C20.0721 9.08763 18.9 15.9947 18.3037 19.1825C18.0514 20.5314 17.5546 20.9836 17.0736 21.0279C16.0283 21.1241 15.2345 20.3371 14.2221 19.6735C12.6379 18.635 11.7429 17.9885 10.2051 16.9751C8.42795 15.804 9.58001 15.1603 10.5928 14.1084C10.8579 13.8331 15.4635 9.64397 15.5526 9.26395C15.5637 9.21642 15.5741 9.03926 15.4688 8.94571C15.3636 8.85216 15.2083 8.88415 15.0962 8.9096C14.9373 8.94566 12.4064 10.6184 7.50365 13.928C6.78528 14.4212 6.13461 14.6616 5.55163 14.649C4.90893 14.6351 3.67265 14.2856 2.7536 13.9869C1.62635 13.6204 0.730432 13.4267 0.808447 12.8044C0.849081 12.4803 1.29544 12.1488 2.14753 11.8099Z"></path></svg>`
-const FacebookIcon = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M14 13.5H16.5L17.5 9.5H14V7.5C14 6.47062 14 5.5 16 5.5H17.5V2.1401C17.1743 2.09685 15.943 2 14.6429 2C11.9284 2 10 3.65686 10 6.69971V9.5H7V13.5H10V22H14V13.5Z"></path></svg>`
-const InstagramIcon = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M12.001 9C10.3436 9 9.00098 10.3431 9.00098 12C9.00098 13.6573 10.3441 15 12.001 15C13.6583 15 15.001 13.6569 15.001 12C15.001 10.3427 13.6579 9 12.001 9ZM12.001 7C14.7614 7 17.001 9.2371 17.001 12C17.001 14.7605 14.7639 17 12.001 17C9.24051 17 7.00098 14.7629 7.00098 12C7.00098 9.23953 9.23808 7 12.001 7ZM18.501 6.74915C18.501 7.43926 17.9402 7.99917 17.251 7.99917C16.5609 7.99917 16.001 7.4384 16.001 6.74915C16.001 6.0599 16.5617 5.5 17.251 5.5C17.9393 5.49913 18.501 6.0599 18.501 6.74915ZM12.001 4C9.5265 4 9.12318 4.00655 7.97227 4.0578C7.18815 4.09461 6.66253 4.20007 6.17416 4.38967C5.74016 4.55799 5.42709 4.75898 5.09352 5.09255C4.75867 5.4274 4.55804 5.73963 4.3904 6.17383C4.20036 6.66332 4.09493 7.18811 4.05878 7.97115C4.00703 9.0752 4.00098 9.46105 4.00098 12C4.00098 14.4745 4.00753 14.8778 4.05877 16.0286C4.0956 16.8124 4.2012 17.3388 4.39034 17.826C4.5591 18.2606 4.7605 18.5744 5.09246 18.9064C5.42863 19.2421 5.74179 19.4434 6.17187 19.6094C6.66619 19.8005 7.19148 19.9061 7.97212 19.9422C9.07618 19.9939 9.46203 20 12.001 20C14.4755 20 14.8788 19.9934 16.0296 19.9422C16.8117 19.9055 17.3385 19.7996 17.827 19.6106C18.2604 19.4423 18.5752 19.2402 18.9074 18.9085C19.2436 18.5718 19.4445 18.2594 19.6107 17.8283C19.8013 17.3358 19.9071 16.8098 19.9432 16.0289C19.9949 14.9248 20.001 14.5389 20.001 12C20.001 9.52552 19.9944 9.12221 19.9432 7.97137C19.9064 7.18906 19.8005 6.66149 19.6113 6.17318C19.4434 5.74038 19.2417 5.42635 18.9084 5.09255C18.573 4.75715 18.2616 4.55693 17.8271 4.38942C17.338 4.19954 16.8124 4.09396 16.0298 4.05781C14.9258 4.00605 14.5399 4 12.001 4ZM12.001 2C14.7176 2 15.0568 2.01 16.1235 2.06C17.1876 2.10917 17.9135 2.2775 18.551 2.525C19.2101 2.77917 19.7668 3.1225 20.3226 3.67833C20.8776 4.23417 21.221 4.7925 21.476 5.45C21.7226 6.08667 21.891 6.81333 21.941 7.8775C21.9885 8.94417 22.001 9.28333 22.001 12C22.001 14.7167 21.991 15.0558 21.941 16.1225C21.8918 17.1867 21.7226 17.9125 21.476 18.55C21.2218 19.2092 20.8776 19.7658 20.3226 20.3217C19.7668 20.8767 19.2076 21.22 18.551 21.475C17.9135 21.7217 17.1876 21.89 16.1235 21.94C15.0568 21.9875 14.7176 22 12.001 22C9.28431 22 8.94514 21.99 7.87848 21.94C6.81431 21.8908 6.08931 21.7217 5.45098 21.475C4.79264 21.2208 4.23514 20.8767 3.67931 20.3217C3.12348 19.7658 2.78098 19.2067 2.52598 18.55C2.27848 17.9125 2.11098 17.1867 2.06098 16.1225C2.01348 15.0558 2.00098 14.7167 2.00098 12C2.00098 9.28333 2.01098 8.94417 2.06098 7.8775C2.11014 6.8125 2.27848 6.0875 2.52598 5.45C2.78014 4.79167 3.12348 4.23417 3.67931 3.67833C4.23514 3.1225 4.79348 2.78 5.45098 2.525C6.08848 2.2775 6.81348 2.11 7.87848 2.06C8.94514 2.0125 9.28431 2 12.001 2Z"></path></svg>`
-
-import { Github, Linkedin, Send, Facebook, Instagram } from 'lucide-vue-next';
+import { Github, Linkedin, Mail, Instagram } from 'lucide-vue-next';
 
 const socialNetwork = [
-  { id: 1, label: 'Github', icon: Github, link: '#' },
-  { id: 2, label: 'Linkedin', icon: Linkedin, link: '#' },
-   { id: 2, label: 'Telegram', icon: Send, link: '#' },
-  { id: 4, label: 'Facebook', icon: Facebook, link: '#' },
-  { id: 5, label: 'Instagram', icon: Instagram, link: '#' }
+    { id: 1, label: 'Github', icon: Github, link: 'https://github.com/romainb82' },
+    { id: 2, label: 'Linkedin', icon: Linkedin, link: 'https://www.linkedin.com/in/romain-bessede-688249203/' },
+    { id: 3, label: 'Email', icon: Mail, link: 'mailto:romain@web-premiere.fr' },
+    { id: 4, label: 'Instagram', icon: Instagram, link: 'https://www.instagram.com/roooomain___/' }
 ]
-
-
 
 onMounted(() => {
     const tl = gsap.timeline({
-        defaults: {
-            duration: 0.8,
-            ease: 'power3.out'
-        }
+        defaults: { duration: 0.8, ease: 'power3.out' }
     });
 
-    tl.from('.title', {
-        yPercent: 120,
-        opacity: 0,
-        stagger: 0.2,
-        duration: 1.2,
-        ease: 'power4.out'
-    });
-
-
-    tl.from('.description', {
-        y: 40,
-        opacity: 0,
-    }, "<0.2");
-
-    tl.from('.hero-section #btn-project', {
-        y: 40,
-        opacity: 0,
-        stagger: 0.1
-    }, "<");
-
-    tl.from('.container-social ', {
-        y: 40,
-        opacity: 0,
-        stagger: 0.1
-    }, "<0.2");
-
-
-    tl.from('#Carrousel', {
-        opacity: 0,
-        y: 50,
-    }, "<0.2");
-
+    tl.from('.hero-top', { y: -20, opacity: 0 })
+        .from('.hero-title .line', { y: 60, opacity: 0, stagger: 0.12, duration: 1 }, "<0.1")
+        .from('.hero-grid > *', { y: 40, opacity: 0, stagger: 0.1 }, "<0.3")
+        .from('.hero-socials', { y: 20, opacity: 0 }, "<0.2")
+        .from('#Carrousel', { y: 40, opacity: 0 }, "<0.1");
 });
-
 </script>
 
 <style scoped lang='scss'>
-.hero-section {
+.hero {
     width: 100%;
-    height: max-content;
-    min-height: 500px;
+    padding: 60px 52px 150px;
     display: flex;
     flex-direction: column;
-    align-items: flex-start;
-    justify-content: flex-start;
-    gap: 50px;
-    margin-top: 100px;
-    padding: 0px 52px;
-    padding-bottom: 150px !important;
+    gap: 64px;
 
     @media screen and (max-width: 768px) {
-        padding: 0px 20px;
+        padding: 40px 20px 80px;
+        gap: 40px;
     }
 
     @media screen and (max-width: 375px) {
-        padding: 0px 10px;
+        padding: 30px 10px 50px;
     }
+}
 
-    @media screen and (max-width: 425px) {
-        padding-bottom: 50px !important;
-    }
+/* ── Editorial top header ── */
+.hero-top {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 16px;
+    padding-bottom: 24px;
+    border-bottom: 1px solid var(--border);
 
-
-
-    .m-hidden {
+    .hero-meta {
         display: flex;
+        gap: 24px;
+        flex-wrap: wrap;
 
-        @media screen and (max-width:1220px) {
-            display: none;
+        &--right {
+            justify-content: flex-end;
         }
     }
 
-    .m-visible {
-        display: none;
+    .meta-item {
+        font-family: 'Fira Code', monospace;
+        font-size: 11px;
+        font-weight: 500;
+        letter-spacing: 0.1em;
+        color: var(--graphite);
+        text-transform: uppercase;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+    }
 
-        @media screen and (max-width:1220px) {
-            display: flex;
+    .live-dot {
+        display: inline-block;
+        width: 8px;
+        height: 8px;
+        border-radius: 50%;
+        background: var(--forest);
+        box-shadow: 0 0 8px var(--forest);
+        animation: livePulse 1.8s ease-in-out infinite;
+    }
+
+    @media screen and (max-width: 600px) {
+        .hero-meta--right {
+            justify-content: flex-start;
+        }
+    }
+}
+
+@keyframes livePulse {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50% { opacity: 0.5; transform: scale(0.85); }
+}
+
+/* ── Massive editorial title ── */
+.hero-title {
+    margin: 0;
+    line-height: 0.92;
+    color: var(--ink);
+    font-weight: 400;
+    /* Le titre se dimensionne par rapport à sa propre largeur (cqw)
+       pour que « DÉVELOPPEUR » ne déborde jamais du viewport */
+    container-type: inline-size;
+    max-width: 100%;
+
+    .line {
+        display: block;
+    }
+
+    .line-1 {
+        font-family: 'Instrument Serif', serif;
+        font-size: clamp(36px, 9cqw, 130px);
+        font-style: italic;
+        letter-spacing: -0.03em;
+        display: flex;
+        align-items: baseline;
+        gap: 0.25em;
+        flex-wrap: wrap;
+
+        em {
+            font-style: italic;
+            font-family: 'Instrument Serif', serif;
+        }
+
+        .dash {
+            font-family: 'Instrument Serif', serif;
+            font-style: normal;
         }
     }
 
-    .container-title {
-        @media screen and (max-width:1220px) {
-            flex-direction: column;
-            gap: 50px;
-            align-items: flex-start;
+    .line-2 {
+        font-family: 'Syne', sans-serif;
+        font-weight: 800;
+        /* ~13.7em de large (11 lettres + curseur) : 7.2cqw tient dans 100% du conteneur */
+        font-size: clamp(20px, 7.2cqw, 160px);
+        letter-spacing: -0.05em;
+        white-space: nowrap;
+        color: var(--ink);
+        text-transform: uppercase;
+        margin-top: -0.1em;
+
+        .cursor {
+            color: var(--terracotta);
+            display: inline-block;
+            margin-left: 0.05em;
+            animation: blink 1.1s steps(2, start) infinite;
         }
     }
 
-    .container-description {
-        @media screen and (max-width:1220px) {
-            flex-direction: column-reverse;
-            gap: 50px;
-            align-items: flex-start;
+    .line-3 {
+        display: flex;
+        align-items: center;
+        gap: 16px;
+        font-family: 'Instrument Serif', serif;
+        font-size: clamp(28px, 4.5vw, 60px);
+        font-style: italic;
+        color: var(--graphite);
+        margin-top: 0.2em;
+
+        .signature {
+            font-family: 'Fira Code', monospace;
+            font-size: clamp(13px, 1.4vw, 18px);
+            color: var(--graphite);
+            font-style: normal;
+            letter-spacing: -0.01em;
         }
     }
 
-
-    .title {
-        @apply font-firaCode text-white;
-        font-weight: 700;
-        font-size: 132px;
-        line-height: 90px;
-        width: max-content;
-        text-wrap: nowrap;
-
-        @media screen and (max-width: 850px) {
-            font-size: 14vw;
-            line-height: 10vw;
-        }
-
-
-
-    }
-
-    .description {
-        @apply font-openSans text-grey-50;
-        max-width: 440px;
-        flex: 1;
+    .mono-bracket {
+        font-family: 'Fira Code', monospace;
+        color: var(--terracotta);
+        font-style: normal;
+        font-size: 0.7em;
         font-weight: 300;
-        font-size: 22px;
+    }
+}
+
+@keyframes blink {
+    0%, 49% { opacity: 1; }
+    50%, 100% { opacity: 0; }
+}
+
+/* ── Bento grid intro ── */
+.hero-grid {
+    display: grid;
+    grid-template-columns: 1.6fr 1fr 1.2fr;
+    gap: 16px;
+
+    @media screen and (max-width: 1024px) {
+        grid-template-columns: 1fr 1fr;
+    }
+
+    @media screen and (max-width: 600px) {
+        grid-template-columns: 1fr;
+    }
+}
+
+.hero-quote {
+    grid-column: span 1;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    padding: 36px 32px;
+    position: relative;
+
+    @media screen and (max-width: 1024px) {
+        grid-column: span 2;
+    }
+
+    @media screen and (max-width: 600px) {
+        grid-column: span 1;
+    }
+
+    .quote-mark {
+        font-family: 'Instrument Serif', serif;
+        font-size: 96px;
+        line-height: 0.6;
+        color: var(--terracotta);
+        font-style: italic;
+    }
+
+    .quote-text {
+        font-family: 'Instrument Serif', serif;
+        font-size: clamp(20px, 2vw, 26px);
+        line-height: 1.35;
+        color: var(--ink);
+        font-style: italic;
+        letter-spacing: -0.01em;
 
         :deep(b) {
-            @apply font-firaCode text-white;
             font-style: italic;
-            letter-spacing: -0.05rem;
-            font-weight: 300;
+            color: var(--terracotta);
+            font-weight: 400;
         }
     }
 
-    .button {
-        @apply bg-white text-black font-openSans;
-        width: max-content;
-        height: 50px;
-        padding: 12px 24px;
-        border-radius: 9999px;
+    .quote-sign {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-top: 8px;
+        font-family: 'Fira Code', monospace;
+        font-size: 12px;
+        color: var(--graphite);
+        text-transform: uppercase;
+        letter-spacing: 0.1em;
+
+        .quote-year {
+            color: var(--graphite);
+        }
+    }
+}
+
+.hero-cta-card {
+    grid-column: span 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: 20px;
+    background: var(--terracotta);
+    border-color: var(--terracotta);
+    color: var(--cream);
+
+    &:hover {
+        box-shadow: 4px 4px 0 var(--ink);
+        border-color: var(--ink);
+    }
+
+    :deep(.section-label) {
+        color: rgba(250, 248, 242, 0.7);
+
+        &::before {
+            background: rgba(250, 248, 242, 0.5);
+        }
+    }
+
+    .cta-title {
+        font-family: 'Instrument Serif', serif;
+        font-size: clamp(22px, 2.2vw, 28px);
         font-style: italic;
-        font-weight: 400;
-        font-size: 18px;
-        text-align: center;
+        line-height: 1.15;
+        color: var(--cream);
+    }
 
+    .cta-btn {
+        display: inline-flex;
+        align-items: center;
+        gap: 10px;
+        align-self: flex-start;
+        padding: 12px 22px;
+        background: var(--cream);
+        color: var(--ink);
+        border-radius: 999px;
+        font-family: 'Fira Code', monospace;
+        font-weight: 500;
+        font-size: 13px;
+        transition: transform 0.25s ease, gap 0.25s ease;
 
-
-        &:first-of-type {
-            width: 300px;
+        .arrow {
+            width: 16px;
+            height: 16px;
+            transition: transform 0.25s ease;
         }
 
-        &:last-child {
-            width: 50px;
-            height: 50px;
-            display: flex;
-            flex-direction: row;
-            align-items: center;
-            justify-content: center;
-            padding: 0 !important;
+        &:hover {
+            transform: translateY(-2px);
+            gap: 14px;
 
-            svg {
-                width: 22px;
-                height: 22px;
-            }
-
-            @media screen and (max-width: 375px) {
-                display: none
+            .arrow {
+                transform: translateX(3px);
             }
         }
     }
+}
 
-    .container-social {
-        width: 85%;
-        margin: 0 auto;
+.hero-stats {
+    grid-column: span 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: 20px;
 
-        @media screen and (max-width: 850px) {
-            width: 100%;
-            flex-wrap: wrap;
+    @media screen and (max-width: 1024px) {
+        grid-column: span 2;
+        flex-direction: row;
+        align-items: center;
+    }
+
+    @media screen and (max-width: 600px) {
+        grid-column: span 1;
+        flex-direction: column;
+    }
+
+    .stat {
+        display: flex;
+        align-items: baseline;
+        gap: 12px;
+        flex: 1;
+
+        .stat-value {
+            font-family: 'Instrument Serif', serif;
+            font-size: clamp(40px, 4vw, 52px);
+            color: var(--ink);
+            font-style: italic;
+            line-height: 1;
         }
 
-        @media screen and (max-width:1220px) {
-            width: 100%;
-            justify-content: flex-start;
-            gap: 20px;
+        .stat-label {
+            font-family: 'Fira Code', monospace;
+            font-size: 11px;
+            color: var(--graphite);
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
         }
+    }
+
+    .divider {
+        height: 1px;
+        background: var(--border);
+        width: 100%;
+
+        @media screen and (max-width: 1024px) {
+            width: 1px;
+            height: 40px;
+        }
+
+        @media screen and (max-width: 600px) {
+            width: 100%;
+            height: 1px;
+        }
+    }
+}
+
+/* ── Social row ── */
+.hero-socials {
+    display: flex;
+    align-items: center;
+    gap: 24px;
+    padding: 24px 0;
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+
+    @media screen and (max-width: 768px) {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 16px;
+    }
+
+    .socials-label {
+        font-family: 'Fira Code', monospace;
+        font-size: 12px;
+        text-transform: uppercase;
+        letter-spacing: 0.12em;
+        color: var(--graphite);
+        font-weight: 500;
+    }
+
+    .social-row {
+        display: flex;
+        gap: 10px;
+        flex-wrap: wrap;
     }
 }
 </style>

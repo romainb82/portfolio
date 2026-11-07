@@ -12,30 +12,39 @@
         "title": "Full-stack ",
         "subtitle": "Developer",
         "btn": "Projects",
-        "description": "My goal is to <b>write maintainable, clean </b> and <b> understandable code </b> to process development was enjoyable."
+        "description": "My goal is to <b>write maintainable, clean code</b> as well as <b>understandable code</b>, so that development stays enjoyable.",
+        "issue": "— Issue 03 / 2026",
+        "kicker": "Portfolio",
+        "location": "Castres, FR",
+        "available": "Available for hire",
+        "line1a": "Full",
+        "line1b": "stack",
+        "line2": "Developer",
+        "signature": "// by Romain Bessede",
+        "quoteSign": "— Romain",
+        "explore": "/ Explore",
+        "ctaTitle": "Discover my recent projects",
+        "stats": {
+            "years": "Years of experience",
+            "tech": "Technologies mastered",
+            "projects": "Featured projects"
+        },
+        "socials": "/ Socials"
     },
     "carousel": {
         "slide1": {
-            "title": "The simplest example is Kafka + Golang",
-            "description": "This article presents a simple way to implement a micro-service architecture using Kafka, Golang and Docker."
+            "title": "Goudronnage Occitanie",
+            "description": "Showcase website for a road paving company in Occitanie, built with Vue.js, Supabase and deployed on Render."
         },
         "slide2": {
-            "title": "Exploring Vue 3 Composition API",
-            "description": "A deep dive into the new features and benefits of the Vue 3 Composition API for building scalable applications."
+            "title": "Blog Maîtresse",
+            "description": "Educational blog for sharing teaching resources, built with Vue.js, Supabase and deployed on Vercel."
         },
         "slide3": {
-            "title": "Mastering SCSS for Modern Web Design",
-            "description": "Learn advanced SCSS techniques to create responsive, maintainable, and beautiful stylesheets."
+            "title": "Portfolio",
+            "description": "My personal portfolio built with Vue 3, TypeScript, animated with GSAP and styled in SCSS."
         },
-        "slide4": {
-            "title": "Introduction to Docker Containers",
-            "description": "Understand the fundamentals of containerization with Docker and how it streamlines development."
-        },
-        "slide5": {
-            "title": "Building Real-time Apps with WebSockets",
-            "description": "A practical guide to implementing real-time communication in your web applications using WebSockets."
-        },
-        "btn": "Read more"
+        "btn": "View project"
     },
     "about": {
         "section": "/About me …",
@@ -46,13 +55,22 @@
             "style": "Style",
             "backend": "Back-end",
             "devops": "DevOps"
-        }
+        },
+        "chapter": "/ Chapter 01 — About",
+        "titleA": "Hi,",
+        "titleB": "I'm Romain.",
+        "figLabel": "Fig. 01 —",
+        "caption": "Romain Bessede, in the middle of a coding session"
     },
     "work": {
         "title": "Work",
         "summaryTitle": "Work experience",
-        "summaryDuration": "3 years 2 months",
+        "summaryDuration": "3 years 9 months",
         "experiences": [
+            {
+                "duration": "7 months",
+                "title": "PrestaShop Developer - Bab'in"
+            },
             {
                 "duration": "2 years",
                 "title": "Apprentice Software Developer"
@@ -69,37 +87,81 @@
                 "duration": "1 year 1 month",
                 "title": "IT Intern"
             }
+        ],
+        "chapter": "/ Chapter 02 — Career",
+        "titleA": "My",
+        "titleB": "experience.",
+        "total": "Total",
+        "dates": [
+            "October 2025 - Present",
+            "2023 - 2025",
+            "2022 - 2023",
+            "January 10, 2022 - February 19, 2022",
+            "June 31, 2021 - July 2, 2022"
         ]
     },
     "projects": {
         "section": "… /Projects …",
-        "kanaMaster": {
-            "title": "Kana Master",
-            "description": "Kana Master is an <b>iOS application designed</b> for learning Katakana and Hiragana. It includes various tests and practical exercises that help in learning and memorizing Japanese characters. The app also offers audio training for correct pronunciation and demonstrates how to properly draw each character."
+        "goudronnageOccitanie": {
+            "title": "Goudronnage Occitanie",
+            "description": "Showcase website for a <b>road paving company</b> based in Occitanie, France. Built with <b>Vue.js</b> and a <b>Supabase</b> backend to handle content and quote requests. The site is deployed on <b>Render</b> and presents the company's services, projects and contact details."
+        },
+        "blogMaitresse": {
+            "title": "Blog Maîtresse",
+            "description": "Blog dedicated to <b>sharing educational resources</b> by a school teacher. Built with <b>Vue.js</b> and <b>Supabase</b> for posts, media and authentication management. The site is deployed on <b>Vercel</b> for optimal performance."
         },
         "portfolio": {
             "title": "Portfolio",
-            "description": "Kana Master is an <b>iOS application designed</b> for learning Katakana and Hiragana. It includes various tests and practical exercises that help in learning and memorizing Japanese characters. The app also offers audio training for correct pronunciation and demonstrates how to properly draw each character."
-        }
+            "description": "Personal portfolio built with <b>Vue 3</b> and <b>TypeScript</b>, animated with <b>GSAP</b> and styled in <b>SCSS</b>. A modern showcase for my journey, skills and projects."
+        },
+        "visit": "View project",
+        "chapter": "/ Chapter 03 — Work",
+        "titleA": "A selection of",
+        "titleB": "recent projects.",
+        "intro": "A showcase of my web development work, from <strong>Vue.js front-end</strong> to <strong>PHP/Node back-end</strong>."
     },
-
     "footer": {
         "name": "Romain",
-        "role": "Développeur full-stack",
+        "role": "Full-stack developer",
         "surname": "Bessede",
         "contacts_title": "… /Contacts …",
         "menu": {
-            "about": "À propos",
-            "projects": "Projets",
-            "contacts": "Contacts"
+            "about": "About",
+            "projects": "Projects",
+            "contacts": "Contact"
         },
         "skill_card": {
-            "label": "Site",
+            "label": "Website",
             "techno": [
-                "Hancrafted by me",
-                "Design by Taisia",
+                "Handcrafted by me",
+                "Designed by Taisia",
                 "Powered by Vue.js"
             ]
-        }
+        },
+        "label": "/ Contact",
+        "talk": "Let's talk.",
+        "rights": "© 2026 Romain Bessede — All rights reserved",
+        "made": "Made in Castres, handcrafted · Vue 3 + GSAP"
+    },
+    "ui": {
+        "skip": "Skip to content",
+        "backToTop": "Back to top",
+        "openMenu": "Open menu",
+        "closeMenu": "Close menu",
+        "lang": "Language",
+        "mainNav": "Main navigation",
+        "title": "Romain Bessede — Full-stack developer"
+    },
+    "lightbox": {
+        "open": "Enlarge: {label}",
+        "close": "Close",
+        "prev": "Previous image",
+        "next": "Next image",
+        "goTo": "View image {n}"
+    },
+    "carouselNav": {
+        "prev": "Previous project",
+        "next": "Next project",
+        "goTo": "Go to project {n}"
     }
 }

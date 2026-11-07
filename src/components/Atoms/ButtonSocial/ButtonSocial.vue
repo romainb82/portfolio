@@ -1,91 +1,106 @@
 <template>
-    <div class="button-social" @click="redirectTo()">
-        <component :is="props.icon" class="icon" />
+    <a class="button-social" :class="{ 'button-social--dark': props.variant === 'dark' }" :href="props.link"
+        :target="isExternal ? '_blank' : undefined" :rel="isExternal ? 'noopener noreferrer' : undefined">
+        <component :is="props.icon" class="icon" aria-hidden="true" />
         <span>{{ props.label }}</span>
-    </div>
+    </a>
 </template>
+
 <script setup lang='ts'>
+import { computed, type PropType } from 'vue';
+
 const props = defineProps({
     label: { type: String, required: true },
     link: { type: String, required: true },
-    icon: { type: Object, required: true }
+    icon: { type: Object, required: true },
+    variant: { type: String as PropType<'light' | 'dark'>, default: 'light' }
 })
 
-
-const redirectTo = () => {
-    window.open(props.link, '_blank');
-}
+const isExternal = computed(() => /^https?:/i.test(props.link))
 </script>
 
 <style scoped lang='scss'>
 .button-social {
-    border: 1px solid;
-    @apply bg-black border-grey-50;
-    border-radius: 99999px;
+    text-decoration: none;
+    border: 1px solid var(--border);
+    background: var(--cream);
+    border-radius: 999px;
     width: max-content;
-    height: 50px;
-    padding: 8px 24px;
+    height: 42px;
+    padding: 0 18px;
     display: flex;
     flex-direction: row;
     align-items: center;
     justify-content: center;
-    gap: 10px;
-    transition: all 0.3s ease-in-out;
-
+    gap: 8px;
+    transition: all 0.25s ease;
+    cursor: pointer;
 
     .icon {
-        @apply text-white;
-        width: 24px;
-        height: 24px;
+        color: var(--ink);
+        width: 16px;
+        height: 16px;
         display: flex;
         align-items: center;
-        transition: all 0.3s ease-in-out;
-
+        transition: color 0.25s ease, transform 0.25s ease;
 
         svg {
             width: 100%;
             height: 100%;
-            fill: currentColor !important;
         }
-
-        path {
-            fill: currentColor !important;
-        }
-    }
-
-    *:first-child {
-        transition: all 0.3s ease-in-out;
     }
 
     span {
-        @apply text-grey-50 font-openSans;
-        font-style: italic;
-        font-weight: 300;
-        font-size: 14px;
-        transition: all 0.3s ease-in-out;
+        font-family: 'Fira Code', monospace;
+        color: var(--graphite);
+        font-weight: 400;
+        font-size: 12px;
+        letter-spacing: -0.01em;
+        transition: color 0.25s ease;
     }
 
     &:hover {
-        cursor: pointer;
-        @apply bg-white;
-        transition: all 0.3s ease-in-out;
+        background: var(--ink);
+        border-color: var(--ink);
+        transform: translateY(-2px);
+        box-shadow: 3px 3px 0 var(--terracotta);
 
-        *:first-child {
-            @apply text-black;
-            transition: all 0.3s ease-in-out;
-
-            svg {
-                fill: currentColor !important;
-            }
+        .icon {
+            color: var(--cream);
+            transform: rotate(-8deg);
         }
 
         span {
-            @apply text-black;
-            transition: all 0.3s ease-in-out;
+            color: var(--cream);
         }
-
-
     }
 
+    /* Variante sombre (footer) : fond sombre au repos, inversion au survol */
+    &--dark {
+        background: rgba(250, 248, 242, 0.05);
+        border-color: rgba(250, 248, 242, 0.15);
+
+        .icon {
+            color: var(--cream);
+        }
+
+        span {
+            color: rgba(250, 248, 242, 0.7);
+        }
+
+        &:hover {
+            background: var(--cream);
+            border-color: var(--cream);
+            box-shadow: 3px 3px 0 var(--terracotta);
+
+            .icon {
+                color: var(--ink);
+            }
+
+            span {
+                color: var(--ink);
+            }
+        }
+    }
 }
 </style>

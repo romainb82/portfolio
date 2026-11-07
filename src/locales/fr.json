@@ -12,30 +12,39 @@
         "title": "Full-stack ",
         "subtitle": "Développeur",
         "btn": "Projets",
-        "description": "Mon objectif est <b>d’écrire un code maintenable et propre </b> ainsi <b>qu’un code compréhensible </b> afin que le développement soit agréable."
+        "description": "Mon objectif est <b>d’écrire un code maintenable et propre </b> ainsi <b>qu’un code compréhensible </b> afin que le développement soit agréable.",
+        "issue": "— Issue 03 / 2026",
+        "kicker": "Portfolio",
+        "location": "Castres, FR",
+        "available": "Disponible pour une mission",
+        "line1a": "Full",
+        "line1b": "stack",
+        "line2": "Développeur",
+        "signature": "// par Romain Bessede",
+        "quoteSign": "— Romain",
+        "explore": "/ Explorer",
+        "ctaTitle": "Découvrez mes projets récents",
+        "stats": {
+            "years": "Années d'expérience",
+            "tech": "Technologies maîtrisées",
+            "projects": "Projets en vitrine"
+        },
+        "socials": "/ Réseaux"
     },
     "carousel": {
         "slide1": {
-            "title": "L'exemple le plus simple : Kafka + Golang",
-            "description": "Cet article présente une manière simple de mettre en œuvre une architecture microservices avec Kafka, Golang et Docker."
+            "title": "Goudronnage Occitanie",
+            "description": "Site vitrine d'une entreprise de goudronnage en Occitanie, développé en Vue.js avec Supabase et déployé sur Render."
         },
         "slide2": {
-            "title": "Explorer la Composition API de Vue 3",
-            "description": "Une plongée approfondie dans les nouvelles fonctionnalités et les avantages de la Composition API de Vue 3 pour construire des applications évolutives."
+            "title": "Blog Maîtresse",
+            "description": "Blog pédagogique pour le partage de ressources scolaires, construit en Vue.js avec Supabase et déployé sur Vercel."
         },
         "slide3": {
-            "title": "Maîtriser SCSS pour un design web moderne",
-            "description": "Apprenez des techniques SCSS avancées pour créer des feuilles de style réactives, maintenables et élégantes."
+            "title": "Portfolio",
+            "description": "Mon portfolio personnel en Vue 3, TypeScript, animé avec GSAP et stylisé en SCSS."
         },
-        "slide4": {
-            "title": "Introduction aux conteneurs Docker",
-            "description": "Comprenez les bases de la conteneurisation avec Docker et comment elle facilite le développement."
-        },
-        "slide5": {
-            "title": "Créer des applications temps réel avec WebSockets",
-            "description": "Un guide pratique pour implémenter la communication en temps réel dans vos applications web grâce aux WebSockets."
-        },
-        "btn": "Lire plus"
+        "btn": "Voir le projet"
     },
     "about": {
         "section": "/À propos de moi …",
@@ -46,13 +55,22 @@
             "style": "Style",
             "backend": "Back-end",
             "devops": "DevOps"
-        }
+        },
+        "chapter": "/ Chapter 01 — À propos",
+        "titleA": "Salut,",
+        "titleB": "je suis Romain.",
+        "figLabel": "Fig. 01 —",
+        "caption": "Romain Bessede, en pleine session de code"
     },
     "work": {
         "title": "Expérience",
         "summaryTitle": "Expérience professionnelle",
-        "summaryDuration": "3 ans 2 mois",
+        "summaryDuration": "3 ans 9 mois",
         "experiences": [
+            {
+                "duration": "7 mois",
+                "title": "Développeur PrestaShop - Bab'in"
+            },
             {
                 "duration": "2 ans",
                 "title": "Alternant Développeur logiciel"
@@ -69,18 +87,38 @@
                 "duration": "1 an 1 mois",
                 "title": "Stagiaire informatique"
             }
+        ],
+        "chapter": "/ Chapter 02 — Parcours",
+        "titleA": "Mon",
+        "titleB": "expérience.",
+        "total": "Total",
+        "dates": [
+            "Octobre 2025 - Présent",
+            "2023 - 2025",
+            "2022 - 2023",
+            "10 janvier 2022 - 19 février 2022",
+            "31 juin 2021 - 2 juillet 2022"
         ]
     },
     "projects": {
         "section": "… /Projets …",
-        "kanaMaster": {
-            "title": "Kana Master",
-            "description": "Kana Master est une <b>application iOS conçue</b> pour apprendre les Katakana et Hiragana. Elle propose différents tests et exercices pratiques pour faciliter l’apprentissage et la mémorisation des caractères japonais. L’application propose aussi un entraînement audio pour la prononciation correcte ainsi que des démonstrations pour tracer correctement chaque caractère."
+        "goudronnageOccitanie": {
+            "title": "Goudronnage Occitanie",
+            "description": "Site vitrine pour une <b>entreprise de goudronnage</b> située en Occitanie. Développé en <b>Vue.js</b> avec une base de données <b>Supabase</b> pour la gestion des contenus et des demandes de devis. Le site est déployé sur <b>Render</b> et présente les prestations, réalisations et coordonnées de l'entreprise."
         },
-         "portfolio": {
+        "blogMaitresse": {
+            "title": "Blog Maîtresse",
+            "description": "Blog dédié au <b>partage de ressources pédagogiques</b> par une maîtresse d'école. Construit en <b>Vue.js</b> avec <b>Supabase</b> pour la gestion des articles, des médias et de l'authentification. Le site est déployé sur <b>Vercel</b> pour des performances optimales."
+        },
+        "portfolio": {
             "title": "Portfolio",
-            "description": "Kana Master est une <b>application iOS conçue</b> pour apprendre les Katakana et Hiragana. Elle propose différents tests et exercices pratiques pour faciliter l’apprentissage et la mémorisation des caractères japonais. L’application propose aussi un entraînement audio pour la prononciation correcte ainsi que des démonstrations pour tracer correctement chaque caractère."
-        }
+            "description": "Portfolio personnel réalisé en <b>Vue 3</b> avec <b>TypeScript</b>, animé avec <b>GSAP</b> et stylisé en <b>SCSS</b>. Une vitrine moderne pour présenter mon parcours, mes compétences et mes projets."
+        },
+        "visit": "Voir le projet",
+        "chapter": "/ Chapter 03 — Réalisations",
+        "titleA": "Sélection de",
+        "titleB": "projets récents.",
+        "intro": "Une vitrine de mes réalisations en développement web, du <strong>front-end Vue.js</strong> au <strong>back-end PHP/Node</strong>."
     },
     "footer": {
         "name": "Romain",
@@ -99,6 +137,31 @@
                 "Designé par Taisia",
                 "Propulsé par Vue.js"
             ]
-        }
+        },
+        "label": "/ Contact",
+        "talk": "Discutons.",
+        "rights": "© 2026 Romain Bessede — Tous droits réservés",
+        "made": "Made in Castres, fait main · Vue 3 + GSAP"
+    },
+    "ui": {
+        "skip": "Aller au contenu",
+        "backToTop": "Retour en haut",
+        "openMenu": "Ouvrir le menu",
+        "closeMenu": "Fermer le menu",
+        "lang": "Langue",
+        "mainNav": "Navigation principale",
+        "title": "Romain Bessede — Développeur full-stack"
+    },
+    "lightbox": {
+        "open": "Agrandir : {label}",
+        "close": "Fermer",
+        "prev": "Image précédente",
+        "next": "Image suivante",
+        "goTo": "Voir l'image {n}"
+    },
+    "carouselNav": {
+        "prev": "Projet précédent",
+        "next": "Projet suivant",
+        "goTo": "Aller au projet {n}"
     }
 }

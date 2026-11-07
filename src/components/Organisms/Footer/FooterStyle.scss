@@ -1,163 +1,127 @@
 footer {
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
-  justify-content: flex-end;
-  gap: 50px;
-  height: 700px;
-  padding: 16px 52px;
+  background: var(--ink);
+  color: var(--cream);
+  padding: 80px 52px 32px;
+  gap: 60px;
   overflow: hidden;
+  position: relative;
+  border-radius: 16px 16px 0 0;
+  margin-top: 60px;
 
   @media screen and (max-width: 768px) {
-    padding: 0px 20px;
-  }
-
-  @media screen and (max-width: 426px) {
-    align-items: flex-start;
+    padding: 60px 20px 28px;
+    gap: 40px;
   }
 
   @media screen and (max-width: 375px) {
-    padding: 0px 10px;
+    padding: 50px 14px 24px;
   }
 
-  @media screen and (max-width: 970px) {
-    height: 750px;
+  /* Decorative top line */
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: linear-gradient(90deg, var(--terracotta) 0%, var(--amber) 33%, var(--forest) 66%, var(--navy) 100%);
   }
 
-  @media screen and (max-width: 426px) {
-    height: max-content;
+  /* Editorial section label */
+  .footer-label {
+    font-family: 'Fira Code', monospace;
+    font-size: 11px;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: rgba(250, 248, 242, 0.6);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+
+    &::before {
+      content: '';
+      width: 24px;
+      height: 1px;
+      background: rgba(250, 248, 242, 0.4);
+    }
   }
 
   .container-information {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 60px;
+
     @media screen and (max-width: 970px) {
       flex-direction: column;
-      gap: 50px;
+      gap: 40px;
     }
   }
 
   .container-name {
-    position: relative;
-
-    @media screen and (max-width: 1024px) {
-      gap: 0px;
-    }
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    flex: 1;
 
     @media screen and (max-width: 970px) {
       width: 100%;
     }
 
-    .container-bottom {
-      @media screen and (max-width: 1024px) {
-        gap: 20px;
-      }
-
-      @media screen and (max-width: 426px) {
-        flex-direction: column;
-        align-items: flex-start;
-      }
+    &:before {
+      display: none;
     }
 
-    &:before {
-      content: '';
-      width: 1100px;
-      height: 1100px;
-      border: 1px solid;
-      @apply border-grey-50/30;
-      position: absolute;
-      left: -300px;
-      top: -250px;
-      z-index: -1;
-      border-radius: 99999px;
-
-      @media screen and (max-width: 1220px) {
-        width: 800px;
-        height: 800px;
-      }
-
-      @media screen and (max-width: 1024px) {
-        width: 700px;
-        height: 700px;
-        left: -200px;
-        top: -150px;
-      }
-
-      @media screen and (max-width: 970px) {
-        width: 900px;
-        height: 900px;
-        left: -200px;
-        top: -100px;
-      }
-
-      @media screen and (max-width: 850px) {
-        width: 700px;
-        height: 700px;
-        left: -350px;
-        top: 0px;
-      }
-
-      @media screen and (max-width: 425px) {
-        width: 1000px;
-        height: 1000px;
-        left: -350px;
-        top: 200px;
-      }
+    .container-bottom {
+      display: flex;
+      flex-direction: row;
+      align-items: baseline;
+      gap: 16px;
+      flex-wrap: wrap;
     }
 
     .title {
-      @apply font-firaCode text-white;
-      font-weight: 500;
-      font-size: 132px;
-      line-height: 90px;
-      width: max-content;
-      text-wrap: nowrap;
-
-      @media screen and (max-width: 1200px) {
-        font-size: 112px;
-        line-height: 90px;
-      }
-
-      @media screen and (max-width: 1024px) {
-        font-size: 90px;
-        line-height: 90px;
-      }
-
-      @media screen and (max-width: 768px) {
-        font-size: 14vw;
-        line-height: 14vw;
-      }
-
-      &:last-child {
-        @media screen and (max-width: 420px) {
-          order: 1;
-        }
-      }
+      font-family: 'Instrument Serif', serif;
+      font-style: italic;
+      font-weight: 400;
+      font-size: clamp(60px, 9vw, 130px);
+      line-height: 0.92;
+      letter-spacing: -0.04em;
+      color: var(--cream);
     }
 
     .description {
-      @apply font-openSans text-grey-50;
-      max-width: 440px;
-      flex: 1;
-      font-weight: 300;
-      letter-spacing: 0.05px;
-      font-size: 22px;
-
-      @media screen and (max-width: 425px) {
-        order: 2;
-      }
+      font-family: 'Fira Code', monospace;
+      font-size: 13px;
+      font-weight: 400;
+      color: var(--terracotta-light);
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
     }
   }
 
   .container-contact {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+    align-items: flex-start;
+
     span {
-      @apply font-openSans text-white;
-      font-size: 24px;
-      font-weight: 500;
-      text-wrap: nowrap;
+      font-family: 'Instrument Serif', serif;
+      font-style: italic;
+      font-size: 32px;
+      font-weight: 400;
+      color: var(--cream);
+      letter-spacing: -0.02em;
     }
+
     .menu {
-      @apply font-openSans text-white;
       width: max-content;
-      height: max-content;
 
       @media screen and (max-width: 425px) {
         width: 100% !important;
@@ -165,24 +129,46 @@ footer {
 
       ul {
         display: flex;
-        flex-direction: row;
-        align-items: center;
-        flex-wrap: wrap;
-        justify-content: center;
-        gap: 48px;
-        width: max-content;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 10px;
         list-style: none;
+        padding: 0;
 
         @media screen and (max-width: 425px) {
-          width: 100% !important;
-          gap: 10px;
-          justify-content: flex-start;
+          width: 100%;
         }
 
         li {
           a {
-            font-weight: 300;
-            font-size: 14px;
+            font-family: 'Fira Code', monospace;
+            font-weight: 400;
+            font-size: 13px;
+            color: rgba(250, 248, 242, 0.7);
+            position: relative;
+            padding-left: 0;
+            transition: color 0.25s ease, padding-left 0.25s ease;
+
+            &::before {
+              content: '→ ';
+              opacity: 0;
+              display: inline-block;
+              transform: translateX(-10px);
+              transition: opacity 0.25s ease, transform 0.25s ease;
+              color: var(--terracotta-light);
+              margin-right: 6px;
+            }
+
+            &:hover,
+            &:focus-visible {
+              cursor: pointer;
+              color: var(--cream);
+
+              &::before {
+                opacity: 1;
+                transform: translateX(0);
+              }
+            }
           }
         }
       }
@@ -190,83 +176,29 @@ footer {
 
     @media screen and (max-width: 970px) {
       width: 100%;
-      &:deep(.skill-card) {
-        width: 100%;
-        max-width: 100%;
-      }
     }
   }
 
   .container-social {
-    width: 85%;
-    margin: 0 auto;
-    padding-bottom: 30px;
-
-    @media screen and (max-width: 970px) {
-      width: 100%;
-    }
-
-    @media screen and (max-width: 850px) {
-      flex-wrap: wrap;
-      justify-content: flex-start;
-      gap: 30px;
-    }
-
-    .icon {
-      @apply text-white;
-      width: 24px;
-      height: 24px;
-      display: flex;
-      align-items: center;
-      transition: all 0.3s ease-in-out;
-
-      svg {
-        width: 100%;
-        height: 100%;
-      }
-    }
-  }
-}
-
-.skill-card {
-  border-width: 1px;
-  border-radius: 30px;
-  padding: 1.5rem;
-  font-family:
-    system-ui,
-    -apple-system,
-    sans-serif;
-  width: max-content;
-  display: flex;
-  flex: 1;
-  flex-direction: column;
-  align-items: flex-start;
-  justify-content: flex-start;
-  gap: 5px;
-
-  h3 {
-    @apply font-openSans;
-    font-size: 18px;
-    font-weight: 300;
-  }
-
-  .techno-list {
-    @apply font-openSans;
     display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    justify-content: flex-start;
     flex-wrap: wrap;
-    width: 100%;
+    gap: 8px;
+    padding-top: 24px;
+    border-top: 1px solid rgba(250, 248, 242, 0.12);
+  }
 
-    .techno-item {
-      font-size: 0.9rem;
-      white-space: pre;
-
-      &:not(:last-child)::after {
-        content: '/';
-        margin: 0 0.5em;
-      }
-    }
+  .footer-bottom {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-family: 'Fira Code', monospace;
+    font-size: 11px;
+    color: rgba(250, 248, 242, 0.5);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    padding-top: 24px;
+    border-top: 1px solid rgba(250, 248, 242, 0.12);
+    flex-wrap: wrap;
+    gap: 12px;
   }
 }
